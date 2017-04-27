@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="netflix_engine.mappers.CustomerMapper">
+
+    <resultMap id="result" type="Customer">
+        <result property="personID" column="PersonId"/>
+        <result property="lastName" column="LastName"/>
+        <result property="firstName" column="FirstName"/>
+        <result property="city" column="City"/>
+        <result property="address" column="Address"/>
+        <result property="state" column="State"/>
+        <result property="zip" column="Zip"/>
+        <result property="telephone" column="Telephone"/>
+        <result property="email" column="Email"/>
+        <result property="password" column="Password"/>
+        <result property="creditCard" column="CreditCard"/>
+        <result property="rating" column="Rating"/>
+
+    </resultMap>
+
+    <select id = "returnMailingList" resultMap = "result" parameterType = "Customer" statementType = "CALLABLE">
+	     {call Return_Customer_Mailing_List()}
+    </select>
+
+
+    <select id = "getAllCustomers" resultMap = "result">
+      SELECT * FROM CUSTOMER;
+    </select>
+
+</mapper>
