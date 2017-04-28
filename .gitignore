@@ -1,4 +1,6 @@
-.settings
+/.settings
 NetflixClone.iml
 .project
-.idea
+/.idea
+.springBeans
+/target
