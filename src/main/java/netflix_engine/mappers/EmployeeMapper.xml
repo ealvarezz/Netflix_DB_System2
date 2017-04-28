@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="netflix_engine.mappers.EmployeeMapper">
+
+    <resultMap id="customerResult" type="Customer">
+        <result property="personID" column="PersonId"/>
+        <result property="lastName" column="LastName"/>
+        <result property="firstName" column="FirstName"/>
+        <result property="city" column="City"/>
+        <result property="address" column="Address"/>
+        <result property="state" column="State"/>
+        <result property="zip" column="Zip"/>
+        <result property="telephone" column="Telephone"/>
+        <result property="email" column="Email"/>
+        <result property="password" column="Password"/>
+        <result property="creditCard" column="CreditCard"/>
+        <result property="rating" column="Rating"/>
+    </resultMap>
+
+    <resultMap id="movieResult" type="Movie">
+        <result property="id" column="Id"/>
+        <result property="movieType" column="MovieType"/>
+        <result property="name" column="Name"/>
+        <result property="Fee" column="Fee"/>
+        <result property="NumCopes" column="NumCopies"/>
+        <result property="rating" column="Rating"/>
+        <result property="totalRating" column="TotalRating"/>
+    </resultMap>
+
+    <select id = "getMail" resultMap = "customerResult" parameterType = "Customer" statementType = "CALLABLE">
+	     {call Return_Customer_Mailing_List()}
+    </select>
+
+
+	<select id = "newCustomer" resultMap = "customerResult" parameterType = "Customer" statementType = "CALLABLE">
+	     {call AddCustomer(#{lastName, jdbcType = CHAR, mode = IN} ,
+					       #{firstName, jdbcType = CHAR, mode = IN} ,
+					       #{address, jdbcType = CHAR, mode = IN} ,
+					       #{city, jdbcType = CHAR, mode = IN} ,
+					       #{state, jdbcType = CHAR, mode = IN} ,
+					       #{zip, jdbcType = CHAR, mode = IN} ,
+					       #{telephone, jdbcType = CHAR, mode = IN} ,
+					       #{email, jdbcType = CHAR, mode = IN} ,
+					       #{creditCard, jdbcType = CHAR, mode = IN} ,
+					       #{password, jdbcType = CHAR, mode = IN}
+	     )}
+    </select>
+
+
+
+
+    <select id = "getCustomers" resultMap = "customerResult">
+      SELECT * FROM CUSTOMER;
+    </select>
+
+    <!-- WE NEED TO FIND OUT HOW TO differentiate attributes for each table/class/result map -->
+    <!--  <select id = addOrder resultMap ="movieResult, customerResult," parameterType = "Customer" statementType = "CALLABLE">
+    	{call Add_Order(#{id, jdbcType = INTEGER, mode = IN} ,
+    					#{email, jdbcType = CHAR, mode = IN} ,
+    					#{ssn, jdbcType = INTEGER, mode = IN}
+    	)}
+
+    </select>
+    -->
+
+
+ </mapper>

@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 | TimeDate   | timestamp | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
 | ReturnDate | date      | YES  |     | NULL              |                             |
 | EmployeeId | int(11)   | YES  | MUL | NULL              |                             |
-| STATE      | char(8)   | YES  |     | NULL              |                             |
+| STATE      | char(8)   | YES  |     | Held              |                             |
 +------------+-----------+------+-----+-------------------+-----------------------------+
  *
  */
@@ -27,7 +27,7 @@ public class FuegoOrder {
 	private Date returnDate;
 	private int employeeId;
 	private	String state;
-	
+
 	public int getOrderId() {
 		return orderId;
 	}
@@ -70,5 +70,5 @@ public class FuegoOrder {
 	public void setState(String state) {
 		this.state = state;
 	}
-	
+
 }

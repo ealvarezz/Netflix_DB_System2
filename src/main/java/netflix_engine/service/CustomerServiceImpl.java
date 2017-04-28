@@ -18,18 +18,5 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerMapper customerMapper;
 
-    public List<Customer> returnMailingList(){
-      System.out.println("IIIIIIIIIIIIIIIIIIIIIIII");
-  	  List<Customer> customerList = customerMapper.getMail();
-      System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
-  	  return customerList;
-    }
-
-    public List<Customer> getAllCustomers(){
-      System.out.println("IIIIIIIIIIIIIIIIIIIIIIII");
-      List<Customer> customerList = customerMapper.getCustomers();
-      System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
-  	  return customerList;
-    }
 
 }
