@@ -10,6 +10,7 @@
   <properties>
 	  <spring.version>4.2.1.RELEASE</spring.version>
   </properties>
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -70,7 +71,16 @@
   </dependencies>
   <build>
 	<finalName>NetflixClone</finalName>
-
+	  
+  <resources>
+    <resource>
+	  <directory>src/main/netflix_engine/java</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+          </resource>
+  </resources>
 		<pluginManagement>
 			<plugins>
 				<plugin>
