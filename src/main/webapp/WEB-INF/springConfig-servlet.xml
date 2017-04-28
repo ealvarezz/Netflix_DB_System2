@@ -13,6 +13,8 @@
 
 	<mvc:view-controller path="/" view-name="index"/>
 	<mvc:view-controller path="/login" view-name="login"/>
+	<mvc:view-controller path="/signup" view-name="signup"/>
+	<mvc:view-controller path="/orders" view-name="orders"/>
     <context:component-scan base-package="netflix_engine" />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

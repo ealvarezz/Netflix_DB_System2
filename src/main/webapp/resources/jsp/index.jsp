@@ -13,7 +13,7 @@
 
   <body>
 
-    <a href="resources/jsp/login.jsp">Attempt to go to Signup in WEB-INF/jsp</a>
+	  THIS IS INDEX.HTML
 
   </body>
 </html>

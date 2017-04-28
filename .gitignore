@@ -4,3 +4,5 @@ NetflixClone.iml
 /.idea
 .springBeans
 /target
+*.swp
+.DS_Store
