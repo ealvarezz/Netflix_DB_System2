@@ -11,11 +11,12 @@
 
 <mvc:default-servlet-handler/>
 
-
+	<mvc:view-controller path="/" view-name="index"/>
+	<mvc:view-controller path="/login" view-name="login"/>
     <context:component-scan base-package="netflix_engine" />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	  <property name="prefix" value="/WEB-INF/jsp/" />
+	  <property name="prefix" value="/resources/jsp/" />
 	  <property name="suffix" value=".jsp" />
     </bean>
     

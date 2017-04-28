@@ -29,5 +29,13 @@
     <select id = "getCustomers" resultMap = "result">
       SELECT * FROM CUSTOMER;
     </select>
+    
+    <select id = "getCustomerById" resultMap = "result">
+      SELECT *
+        FROM Customer
+        INNER JOIN Person
+        ON Customer.PersonId=Person.PersonId
+		WHERE Customer.Email = #{email}
+    </select>
 
 </mapper>
