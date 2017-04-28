@@ -41,11 +41,11 @@ public class EmployeeController {
  	  return customerList;
    }
    
-   @RequestMapping(value="login", method = RequestMethod.GET)
-   public @ResponseBody String login() {
+//   @RequestMapping(value="login", method = RequestMethod.GET)
+//   public @ResponseBody String login() {
 
- 	  return "/WEB-INF/resources/jsp/login.jsp";
-   }
+ 	 // return "redirect:resources/jsp/login.jsp";
+   //}
 
 
 	 @RequestMapping(value="addcustomer", method = RequestMethod.POST)
