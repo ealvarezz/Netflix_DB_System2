@@ -46,4 +46,23 @@ public class CustomerController {
 
   	  return customerList;
     }
+
+    @RequestMapping(value="addcustomer", method = RequestMethod.POST)
+    public @ResponseBody String addCustomer(@RequestBody Customer newCustomer) {
+ 
+              System.out.println(newCustomer.getPersonID());
+              System.out.println(newCustomer.getFirstName());
+              System.out.println(newCustomer.getLastName());
+              System.out.println(newCustomer.getAddress());
+              System.out.println(newCustomer.getCity());
+              System.out.println(newCustomer.getState());
+              System.out.println(newCustomer.getZip());
+              System.out.println(newCustomer.getTelephone());
+              System.out.println(newCustomer.getEmail());
+              System.out.println(newCustomer.getPassword());
+              System.out.println(newCustomer.getCreditCard());
+              System.out.println(newCustomer.getRating());
+              return "hey";
+ 
+      }
 }
