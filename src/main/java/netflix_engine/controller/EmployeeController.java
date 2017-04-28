@@ -42,7 +42,7 @@ public class EmployeeController {
    }
 
 
-	 @RequestMapping(value="addCustomer", method = RequestMethod.POST)
+	 @RequestMapping(value="addcustomer", method = RequestMethod.POST)
 	 public @ResponseBody String newCustomer(@RequestBody Customer newCustomer) {
 
 						 System.out.println(newCustomer.getPersonID());

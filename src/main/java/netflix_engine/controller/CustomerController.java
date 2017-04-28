@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import netflix_engine.model.Customer;
+import netflix_engine.model.Movie;
 import netflix_engine.service.CustomerService;
 import util.DbErrors.CustomerErrors;
 
@@ -23,4 +24,16 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+    
+    @RequestMapping(value="getallmovielist", method = RequestMethod.POST)
+	 public @ResponseBody String allMoviesList(@RequestBody Customer customer) {
+    	
+    	String email = customer.getEmail();
+    	List<List<Movie>> allMovies = new ArrayList<List<Movie>>();
+    	
+    	return "Litness";
+
+	}
+    
+    
 }
