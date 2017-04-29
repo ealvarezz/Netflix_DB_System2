@@ -7,7 +7,6 @@ app.controller('loginCtrl', function ($scope,$http,$window) {
 	$scope.password = "";
 
 	$scope.login = function() {
-		alert("reeee");
 		$http({
 			method  : 'POST',
 			url     : '/login_submit',
@@ -22,7 +21,6 @@ app.controller('loginCtrl', function ($scope,$http,$window) {
 				alert(data);
 				alert(data.data);
 				// check status: ok or status:error
-				alert(data);
 			});
 	};
 
