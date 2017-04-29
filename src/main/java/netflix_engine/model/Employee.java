@@ -19,11 +19,10 @@ import java.sql.Date;
 /* Try importing this below if the one above doesn't work
  * 				import java.util.Date;
  * */
-
+ 
 import java.math.BigDecimal;
+import netflix_engine.model.Person;
 
-
-public class Employee {
 
 
 	public class Employee extends Person {
@@ -66,5 +65,5 @@ public class Employee {
 		public void setPassword(String password) {
 			this.password = password;
 		}
-	}
+	
 }

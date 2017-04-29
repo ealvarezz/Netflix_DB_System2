@@ -6,7 +6,7 @@
 
 <mapper namespace="netflix_engine.mappers.EmployeeMapper">
 
-    <resultMap id="customerResult" type="Customer">
+    <resultMap id="employeeResult" type="Employee">
         <result property="personID" column="PersonId"/>
         <result property="lastName" column="LastName"/>
         <result property="firstName" column="FirstName"/>
@@ -22,7 +22,7 @@
         <result property="password" column="Password"/>
     </resultMap>
     
-    <resultMap id="employeeResult" type="Employee">
+    <resultMap id="customerResult" type="Customer">
         <result property="personID" column="PersonId"/>
         <result property="lastName" column="LastName"/>
         <result property="firstName" column="FirstName"/>

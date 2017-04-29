@@ -14,8 +14,7 @@ public interface EmployeeService {
 
 
 
-	void addCustomer(Customer C);
-
+	
 	Employee getEmployeeBySSN(int ssn);
 
 	void addCustomer(Customer newCustomer) throws IOException;

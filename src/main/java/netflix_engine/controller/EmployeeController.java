@@ -79,7 +79,7 @@ public class EmployeeController {
 			String attemptPassword = employee.getPassword();
 
 			Employee vEmployee = employeeService.getEmployeeBySSN(SSN);
-			return vEmployee;
+			
 
 			if(vEmployee == null){
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
