@@ -2,9 +2,9 @@
 
 
 var app = angular.module('FuegoVideo',[]);
-app.controller('ordersCtrl', function ($scope,$http) {
+app.controller('ordersCtrl', function ($scope,$http,$window) {
 
-	$scope.username = "";//GET EMAIL FROM COOKIE
+	$scope.email = $window.localStorage.getItem('username');
 
 	$scope.cur_orders = [];
 	$scope.wish_orders = [];
@@ -12,9 +12,9 @@ app.controller('ordersCtrl', function ($scope,$http) {
 	$scope.list_orders = function() {
 		$http({
 			method  : 'POST',
-			url     : '/orders',
+			url     : '/orders_submit',
 			data    : { 
-				username : $scope.email
+				email : $scope.email
 			}
 		})
 		.success(function(data) {

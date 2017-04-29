@@ -5,33 +5,39 @@
 var app = angular.module('FuegoVideo',[]);
 app.controller('signUpCtrl', function ($scope,$http) {
 
-   $scope.FirstName = "";
-   $scope.LastName = "";
-   $scope.Address = "";
-   $scope.City = "";
-   $scope.State = "";
-   $scope.ZipCode = "";
-   $scope.Telephone = "";
-   $scope.Email = "";
-   $scope.Password = "";
-   $scope.CCN = "";
+   $scope.firstname = "";
+   $scope.lastname = "";
+   $scope.address = "";
+   $scope.city = "";
+   $scope.state = "";
+   $scope.zipcode = "";
+   $scope.telephone = "";
+   $scope.email = "";
+   $scope.password = "";
+   $scope.creditcard = "";
 
    $scope.createCustomer = function() {
+	   alert("CALLED FUNC");
+
+		var cancer = 	{ 
+			firstname : $scope.firstname,
+			lastname : $scope.lastname,
+			address : $scope.address,
+			city : $scope.city,
+			state : $scope.state,
+			zipcode : $scope.zipcode,
+			telephone : $scope.telephone,
+			email : $scope.email,
+			password : $scope.password,
+			creditcard : $scope.creditcard
+		   };
+
+		alert(cancer);
+
 	   $http({
 		   method  : 'POST',
-		   url     : '/signup',
-		   data    : { 
-			   firstname = $scope.FirstName,
-			   lastname = $scope.LastName,
-			   address = $scope.Address,
-			   city = $scope.City,
-			   state = $scope.State,
-			   zipcode = $scope.ZipCode,
-			   telephone = $scope.Telephone,
-			   email = $scope.Email,
-			   password = $scope.Password,
-			   creditcard = $scope.CCN
-		   }
+		   url     : '/signup_submit',
+		   data    : cancer
 	   })
 		   .success(function(data) {
 			   alert(data);

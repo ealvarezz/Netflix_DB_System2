@@ -12,7 +12,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 		<script src="https://code.angularjs.org/1.5.5/angular-cookies.min.js"></script>
 		<script src="/resources/js/app.js"></script>
-		<script src="/resources/js/controller/loginCtrl.js"></script>
+		<script src="/resources/js/controller/employeeLoginCtrl.js"></script>
 	</head>
 	<style>
 .jumbotron
@@ -27,11 +27,9 @@
 	<body ng-app = "FuegoVideo">
 
 		<div class = "login">
-			<a href="CustomerList.jsp">Attempt to go to CustomerList/jsp</a>
-
-			<div class = "container" ng-controller = "loginCtrl">
+			<div class = "container" ng-controller = "employeeLoginCtrl">
 				<div class="jumbotron vertical-center">
-					<h2>Log In</h2>
+					<h2>EMPLOYEE LOG IN</h2>
 					<form class="form-horizontal" method="POST">
 						<div class="form-group">
 							<label for="email">Email</label>

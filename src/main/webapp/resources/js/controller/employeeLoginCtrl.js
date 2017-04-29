@@ -1,7 +1,7 @@
 
 
 var app = angular.module('FuegoVideo',[]);
-app.controller('loginCtrl', function ($scope,$http,$window) {
+app.controller('employeeLoginCtrl', function ($scope,$http,$window) {
 	
 	$scope.email = "";
 	$scope.password = "";
@@ -9,7 +9,7 @@ app.controller('loginCtrl', function ($scope,$http,$window) {
 	$scope.login = function() {
 		$http({
 			method  : 'POST',
-			url     : '/login_submit',
+			url     : '/employee_login_submit',
 			data    : { 
 				username : $scope.email,
 				password : $scope.password
@@ -17,7 +17,7 @@ app.controller('loginCtrl', function ($scope,$http,$window) {
 		})
 			.success(function(data) {
 				$window.localStorage.setItem('username', $scope.email);
-				$window.localStorage.setItem('customer', true);
+				$window.localStorage.setItem('employee', true);
 				// check status: ok or status:error
 			});
 	};
