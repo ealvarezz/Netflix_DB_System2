@@ -27,13 +27,16 @@
 	<body ng-app = "FuegoVideo">
 
 		<div class = "login">
+			<a href="CustomerList.jsp">Attempt to go to CustomerList/jsp</a>
+
 			<div class = "container" ng-controller = "employeeLoginCtrl">
 				<div class="jumbotron vertical-center">
-					<h2>EMPLOYEE LOG IN</h2>
+					<h2>Log In</h2>
+					<h2>{{message}}</h2>
 					<form class="form-horizontal" method="POST">
 						<div class="form-group">
-							<label for="email">Email</label>
-							<input type="email" ng-model="email" class="form-control" name="email" />{{email}}
+							<label for="email">Employee ID</label>
+							<input type="number" ng-model="employeeid" class="form-control" name="employeeid" />{{employeeid}}
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
