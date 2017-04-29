@@ -1,5 +1,6 @@
 package netflix_engine.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,19 +52,17 @@ public class EmployeeController {
 	 @RequestMapping(value="addcustomer", method = RequestMethod.POST)
 	 public @ResponseBody String newCustomer(@RequestBody Customer newCustomer) {
 
-						 System.out.println(newCustomer.getPersonID());
-						 System.out.println(newCustomer.getFirstName());
-						 System.out.println(newCustomer.getLastName());
-						 System.out.println(newCustomer.getAddress());
-						 System.out.println(newCustomer.getCity());
-						 System.out.println(newCustomer.getState());
-						 System.out.println(newCustomer.getZip());
-						 System.out.println(newCustomer.getTelephone());
-						 System.out.println(newCustomer.getEmail());
-						 System.out.println(newCustomer.getPassword());
-						 System.out.println(newCustomer.getCreditCard());
-						 System.out.println(newCustomer.getRating());
-						 return "hey";
-
-		 }
+		try {
+			employeeService.addCustomer(newCustomer);
+			return "hey";
+			
+		} 
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 			
+		 
+		return "ERROR";
+	}
 }

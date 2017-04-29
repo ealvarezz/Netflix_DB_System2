@@ -30,25 +30,28 @@
         <result property="rating" column="Rating"/>
         <result property="totalRating" column="TotalRating"/>
     </resultMap>
+    
+<!-- ********************************************************************************************* -->
 
     <select id = "getMail" resultMap = "customerResult" parameterType = "Customer" statementType = "CALLABLE">
 	     {call Return_Customer_Mailing_List()}
     </select>
 
 
-	<select id = "newCustomer" resultMap = "customerResult" parameterType = "Customer" statementType = "CALLABLE">
-	     {call AddCustomer(#{lastName, jdbcType = CHAR, mode = IN} ,
-					       #{firstName, jdbcType = CHAR, mode = IN} ,
-					       #{address, jdbcType = CHAR, mode = IN} ,
-					       #{city, jdbcType = CHAR, mode = IN} ,
-					       #{state, jdbcType = CHAR, mode = IN} ,
-					       #{zip, jdbcType = CHAR, mode = IN} ,
-					       #{telephone, jdbcType = CHAR, mode = IN} ,
-					       #{email, jdbcType = CHAR, mode = IN} ,
-					       #{creditCard, jdbcType = CHAR, mode = IN} ,
-					       #{password, jdbcType = CHAR, mode = IN}
-	     )}
-    </select>
+	<insert id = "newCustomer" parameterType = "Customer" statementType = "CALLABLE">
+	     {call AddCustomer( 
+	     				   #{lastName,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{firstName,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{address,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{city,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{state,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{zip,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{telephone,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{email,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{creditCard,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{password,javaType=String,jdbcType=CHAR,mode=IN}
+					       )}
+    </insert>
 
 
 
@@ -59,9 +62,9 @@
 
     <!-- WE NEED TO FIND OUT HOW TO differentiate attributes for each table/class/result map -->
     <!--  <select id = addOrder resultMap ="movieResult, customerResult," parameterType = "Customer" statementType = "CALLABLE">
-    	{call Add_Order(#{id, jdbcType = INTEGER, mode = IN} ,
-    					#{email, jdbcType = CHAR, mode = IN} ,
-    					#{ssn, jdbcType = INTEGER, mode = IN}
+    	{call Add_Order(#{id,javaType=String,jdbcType=CHAR,mode=IN} ,
+    					#{email,javaType=String,jdbcType=CHAR,mode=IN} ,
+    					#{ssn,javaType=String,jdbcType=CHAR,mode=IN}
     	)}
 
     </select>
