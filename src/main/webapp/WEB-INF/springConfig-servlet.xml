@@ -73,8 +73,8 @@
 	  jdbc configuration	   
     -->
 
-    <tx:annotation-driven transaction-manager="transactionManager" />
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <tx:annotation-driven transaction-manager="txManager" />
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	  <property name="dataSource" ref="dataSource" />
     </bean>
 

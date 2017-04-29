@@ -28,6 +28,9 @@ public class EmployeeController {
 
 	@Autowired
     private EmployeeService employeeService;
+	
+	@Autowired
+	private PlatformTransactionManager txManager;
 
 	/**
     *
@@ -60,7 +63,7 @@ public class EmployeeController {
 	 @RequestMapping(value="addcustomer", method = RequestMethod.POST)
 	 public @ResponseBody String newCustomer(@RequestBody Customer newCustomer) {
 		 
-		 PlatformTransactionManager txManager = new PlatformTransactionManager();
+		
 		 DefaultTransactionDefinition def = new DefaultTransactionDefinition();
 		 def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 
@@ -75,6 +78,8 @@ public class EmployeeController {
 		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
+			txManager.rollback(status);
 			
 			return "fail!!!!!";
 		}
