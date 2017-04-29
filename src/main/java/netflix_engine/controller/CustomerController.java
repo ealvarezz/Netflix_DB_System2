@@ -58,7 +58,7 @@ public class CustomerController {
 		}
 	}
 	
-	@RequestMapping(value="testing", method = RequestMethod.POST)
+	@RequestMapping(value="getCustomerOrders", method = RequestMethod.POST)
 	public @ResponseBody List<FuegoOrder> testing(@RequestBody Customer customer) {
 
 		String email = customer.getEmail();
