@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,20 +59,29 @@ public class EmployeeController {
 
 	 @RequestMapping(value="addcustomer", method = RequestMethod.POST)
 	 public @ResponseBody String newCustomer(@RequestBody Customer newCustomer) {
+		 
+		 PlatformTransactionManager txManager = new PlatformTransactionManager();
+		 DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		 def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 
+		 TransactionStatus status = txManager.getTransaction(def);
 
 		try {
 			employeeService.addCustomer(newCustomer);
-			return "hey";
+			
+			
 
 		}
 		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
+			return "fail!!!!!";
 		}
 
-
-		return "ERROR";
+		txManager.commit(status);
+		
+		return "OK";
 	}
 
 
@@ -91,7 +104,7 @@ public class EmployeeController {
 				if(verifyPassword == null || !verifyPassword.equals(attemptPassword))
 					return new Status("error","Wrong password bruh!");
 				else
-					return new Status("OK",position);
+					return new Status("OK",position.toLowerCase());
 			}
 
 		}
