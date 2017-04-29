@@ -25,12 +25,24 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
     
+    
     @RequestMapping(value="getallmovielist", method = RequestMethod.POST)
-	 public @ResponseBody String allMoviesList(@RequestBody Customer customer) {
-    	
+	 public @ResponseBody Customer allMoviesList(@RequestBody Customer customer) {
+   	
+   	String email = customer.getEmail();
+   	Customer entCustomer = customerService.getCustomerById(email);
+   	
+   	
+   	return entCustomer;
+
+	}
+    
+    @RequestMapping(value="login_submit", method = RequestMethod.POST)
+	 public @ResponseBody String confirmLogin(@RequestBody Customer customer) {
+   	
     	String email = customer.getEmail();
-    	List<List<Movie>> allMovies = new ArrayList<List<Movie>>();
     	
+   	
     	return "Litness";
 
 	}

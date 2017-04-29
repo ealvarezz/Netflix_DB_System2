@@ -4,5 +4,5 @@ import java.util.List;
 import netflix_engine.model.Customer;
 
 public interface CustomerService {
-   
+	Customer getCustomerById(String email);
 }
