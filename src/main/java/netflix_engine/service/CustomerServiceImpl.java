@@ -17,6 +17,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerMapper customerMapper;
+    
+    public Customer getCustomerById(String email) {
+		
+		return customerMapper.getCustomerById(email);
+	}
 
 
 }
