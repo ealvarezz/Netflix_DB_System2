@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,36 +24,39 @@ import util.DbErrors.CustomerErrors;
 
 public class CustomerController {
 
-    @Autowired
-    private CustomerService customerService;
-    
-    
-    @RequestMapping(value="getallmovielist", method = RequestMethod.POST)
-	 public @ResponseBody Customer allMoviesList(@RequestBody Customer customer) {
-   	
-   	String email = customer.getEmail();
-   	Customer entCustomer = customerService.getCustomerById(email);
-   	
-   	
-   	return entCustomer;
+	@Autowired
+	private CustomerService customerService;
+
+
+	@RequestMapping(value="getallmovielist", method = RequestMethod.POST)
+	public @ResponseBody Customer allMoviesList(@RequestBody Customer customer) {
+
+		String email = customer.getEmail();
+		Customer entCustomer = customerService.getCustomerById(email);
+
+
+		return entCustomer;
 
 	}
-    
-    @RequestMapping(value="login_submit", method = RequestMethod.POST)
-	 public @ResponseBody Object confirmLogin(@RequestBody Customer customer) {
-   	
-    	String email = customer.getEmail();
-    	String attemptPassword = customer.getPassword();
-    	Customer vCustomer = customerService.getCustomerById(email);
-    	String verifyPassword = vCustomer.getPassword();
-    	
-    	if(verifyPassword == null || !verifyPassword.equals(attemptPassword))
-    		return new Status("error","There's no user registered with this password");
-    	else
-    		return new Status("OK","Authentication succeded!");
 
+	@RequestMapping(value="login_submit", method = RequestMethod.POST)
+	public @ResponseBody Object confirmLogin(@RequestBody Customer customer) {
+
+		String email = customer.getEmail();
+		String attemptPassword = customer.getPassword();
+
+		Customer vCustomer = customerService.getCustomerById(email);
+		if(vCustomer == null){
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} else {
+			String verifyPassword = vCustomer.getPassword();
+			if(verifyPassword == null || !verifyPassword.equals(attemptPassword))
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			else
+				return new ResponseEntity<>(HttpStatus.OK);
+		}
 	}
-    
-    
+
+
 }
 

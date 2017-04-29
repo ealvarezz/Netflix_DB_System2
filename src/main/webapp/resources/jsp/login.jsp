@@ -32,6 +32,7 @@
 			<div class = "container" ng-controller = "loginCtrl">
 				<div class="jumbotron vertical-center">
 					<h2>Log In</h2>
+					<h2>{{message}}</h2>
 					<form class="form-horizontal" method="POST">
 						<div class="form-group">
 							<label for="email">Email</label>
