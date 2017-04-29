@@ -7,17 +7,20 @@ app.controller('loginCtrl', function ($scope,$http,$window) {
 	$scope.password = "";
 
 	$scope.login = function() {
+		alert("reeee");
 		$http({
 			method  : 'POST',
 			url     : '/login_submit',
 			data    : { 
-				username : $scope.email,
+				email : $scope.email,
 				password : $scope.password
 			}
 		})
 			.success(function(data) {
 				$window.localStorage.setItem('username', $scope.email);
 				$window.localStorage.setItem('customer', true);
+				alert(data);
+				alert(data.data);
 				// check status: ok or status:error
 			});
 	};
