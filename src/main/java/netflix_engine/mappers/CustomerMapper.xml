@@ -9,7 +9,7 @@
         <result property="personID" column="PersonId"/>
         <result property="lastName" column="LastName"/>
         <result property="firstName" column="FirstName"/>
-        <result property="city" column="City"/>
+        <result property="city" column="City"/>     
         <result property="address" column="Address"/>
         <result property="state" column="State"/>
         <result property="zip" column="Zip"/>

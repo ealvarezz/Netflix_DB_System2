@@ -22,6 +22,7 @@ app.controller('loginCtrl', function ($scope,$http,$window) {
 				alert(data);
 				alert(data.data);
 				// check status: ok or status:error
+				alert(data);
 			});
 	};
 

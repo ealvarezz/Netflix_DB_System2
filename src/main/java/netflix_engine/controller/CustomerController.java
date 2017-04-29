@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import netflix_engine.general.Status;
 import netflix_engine.model.Customer;
 import netflix_engine.model.Movie;
 import netflix_engine.service.CustomerService;
@@ -38,14 +39,20 @@ public class CustomerController {
 	}
     
     @RequestMapping(value="login_submit", method = RequestMethod.POST)
-	 public @ResponseBody String confirmLogin(@RequestBody Customer customer) {
+	 public @ResponseBody Object confirmLogin(@RequestBody Customer customer) {
    	
     	String email = customer.getEmail();
+    	String attemptPassword = customer.getPassword();
+    	Customer vCustomer = customerService.getCustomerById(email);
+    	String verifyPassword = vCustomer.getPassword();
     	
-   	
-    	return "Litness";
+    	if(verifyPassword == null || !verifyPassword.equals(attemptPassword))
+    		return new Status("error","There's no user registered with this password");
+    	else
+    		return new Status("OK","Authentication succeded!");
 
 	}
     
     
 }
+
