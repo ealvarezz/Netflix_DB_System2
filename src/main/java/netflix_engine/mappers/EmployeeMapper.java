@@ -6,13 +6,14 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import netflix_engine.model.Customer;
-
+import netflix_engine.model.Employee;
 
 
 public interface EmployeeMapper {
 	public List<Customer> getMail();
 	public List<Customer> getCustomers();
-	
+
+
 	public void newCustomer(@Param(value = "lastName") String lastName,
 							@Param(value = "firstName") String firstName,
 							@Param(value = "address") String address,
@@ -23,4 +24,8 @@ public interface EmployeeMapper {
 							@Param(value = "email") String email,
 							@Param(value = "creditCard") String creditCard,
 							@Param(value = "password") String password);
+
+	public void newCustomer();
+	public Employee getBySSN(@Param("SSN") int id);
+
 }

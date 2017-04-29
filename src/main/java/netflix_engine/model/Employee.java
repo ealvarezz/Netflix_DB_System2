@@ -22,43 +22,49 @@ import java.sql.Date;
 
 import java.math.BigDecimal;
 
+
 public class Employee {
 
-	private int ssn;
-	private Date startDate;
-	private BigDecimal HourlyRate;
-	private String position;
-	private String password;
+
+	public class Employee extends Person {
 
 
-	public int getSsn() {
-		return ssn;
-	}
-	public void setSsn(int ssn) {
-		this.ssn = ssn;
-	}
-	public Date getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-	public BigDecimal getHourlyRate() {
-		return HourlyRate;
-	}
-	public void setHourlyRate(BigDecimal hourlyRate) {
-		HourlyRate = hourlyRate;
-	}
-	public String getPosition() {
-		return position;
-	}
-	public void setPosition(String position) {
-		this.position = position;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
+		private int ssn;
+		private Date startDate;
+		private BigDecimal HourlyRate;
+		private String position;
+		private String password;
+
+
+		public int getSsn() {
+			return ssn;
+		}
+		public void setSsn(int ssn) {
+			this.ssn = ssn;
+		}
+		public Date getStartDate() {
+			return startDate;
+		}
+		public void setStartDate(Date startDate) {
+			this.startDate = startDate;
+		}
+		public BigDecimal getHourlyRate() {
+			return HourlyRate;
+		}
+		public void setHourlyRate(BigDecimal hourlyRate) {
+			HourlyRate = hourlyRate;
+		}
+		public String getPosition() {
+			return position;
+		}
+		public void setPosition(String position) {
+			this.position = position;
+		}
+		public String getPassword() {
+			return password;
+		}
+		public void setPassword(String password) {
+			this.password = password;
+		}
 	}
 }

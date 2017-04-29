@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import netflix_engine.mappers.EmployeeMapper;
 import netflix_engine.model.Customer;
+import netflix_engine.model.Employee;
 
 
 @Service("employeeService")
@@ -28,13 +29,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	private EmployeeMapper employeeMapper;
-	
+
 	//@Autowired
 	//private SqlSession sqlSession;
-	
+
 	@Autowired
 	private SqlSessionFactory sqlSessionFactory;
-	
+
 	private String xmlLink = "netflix_engine/mappers/EmployeeMapper.xml";
 
 
@@ -49,15 +50,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public void addCustomer(Customer newCustomer) throws IOException {
-    	
-    	
-	
-		
+
+
+
+
       //InputStream inputStream = Resources.getResourceAsStream(xmlLink);
-	  //SqlSessionFactory sqlSessionFactory = 
+	  //SqlSessionFactory sqlSessionFactory =
 	    //      new SqlSessionFactoryBuilder().build(inputStream);
 	  SqlSession session = sqlSessionFactory.openSession();
-	  
+
 	  try{
 		  EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
 		  mapper.newCustomer(newCustomer.getLastName(),
@@ -70,15 +71,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 			    	newCustomer.getEmail(),
 			    	newCustomer.getCreditCard(),
 			    	newCustomer.getPassword());
-		  
+
 		  session.commit();
 
 	  } catch( Exception e ){
 	   e.printStackTrace();
-	  } 
+	  }
 	  session.close();
     }
-    	
-    	
-    	    
+
+
+
+
+
+
+    public Employee getEmployeeBySSN(int ssn){
+
+
+    	return employeeMapper.getBySSN(ssn);
+    }
+
 }

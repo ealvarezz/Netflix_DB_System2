@@ -15,6 +15,22 @@
         <result property="state" column="State"/>
         <result property="zip" column="Zip"/>
         <result property="telephone" column="Telephone"/>
+        <result property="ssn" column="SSN"/>
+        <result property="startDate" column="StartDate"/>
+        <result property="HourlyRate" column="HourlyRate"/>
+        <result property="position" column="Position"/>
+        <result property="password" column="Password"/>
+    </resultMap>
+    
+    <resultMap id="employeeResult" type="Employee">
+        <result property="personID" column="PersonId"/>
+        <result property="lastName" column="LastName"/>
+        <result property="firstName" column="FirstName"/>
+        <result property="city" column="City"/>
+        <result property="address" column="Address"/>
+        <result property="state" column="State"/>
+        <result property="zip" column="Zip"/>
+        <result property="telephone" column="Telephone"/>
         <result property="email" column="Email"/>
         <result property="password" column="Password"/>
         <result property="creditCard" column="CreditCard"/>
@@ -58,6 +74,14 @@
 
     <select id = "getCustomers" resultMap = "customerResult">
       SELECT * FROM CUSTOMER;
+    </select>
+    
+    <select id = "getBySSN" resultMap = "employeeResult">
+      	SELECT *
+        FROM Employee
+        INNER JOIN Person
+        ON Employee.PersonId=Person.PersonId
+		WHERE Employee.SSN = #{SSN}
     </select>
 
     <!-- WE NEED TO FIND OUT HOW TO differentiate attributes for each table/class/result map -->
