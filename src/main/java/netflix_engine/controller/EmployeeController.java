@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import netflix_engine.model.Employee;
+import netflix_engine.general.Status;
 import netflix_engine.model.Customer;
 import netflix_engine.service.EmployeeService;
 
@@ -79,16 +80,18 @@ public class EmployeeController {
 			String attemptPassword = employee.getPassword();
 
 			Employee vEmployee = employeeService.getEmployeeBySSN(SSN);
-			
+			String position;
 
 			if(vEmployee == null){
-				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+				return new Status("error","There is no user with that ID");
 			} else {
 				String verifyPassword = vEmployee.getPassword();
+				position = vEmployee.getPosition();
+				
 				if(verifyPassword == null || !verifyPassword.equals(attemptPassword))
-					return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+					return new Status("error","Wrong password bruh!");
 				else
-					return new ResponseEntity<>(HttpStatus.OK);
+					return new Status("OK",position);
 			}
 
 		}
