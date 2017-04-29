@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import netflix_engine.mappers.CustomerMapper;
 import netflix_engine.model.Customer;
+import netflix_engine.model.FuegoOrder;
 
 @Service("customerService")
 public class CustomerServiceImpl implements CustomerService {
@@ -21,6 +22,12 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer getCustomerById(String email) {
 		
 		return customerMapper.getCustomerById(email);
+	}
+
+	public List<FuegoOrder> getOrdersByEmail(String email) {
+		
+		System.out.println("NOW WERE CALLING THE SERVICE METHOD!");
+		return customerMapper.getCustomerOrders(email);
 	}
 
 

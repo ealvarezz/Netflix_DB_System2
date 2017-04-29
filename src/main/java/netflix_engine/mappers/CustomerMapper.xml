@@ -20,6 +20,27 @@
         <result property="rating" column="Rating"/>
 
     </resultMap>
+    
+    <resultMap id="orderResult" type="FuegoOrder">
+    	<result property="orderId" column="OrderId"/>
+    	<result property="movieId" column="MovieId"/>
+    	<result property="customerId" column="CustomerId"/>
+    	<result property="timeDate" column="TimeDate"/>
+    	<result property="returnDate" column="ReturnDate"/>
+    	<result property="employeeId" column="EmployeeId"/>
+    	<result property="state" column="STATE"/>
+   		<association property="movie" column="MovieID" javaType="Movie" select="getMovieById"/> 
+    </resultMap>
+    
+    <resultMap id="movieResult" type="Movie">
+    	<result property="id" column="Id"/>
+    	<result property="movieType" column="MovieType"/>
+    	<result property="name" column="Name"/>
+    	<result property="fee" column="Fee"/>
+    	<result property="numCopies" column="NumCopes"/>
+    	<result property="rating" column="Rating"/>
+    	<result property="totalRating" column="TotalRating"/>
+    </resultMap>
 
     <select id = "getMail" resultMap = "result" parameterType = "Customer" statementType = "CALLABLE">
 	     {call Return_Customer_Mailing_List()}
@@ -36,6 +57,16 @@
         INNER JOIN Person
         ON Customer.PersonId=Person.PersonId
 		WHERE Customer.Email = #{email}
+    </select>
+    
+    <select id="getCustomerOrders" resultMap="orderResult">
+    	SELECT    * FROM FuegoOrder F
+  		WHERE     F.CustomerId = #{email} AND F.State = 'Held';
+    </select>
+    
+    <select id="getMovieById" resultMap="movieResult">
+    	SELECT    * FROM Movie M
+  		WHERE     M.Id = #{MovieId};
     </select>
 
 </mapper>

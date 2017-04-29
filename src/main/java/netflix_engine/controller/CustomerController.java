@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import netflix_engine.general.Status;
 import netflix_engine.model.Customer;
+import netflix_engine.model.FuegoOrder;
 import netflix_engine.model.Movie;
 import netflix_engine.service.CustomerService;
 import util.DbErrors.CustomerErrors;
@@ -55,6 +56,18 @@ public class CustomerController {
 			else
 				return new ResponseEntity<>(HttpStatus.OK);
 		}
+	}
+	
+	@RequestMapping(value="testing", method = RequestMethod.POST)
+	public @ResponseBody List<FuegoOrder> testing(@RequestBody Customer customer) {
+
+		String email = customer.getEmail();
+		System.out.println("THIS IS THE EMAIL!!!: " + email );
+		List<FuegoOrder> orders = customerService.getOrdersByEmail(email);
+
+
+		return orders;
+
 	}
 
 

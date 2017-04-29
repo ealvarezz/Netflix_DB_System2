@@ -20,18 +20,17 @@ import java.math.BigDecimal;
 
 public class Movie {
 	
-	private int id;
+	private Integer id;
 	private String movieType;
 	private String name;
-	private BigDecimal Fee;
-	private int NumCopes;
+	private BigDecimal fee;
+	private Integer numCopes;
 	private BigDecimal rating;
-	private int totalRating;
-	
-	public int getId() {
+	private Integer totalRating;
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getMovieType() {
@@ -47,16 +46,16 @@ public class Movie {
 		this.name = name;
 	}
 	public BigDecimal getFee() {
-		return Fee;
+		return fee;
 	}
 	public void setFee(BigDecimal fee) {
-		Fee = fee;
+		this.fee = fee;
 	}
-	public int getNumCopes() {
-		return NumCopes;
+	public Integer getNumCopes() {
+		return numCopes;
 	}
-	public void setNumCopes(int numCopes) {
-		NumCopes = numCopes;
+	public void setNumCopes(Integer numCopes) {
+		this.numCopes = numCopes;
 	}
 	public BigDecimal getRating() {
 		return rating;
@@ -64,10 +63,12 @@ public class Movie {
 	public void setRating(BigDecimal rating) {
 		this.rating = rating;
 	}
-	public int getTotalRating() {
+	public Integer getTotalRating() {
 		return totalRating;
 	}
-	public void setTotalRating(int totalRating) {
+	public void setTotalRating(Integer totalRating) {
 		this.totalRating = totalRating;
 	}
+	
+	
 }

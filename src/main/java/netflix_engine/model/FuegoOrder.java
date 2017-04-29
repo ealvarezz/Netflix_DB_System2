@@ -20,30 +20,30 @@ import java.sql.Timestamp;
 
 
 public class FuegoOrder {
-	private int orderId;
-	private int movieId;
-	private int customerId;
+	private Integer orderId;
+	private Integer movieId;
+	private String customerId;
 	private Timestamp timeDate;
 	private Date returnDate;
-	private int employeeId;
+	private Integer employeeId;
 	private	String state;
-
-	public int getOrderId() {
+	private Movie movie;
+	public Integer getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(int orderId) {
+	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
 	}
-	public int getMovieId() {
+	public Integer getMovieId() {
 		return movieId;
 	}
-	public void setMovieId(int movieId) {
+	public void setMovieId(Integer movieId) {
 		this.movieId = movieId;
 	}
-	public int getCustomerId() {
+	public String getCustomerId() {
 		return customerId;
 	}
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
 	public Timestamp getTimeDate() {
@@ -58,10 +58,10 @@ public class FuegoOrder {
 	public void setReturnDate(Date returnDate) {
 		this.returnDate = returnDate;
 	}
-	public int getEmployeeId() {
+	public Integer getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
 	}
 	public String getState() {
@@ -70,5 +70,13 @@ public class FuegoOrder {
 	public void setState(String state) {
 		this.state = state;
 	}
+	public Movie getMovie() {
+		return movie;
+	}
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
+
+	
 
 }
