@@ -35,7 +35,7 @@
 					<h2>{{message}}</h2>
 					<form class="form-horizontal" method="POST">
 						<div class="form-group">
-							<label for="email">Employee ID</label>
+							<label for="employeeid">Employee ID</label>
 							<input type="number" ng-model="employeeid" class="form-control" name="employeeid" />{{employeeid}}
 						</div>
 						<div class="form-group">

@@ -1,18 +1,17 @@
 
-angular.module('FuegoVideo',[]).controller('CustomerMailListCtrl', function ($scope,$http) {
+app.controller('CustomerMailListCtrl', function ($scope,$http) {
+	$scope.list = "";
 
-   $scope.list = "";
+	$scope.loadCustomerMailList = function(){
 
-$scope.loadCustomerMailList = function(){
+		$http({
+			method  : 'GET',
+			url     : '/allcustomerList',
+		})
+			.success(function(data) {
+				$scope.list = data.slice();
+			});
+	};
 
-	$http({
-          method  : 'GET',
-          url     : '/allcustomerList',
-         })
-          .success(function(data) {
-          		$scope.list = data.slice();
-          });
-};
-
-$scope.loadCustomerMailList();
+	$scope.loadCustomerMailList();
 });

@@ -1,6 +1,5 @@
 
 
-var app = angular.module('FuegoVideo',[]);
 app.controller('loginCtrl', function ($scope,$http,$window) {
 	
 	$scope.email = "";

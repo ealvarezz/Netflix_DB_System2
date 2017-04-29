@@ -2,7 +2,6 @@
 
 
 
-var app = angular.module('FuegoVideo',[]);
 app.controller('signUpCtrl', function ($scope,$http) {
 
    $scope.firstname = "";

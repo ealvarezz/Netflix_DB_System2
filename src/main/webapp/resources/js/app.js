@@ -1,15 +1,21 @@
 'use strict';
 
 var app = angular.module('FuegoVideo', []);
-app.config(function ($routeProvider) {
-     $routeProvider
-       .when('/', {
-         templateUrl:'/resources/jsp/login.jsp',
-         controller: 'loginCtrl'
-       }).when('/allcustomerList', {
-         templateUrl:'/resources/jsp/CustomerList.jsp',
-         controller: 'CustomerMailListCtrl'
-       }).otherwise({
-         redirectTo: '/'
-       });
+
+
+
+
+
+
+app.controller('navCtrl', function ($scope,$http,$window) {
+	$scope.logout = function(){
+		$window.localStorage.clear();
+		$window.location.href = '/login';
+	};
+
 });
+
+
+
+
+

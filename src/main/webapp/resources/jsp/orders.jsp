@@ -15,19 +15,31 @@
 		<script src="/resources/js/controller/ordersCtrl.js"></script>
 	</head>
 
-	<body>
-		<h3>ORDERS</h3>
+	<body ng-app="FuegoVideo">
+		<div ng-controller="navCtrl" ng-include="'/resources/jsp/navbar.html'"></div>
+
+
 		<div class = "container" ng-controller ="ordersCtrl">
+			<h3>ORDERS FOR {{email}}</h3>
 			<div class="jumbotron vertical-center">
+				<h3>CURRENTLY HELD</h3>
 				<div ng-repeat="x in cur_orders">
-					<div class="container" >
-						<h1>{{x.}} </h1>
+					<div class="{{x}}" >
+						<h1>{{x}}</h1>
+						<button type="button" class ="btn-primary btn-mid" ng-click="return_movie(x)" >
+							Return
+						</button>
 					</div>
 				</div>
+			</div>
 
+			<div class="col-xs-12" style="height:50px;"></div>
+
+			<div class="jumbotron vertical-center">
+				<h3>WISH LIST</h3>
 				<div ng-repeat="x in wish_orders">
 					<div class="container" >
-						<h1>{{x.}} </h1>
+						<h1>{{x}}</h1>
 					</div>
 				</div>
 			</div>

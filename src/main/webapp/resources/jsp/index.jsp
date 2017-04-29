@@ -16,6 +16,8 @@
   </head>
 
   <body ng-app="FuegoVideo">
+	  <div ng-controller="navCtrl" ng-include="'/resources/jsp/navbar.html'"></div>
+
 	  <div class = "container" ng-controller ="indexCtrl">
 		  <h1>{{username}}</h1>
 

@@ -1,9 +1,7 @@
 
 
-var app = angular.module('FuegoVideo',[]);
 app.controller('employeeLoginCtrl', function ($scope,$http,$window) {
 	
-	$scope.employeeid = "";
 	$scope.password = "";	
 	$scope.message = "";
 
@@ -17,13 +15,13 @@ app.controller('employeeLoginCtrl', function ($scope,$http,$window) {
 			}
 		})
 			.success(function(data) {
-				$window.localStorage.setItem('username', $scope.employeeid);
-				$window.localStorage.setItem('employee', true);
-				$window.localStorage.setItem('manager', true);
-				$window.location.href = '/employee';
-			})
-			.error(function(data){
-				$scope.message = "Incorrect id or password.";
+				if(data.status === "OK"){
+					$window.localStorage.setItem('username', $scope.employeeid);
+					$window.localStorage.setItem(data.message, true);
+					$window.location.href = '/employee';
+				}else{
+					$scope.message = "Incorrect ID or Password.";
+				}
 			});
 	};
 
