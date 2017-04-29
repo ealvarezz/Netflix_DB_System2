@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import netflix_engine.mappers.EmployeeMapper;
 import netflix_engine.model.Customer;
+import netflix_engine.model.Employee;
 
 
 @Service("employeeService")
@@ -33,5 +34,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     
     public void addCustomer(Customer C) {
     	//employeeMapper.newCustomer(C);
+    }
+    
+    public Employee getEmployeeBySSN(int ssn){
+    	
+    	
+    	return employeeMapper.getBySSN(ssn);
     }
 }

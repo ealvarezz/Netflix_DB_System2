@@ -22,7 +22,7 @@ import java.sql.Date;
 
 import java.math.BigDecimal;
 
-public class Employee {
+public class Employee extends Person {
 	
 	private int ssn;
 	private Date startDate;
