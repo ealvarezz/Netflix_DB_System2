@@ -16,21 +16,21 @@ Field      | Type         | Null | Key | Default | Extra |
 
 
 import java.sql.Date;
-/* Try importing this below if the one above doesn't work 
+/* Try importing this below if the one above doesn't work
  * 				import java.util.Date;
  * */
 
 import java.math.BigDecimal;
 
 public class Employee {
-	
+
 	private int ssn;
 	private Date startDate;
 	private BigDecimal HourlyRate;
 	private String position;
 	private String password;
-	
-	
+
+
 	public int getSsn() {
 		return ssn;
 	}
