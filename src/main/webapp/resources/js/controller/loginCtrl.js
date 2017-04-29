@@ -19,6 +19,7 @@ app.controller('loginCtrl', function ($scope,$http,$window) {
 				$window.localStorage.setItem('username', $scope.email);
 				$window.localStorage.setItem('customer', true);
 				// check status: ok or status:error
+				alert(data);
 			});
 	};
 
