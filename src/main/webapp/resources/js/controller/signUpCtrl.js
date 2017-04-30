@@ -19,9 +19,18 @@ app.controller('signUpCtrl', function ($scope,$http,$window) {
    $scope.plan = ""
 
 	$scope.createCustomer = function() {
+
+		var date;
+		date = new Date();
+		date = date.getUTCFullYear() + '-' +
+			('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
+			('00' + date.getUTCDate()).slice(-2);
+
 		var cancer = 	
 		{ 
-			acctnum: $scope.plan,
+			acctType: $scope.plan,
+			accountDate: date,
+
 			customer: { 
 				firstName : $scope.firstname,
 				lastName : $scope.lastname,
@@ -43,11 +52,14 @@ app.controller('signUpCtrl', function ($scope,$http,$window) {
 		   data    : cancer
 	   })
 		   .success(function(data) {
-			   alert(data);
-			   alert(data.data);
+			   if(data.status === "OK"){
+				   alert("You now have an account.");
+				   $window.location.href = '/login';
+			   }else{
+				   alert("Your form has errors.");
+			   }
 		   })
 		   .error(function(data){
-			  	alert("reeeeeeeeeeeeeeee");
 		   });
    };
 

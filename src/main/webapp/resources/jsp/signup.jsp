@@ -82,24 +82,24 @@
 						</div>
 
 						<div class="form-group">
-							<label for="CCN">Credit Card Number</label>
-							<input type="number" class="form-control" ng-model="creditcard" name="CCN" required />
+							<label>
+								<input type="radio" ng-model="plan" value="limited">
+								Limited - 10$ for 2 movies month. One at a time.
+							</label><br/>
+							<label>
+								<input type="radio" ng-model="plan" ng-value="unlimited-1">
+								Unlimited-1 - $15/month for 1 movie out at-a-time. Unlimited per month.
+							</label><br/>
+							<label>
+								<input type="radio" ng-model="plan" value="unlimited-2">
+								Unlimited-2 - $20/month for 2 movies out at-a-time. Unlimited per month.
+							</label><br/>
+							<label>
+								<input type="radio" ng-model="plan" value="unlimited-3">
+								Unlimited-3 - $25/month for 3 movies out at-a-time. Unlimited per month.
+							</label><br/>
 						</div>
 
-
-
-						<label>
-							<input type="radio" ng-model="color.name" value="red">
-							Red
-						</label><br/>
-						<label>
-							<input type="radio" ng-model="color.name" ng-value="specialValue">
-							Green
-						</label><br/>
-						<label>
-							<input type="radio" ng-model="color.name" value="blue">
-							Blue
-						</label><br/>
 
 
 
