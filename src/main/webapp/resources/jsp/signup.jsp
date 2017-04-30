@@ -27,6 +27,7 @@
 
 	<body ng-app="FuegoVideo">
 		<div class = "signup" ng-controller = "signUpCtrl" >
+			<a href="/login">Already have an account? Log in here!</a>
 			<div class = "container">
 				<div class="jumbotron vertical-center">
 					<h2>Sign Up</h2>

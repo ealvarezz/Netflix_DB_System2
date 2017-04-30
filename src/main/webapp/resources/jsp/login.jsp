@@ -27,7 +27,7 @@
 	<body ng-app = "FuegoVideo">
 
 		<div class = "login">
-			<a href="CustomerList.jsp">Attempt to go to CustomerList/jsp</a>
+			<a href="/signup">Dont have an account? Sign up here!</a>
 
 			<div class = "container" ng-controller = "loginCtrl">
 				<div class="jumbotron vertical-center">
