@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import netflix_engine.model.Account;
 import netflix_engine.model.Customer;
 import netflix_engine.model.Employee;
 
@@ -32,6 +33,13 @@ public interface EmployeeMapper {
 			);
 
 	public void newCustomer();
+	
 	public Employee getBySSN(@Param("SSN") int id);
+	
+	public void updateCustomer(@Param(value = "customer") Customer customer);
+	
+	public void updatePerson(@Param(value = "customer") Customer customer);
+	
+	public void updateAccount(@Param(value = "account") Account account);
 
 }

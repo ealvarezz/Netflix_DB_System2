@@ -113,13 +113,21 @@ public class EmployeeController {
 
 		}
 	 
-	 @RequestMapping(value="testing", method = RequestMethod.POST)
-		public @ResponseBody String getMovie(@RequestBody Account account) {
-		 
-		 System.out.println(account.getCustomer().getFirstName());
-		 System.out.println(account.getAcctType());
-		 
-		 return "hey";
+	 @RequestMapping(value="update_account", method = RequestMethod.POST)
+		public @ResponseBody Object updateCustomer(@RequestBody Account account) {
+		 try{
+			 employeeService.updateCustomerSettings(account);
+		 }
+		 catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+				
+				return new Status("error","Something went wrong");
+				
+			}
+
+			return new Status("OK","Update was good");
 	 }
 
 }

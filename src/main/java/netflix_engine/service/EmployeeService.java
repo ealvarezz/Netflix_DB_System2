@@ -23,7 +23,7 @@ public interface EmployeeService {
 
 	void addCustomerAccount(Account newAccount) throws Exception;
 
-
+	void updateCustomerSettings(Account account) throws Exception;
 
 
 }

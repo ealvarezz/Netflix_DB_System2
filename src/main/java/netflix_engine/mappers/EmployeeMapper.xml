@@ -108,6 +108,40 @@
         ON Customer.PersonId=Person.PersonId
 		WHERE Customer.Email = #{email}
     </select>
+    
+    <update id="updateCustomer">
+    	UPDATE Customer
+    	<set>
+    	<if test= "customer.password !=null"> Password = #{customer.password},</if>
+    	<if test= "customer.creditCard !=null"> CreditCard = #{customer.creditCard}</if>
+    	</set>
+    	WHERE Email = #{customer.email};
+    
+	</update>
+	
+	<update id="updateAccount">
+    	UPDATE Account
+    	<set>
+    	<if test= "account.acctType !=null"> AcctType = #{account.acctType}</if>
+    	</set>
+    	WHERE CustomerId = #{account.customer.email};
+    
+	</update>
+	
+	<update id="updatePerson">
+    	UPDATE Person
+    	<set>
+    	<if test= "customer.firstName !=null"> FirstName = #{customer.firstName},</if>
+    	<if test= "customer.lastName !=null"> LastName = #{customer.lastName},</if>
+    	<if test= "customer.address !=null"> Address = #{customer.address},</if>
+    	<if test= "customer.zip !=null"> Zip = #{customer.zip},</if>
+    	<if test= "customer.city !=null"> City = #{customer.telephone},</if>
+    	<if test= "customer.state !=null"> State = #{customer.rating},</if>
+    	<if test= "customer.telephone != null"> Telephone = #{customer.email}</if>
+    	</set>
+    	WHERE PersonId = #{customer.personID};
+    
+	</update>
 
 
  </mapper>

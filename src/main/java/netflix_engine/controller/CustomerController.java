@@ -84,16 +84,18 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value="accountsettings", method = RequestMethod.POST)
-	public @ResponseBody Account getAccountSetting(@RequestBody Customer customer) {
+	public @ResponseBody Object getAccountSetting(@RequestBody Customer customer) {
 		
 		String email = customer.getEmail();
 		
 		Customer vCustomer = customerService.getCustomerById(email);
 	
 		if(vCustomer == null)
-			return new Account();
+			return new Status("error", "no account found with this email");
 
-		return customerService.getCustomerAccount(email);
+		Account raccount =  customerService.getCustomerAccount(email);
+		
+		return new Status("OK", "Account found", raccount);
 
 	}
 

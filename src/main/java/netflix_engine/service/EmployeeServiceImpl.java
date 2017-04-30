@@ -55,13 +55,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public void addCustomer(Customer newCustomer) throws IOException {
 
-
-
-
-    	DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-
-		 TransactionStatus status = txManager.getTransaction(def);
+    	TransactionStatus status = getStatus();
 
 	  try{
 		  employeeMapper.newCustomer(newCustomer.getLastName(),
@@ -98,11 +92,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 	public void addCustomerAccount(Account newAccount) throws Exception {
-		
-		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 
-		TransactionStatus status = txManager.getTransaction(def);
+		TransactionStatus status = getStatus();
 
 		  try{
 			  
@@ -120,6 +111,31 @@ public class EmployeeServiceImpl implements EmployeeService {
 		  }
 		  txManager.commit(status);
 		
+	}
+	
+	private TransactionStatus getStatus(){
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		
+		return txManager.getTransaction(def);
+	}
+
+	
+	public void updateCustomerSettings(Account account) throws Exception {
+		TransactionStatus status = getStatus();
+
+		  try{
+			  
+			  employeeMapper.updatePerson(account.getCustomer());
+			  employeeMapper.updateCustomer(account.getCustomer());
+			  employeeMapper.updateAccount(account);
+			  
+		  } catch( Exception e ){
+			  txManager.rollback(status);
+			  e.printStackTrace();
+		  }
+		  txManager.commit(status);
 	}
 
 }
