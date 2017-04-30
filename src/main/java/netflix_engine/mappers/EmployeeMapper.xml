@@ -6,6 +6,7 @@
 
 <mapper namespace="netflix_engine.mappers.EmployeeMapper">
 
+
     <resultMap id="employeeResult" type="Employee">
         <result property="personID" column="PersonId"/>
         <result property="lastName" column="LastName"/>
@@ -75,9 +76,14 @@
 					       #{password,javaType=String,jdbcType=CHAR,mode=IN}
 					       )}
     </insert>
-
-
-
+	
+	<insert id = "newAccount" parameterType = "Account" statementType = "CALLABLE">
+	     {call Add_Account( 
+	     				   #{accType,javaType=String,jdbcType=CHAR,mode=IN} ,
+	     				   #{accDate,javaType=Date,jdbcType=CHAR,mode=IN},
+					       #{customerId,javaType=String,jdbcType=CHAR,mode=IN}  
+					       )}
+    </insert>
 
     <select id = "getCustomers" resultMap = "customerResult">
       SELECT * FROM CUSTOMER;

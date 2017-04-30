@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import netflix_engine.model.Employee;
+import netflix_engine.model.Movie;
 import netflix_engine.general.Status;
+import netflix_engine.model.Account;
 import netflix_engine.model.Customer;
 import netflix_engine.service.EmployeeService;
 
@@ -29,8 +31,6 @@ public class EmployeeController {
 	@Autowired
     private EmployeeService employeeService;
 	
-	@Autowired
-	private PlatformTransactionManager txManager;
 
 	/**
     *
@@ -61,32 +61,30 @@ public class EmployeeController {
 
 
 	 @RequestMapping(value="addcustomer", method = RequestMethod.POST)
-	 public @ResponseBody Object newCustomer(@RequestBody Customer newCustomer) {
+	 public @ResponseBody Object newCustomer(@RequestBody Account newAccount) {
 		 
 		
-		 DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		 def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-
-		 TransactionStatus status = txManager.getTransaction(def);
+		 
+		 if(newAccount == null || newAccount.getCustomer() == null)
+			 return new Status("error","Something went wrong");
 
 		try {
-			employeeService.addCustomer(newCustomer);
+			
+			employeeService.addCustomer(newAccount.getCustomer());
+			employeeService.addCustomerAccount(newAccount);
 			
 			
 
 		}
-		catch (IOException e) {
+		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
-			txManager.rollback(status);
 			
 			return new Status("error","Something went wrong");
 			
 		}
 
-		txManager.commit(status);
-		
 		return new Status("OK","Inertion was good");
 	}
 
@@ -114,5 +112,14 @@ public class EmployeeController {
 			}
 
 		}
+	 
+	 @RequestMapping(value="testing", method = RequestMethod.POST)
+		public @ResponseBody String getMovie(@RequestBody Account account) {
+		 
+		 System.out.println(account.getCustomer().getFirstName());
+		 System.out.println(account.getAcctType());
+		 
+		 return "hey";
+	 }
 
 }

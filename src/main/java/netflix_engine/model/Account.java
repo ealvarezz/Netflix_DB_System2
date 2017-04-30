@@ -42,12 +42,8 @@ public class Account {
 	public void setAccountDate(Date accountDate) {
 		this.accountDate = accountDate;
 	}
-	public Customer getCustomerId() {
-		return customer;
-	}
-	public void setCustomerId(Customer customer) {
-		this.customer = customer;
-	}
+	
+	
 	public Customer getCustomer() {
 		return customer;
 	}

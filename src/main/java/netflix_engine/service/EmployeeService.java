@@ -3,6 +3,8 @@ package netflix_engine.service;
 
 import java.io.IOException;
 import java.util.List;
+
+import netflix_engine.model.Account;
 import netflix_engine.model.Customer;
 import netflix_engine.model.Employee;
 
@@ -19,7 +21,7 @@ public interface EmployeeService {
 
 	void addCustomer(Customer newCustomer) throws IOException;
 
-
+	void addCustomerAccount(Account newAccount) throws Exception;
 
 
 

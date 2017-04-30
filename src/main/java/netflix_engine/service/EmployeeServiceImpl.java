@@ -17,9 +17,14 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import netflix_engine.mappers.EmployeeMapper;
+import netflix_engine.model.Account;
 import netflix_engine.model.Customer;
 import netflix_engine.model.Employee;
 
@@ -36,7 +41,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private SqlSessionFactory sqlSessionFactory;
 
-	private String xmlLink = "netflix_engine/mappers/EmployeeMapper.xml";
+	@Autowired
+	private PlatformTransactionManager txManager;
 
 
 	public List<Customer> returnMailingList(){
@@ -54,14 +60,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 
-      //InputStream inputStream = Resources.getResourceAsStream(xmlLink);
-	  //SqlSessionFactory sqlSessionFactory =
-	    //      new SqlSessionFactoryBuilder().build(inputStream);
-	  SqlSession session = sqlSessionFactory.openSession();
+    	DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+
+		 TransactionStatus status = txManager.getTransaction(def);
 
 	  try{
-		  EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
-		  mapper.newCustomer(newCustomer.getLastName(),
+		  employeeMapper.newCustomer(newCustomer.getLastName(),
 			    	newCustomer.getFirstName(),
 			    	newCustomer.getAddress(),
 			    	newCustomer.getCity(),
@@ -72,12 +77,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 			    	newCustomer.getCreditCard(),
 			    	newCustomer.getPassword());
 
-		  session.commit();
+		  
 
 	  } catch( Exception e ){
-	   e.printStackTrace();
+		  txManager.rollback(status);
+		  e.printStackTrace();
 	  }
-	  session.close();
+	  
+	  txManager.commit(status);
     }
 
 
@@ -90,5 +97,31 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     	return employeeMapper.getBySSN(ssn);
     }
+
+
+	public void addCustomerAccount(Account newAccount) throws Exception {
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+
+		TransactionStatus status = txManager.getTransaction(def);
+
+		  try{
+			  
+			  employeeMapper.newAccount(
+					  newAccount.getAcctType(),
+					  newAccount.getAccountDate(),
+					  newAccount.getCustomer().getEmail()
+			  );
+
+			 
+
+		  } catch( Exception e ){
+			  txManager.rollback(status);
+		   e.printStackTrace();
+		  }
+		  txManager.commit(status);
+		
+	}
 
 }
