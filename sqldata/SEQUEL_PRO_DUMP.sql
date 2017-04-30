@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.15)
 # Database: netflix_db
-# Generation Time: 2017-04-30 21:53:36 +0000
+# Generation Time: 2017-04-30 23:15:45 +0000
 # ************************************************************
 
 
@@ -42,28 +42,11 @@ INSERT INTO `Account` (`AcctNum`, `AcctType`, `AccountDate`, `CustomerId`)
 VALUES
 	(1,'unlimited-2','2006-10-01','pml@cs.sunysb.edu'),
 	(2,'limited','2006-10-15','vicdu@cs.sunysb.edu'),
-	(3,'unlimited-3','2010-11-05','jsmith@ic.sunysb.edu');
+	(3,'unlimited-3','2010-11-05','jsmith@ic.sunysb.edu'),
+	(4,'unlimited-2','2017-04-29','SirWilliams@yahoo.com');
 
 /*!40000 ALTER TABLE `Account` ENABLE KEYS */;
 UNLOCK TABLES;
-
-DELIMITER ;;
-/*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION" */;;
-/*!50003 CREATE */ /*!50017 DEFINER=`root`@`localhost` */ /*!50003 TRIGGER `AccountType_Check` BEFORE INSERT ON `Account` FOR EACH ROW BEGIN
-	IF NEW.AcctType NOT IN
-	('limited', 'unlimited-1', 'unlimited-2', 'unlimited-3') THEN
-  	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'INVALID ACCOUNT TYPE';
-	END IF;
-  END */;;
-/*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION" */;;
-/*!50003 CREATE */ /*!50017 DEFINER=`root`@`localhost` */ /*!50003 TRIGGER `AccountType_CheckUpdate` BEFORE UPDATE ON `Account` FOR EACH ROW BEGIN
-	IF NEW.AcctType NOT IN
-	('limited', 'unlimited-1', 'unlimited-2', 'unlimited-3') THEN
-  	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'INVALID ACCOUNT TYPE';
-	END IF;
-  END */;;
-DELIMITER ;
-/*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE */;
 
 
 # Dump of table Actor
@@ -161,6 +144,7 @@ VALUES
 	('fueg0@gmail.com',23,'39484',NULL,'pass'),
 	('jsmith@ic.sunysb.edu',3,'2345-6789-2345-6789',1,'Dad'),
 	('pml@cs.sunysb.edu',4,'6789-2345-6789-2345',1,'Dad'),
+	('SirWilliams@yahoo.com',25,NULL,NULL,'MyPassword'),
 	('syang@cs.sunysb.edu',1,'1234-5678-1234-5678',1,'Dad'),
 	('vicdu@cs.sunysb.edu',2,'5678-1234-5678-1234',1,'Dad');
 
@@ -355,7 +339,8 @@ VALUES
 	(4,'Philip','Lewis','135 Knowledge Lane','Stony Brook','NY','11794','516-666-8888'),
 	(5,'Smith','David','123 College road','Stony Brook','NY','11790','516-215-2345'),
 	(6,'Warren','David','456 Sunken Street','Stony Brook','NY','11794','631-632-9987'),
-	(23,'alvarez','edwin','ahahaha','bx','NY','10466','wweeerrr');
+	(23,'alvarez','edwin','ahahaha','bx','NY','10466','wweeerrr'),
+	(25,'Williams','Justin','123 Add street','Baldwin','NY','12345','123-456-7890');
 
 /*!40000 ALTER TABLE `Person` ENABLE KEYS */;
 UNLOCK TABLES;
