@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import netflix_engine.mappers.CustomerMapper;
 import netflix_engine.model.Customer;
 import netflix_engine.model.FuegoOrder;
+import netflix_engine.model.Movie;
 
 @Service("customerService")
 public class CustomerServiceImpl implements CustomerService {
@@ -28,6 +29,11 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		System.out.println("NOW WERE CALLING THE SERVICE METHOD!");
 		return customerMapper.getCustomerOrders(email);
+	}
+
+	public List<Movie> getCustomerWishList(Integer id) {
+		
+		return customerMapper.getWishList(id);
 	}
 
 

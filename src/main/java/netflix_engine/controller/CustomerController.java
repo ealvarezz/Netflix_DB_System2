@@ -58,15 +58,27 @@ public class CustomerController {
 		}
 	}
 	
-	@RequestMapping(value="getCustomerOrders", method = RequestMethod.POST)
-	public @ResponseBody List<FuegoOrder> testing(@RequestBody Customer customer) {
+	@RequestMapping(value="getcustomerorders", method = RequestMethod.POST)
+	public @ResponseBody List<FuegoOrder> getCurrentOrders(@RequestBody Customer customer) {
 
 		String email = customer.getEmail();
-		System.out.println("THIS IS THE EMAIL!!!: " + email );
 		List<FuegoOrder> orders = customerService.getOrdersByEmail(email);
 
 
 		return orders;
+
+	}
+	
+	@RequestMapping(value="getwishlist", method = RequestMethod.POST)
+	public @ResponseBody List<Movie> testing(@RequestBody Customer customer) {
+		
+		String email = customer.getEmail();
+		Customer vCustomer = customerService.getCustomerById(email);
+		Integer id = vCustomer.getPersonID();
+	
+
+
+		return customerService.getCustomerWishList(id);
 
 	}
 

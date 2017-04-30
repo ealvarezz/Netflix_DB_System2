@@ -7,8 +7,10 @@ import org.apache.ibatis.annotations.Select;
 
 import netflix_engine.model.Customer;
 import netflix_engine.model.FuegoOrder;
+import netflix_engine.model.Movie;
 
 public interface CustomerMapper {
 	public Customer getCustomerById(@Param("email") String email);
 	public List<FuegoOrder> getCustomerOrders(@Param("email") String email);
+	public List<Movie> getWishList(@Param("id") Integer id);
 }

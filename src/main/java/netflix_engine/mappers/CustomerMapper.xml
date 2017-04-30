@@ -68,5 +68,9 @@
     	SELECT    * FROM Movie M
   		WHERE     M.Id = #{MovieId};
     </select>
+    
+    <select id="getWishList" resultMap="movieResult">
+    	{call Customer_Wish_List(#{id})}
+    </select>
 
 </mapper>
