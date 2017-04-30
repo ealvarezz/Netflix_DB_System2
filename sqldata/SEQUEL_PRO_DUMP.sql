@@ -6,8 +6,8 @@
 # https://github.com/sequelpro/sequelpro
 #
 # Host: 127.0.0.1 (MySQL 5.7.15)
-# Database: FuegoVideo
-# Generation Time: 2017-04-23 19:02:05 +0000
+# Database: netflix_db
+# Generation Time: 2017-04-30 21:53:36 +0000
 # ************************************************************
 
 
@@ -86,7 +86,8 @@ LOCK TABLES `Actor` WRITE;
 INSERT INTO `Actor` (`Id`, `Name`, `Rating`, `Age`, `Gender`)
 VALUES
 	(1,'Al Pacino',5,63,'M'),
-	(2,'Tim Robbins',2,53,'M');
+	(2,'Tim Robbins',2,53,'M'),
+	(3,'Peter Weller',3,69,'M');
 
 /*!40000 ALTER TABLE `Actor` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -129,7 +130,8 @@ INSERT INTO `APPEAREDIN` (`MovieId`, `ActorId`)
 VALUES
 	(1,1),
 	(3,1),
-	(1,2);
+	(1,2),
+	(4,3);
 
 /*!40000 ALTER TABLE `APPEAREDIN` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -156,10 +158,11 @@ LOCK TABLES `Customer` WRITE;
 
 INSERT INTO `Customer` (`Email`, `PersonId`, `CreditCard`, `Rating`, `Password`)
 VALUES
-	('jsmith@ic.sunysb.edu',3,'2345-6789-2345-6789',1,NULL),
-	('pml@cs.sunysb.edu',4,'6789-2345-6789-2345',1,NULL),
-	('syang@cs.sunysb.edu',1,'1234-5678-1234-5678',1,NULL),
-	('vicdu@cs.sunysb.edu',2,'5678-1234-5678-1234',1,NULL);
+	('fueg0@gmail.com',23,'39484',NULL,'pass'),
+	('jsmith@ic.sunysb.edu',3,'2345-6789-2345-6789',1,'Dad'),
+	('pml@cs.sunysb.edu',4,'6789-2345-6789-2345',1,'Dad'),
+	('syang@cs.sunysb.edu',1,'1234-5678-1234-5678',1,'Dad'),
+	('vicdu@cs.sunysb.edu',2,'5678-1234-5678-1234',1,'Dad');
 
 /*!40000 ALTER TABLE `Customer` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -222,7 +225,7 @@ CREATE TABLE `FuegoOrder` (
   `TimeDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ReturnDate` date DEFAULT NULL,
   `EmployeeId` int(11) DEFAULT NULL,
-  `STATE` char(8) DEFAULT NULL,
+  `STATE` char(8) DEFAULT 'Held',
   PRIMARY KEY (`OrderId`,`CustomerId`,`MovieId`),
   KEY `MovieId` (`MovieId`),
   KEY `CustomerId` (`CustomerId`),
@@ -240,7 +243,10 @@ VALUES
 	(1,1,'pml@cs.sunysb.edu','2009-11-11 10:00:00','2009-11-14',789123456,'Returned'),
 	(2,3,'vicdu@cs.sunysb.edu','2009-11-11 18:15:00',NULL,789123456,'Held'),
 	(3,3,'pml@cs.sunysb.edu','2009-11-12 09:30:00',NULL,789123456,'Held'),
-	(4,2,'vicdu@cs.sunysb.edu','2009-10-21 22:22:00',NULL,789123456,'Held');
+	(4,2,'vicdu@cs.sunysb.edu','2009-10-21 22:22:00',NULL,789123456,'Held'),
+	(6,1,'syang@cs.sunysb.edu','2017-04-28 00:35:46',NULL,789123456,'Held'),
+	(8,3,'syang@cs.sunysb.edu','2017-04-30 15:54:33',NULL,123456789,'Held'),
+	(10,11,'syang@cs.sunysb.edu','2017-04-30 17:51:50','2017-04-30',123456789,'Returned');
 
 /*!40000 ALTER TABLE `FuegoOrder` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -283,9 +289,14 @@ LOCK TABLES `Movie` WRITE;
 
 INSERT INTO `Movie` (`Id`, `MovieType`, `Name`, `Fee`, `NumCopies`, `Rating`, `TotalRating`)
 VALUES
-	(1,'Drama','The GodFather',1.99,3,5.00,0),
-	(2,'Drama','Shawshank Redemption',2.99,2,4.00,0),
-	(3,'Comedy','Borat',1.99,1,4.00,0);
+	(1,'Drama','The GodFather',1.99,35,5.00,1),
+	(2,'Drama','Shawshank Redemption',2.99,30,4.00,1),
+	(3,'Comedy','Borat',1.99,35,4.00,1),
+	(4,'Action','Robocop',2.99,50,3.00,1),
+	(8,'Drama','Lion King',1.99,50,5.00,1),
+	(9,'Drama','There Will Be Blood',1.99,1,5.00,1),
+	(10,'Comedy','Evil Dead',5.99,1,1.00,1),
+	(11,'Action','Street Fighter',2.99,1,NULL,0);
 
 /*!40000 ALTER TABLE `Movie` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -303,6 +314,13 @@ DELIMITER ;;
 	IF NEW.MovieType NOT IN
 	('Comedy', 'Drama', 'Action', 'Foreign') THEN
   	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'INVALID MOVIE TYPE';
+	END IF;
+  END */;;
+/*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION" */;;
+/*!50003 CREATE */ /*!50017 DEFINER=`root`@`localhost` */ /*!50003 TRIGGER `MovieCopies_CheckUpdate` BEFORE UPDATE ON `Movie` FOR EACH ROW BEGIN
+	IF NEW.NumCopies < 0
+	THEN
+  	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No More Copies Available';
 	END IF;
   END */;;
 DELIMITER ;
@@ -336,7 +354,8 @@ VALUES
 	(3,'Smith','John','789 Peace Blvd.','Los Angeles','CA','93536','315-443-4321'),
 	(4,'Philip','Lewis','135 Knowledge Lane','Stony Brook','NY','11794','516-666-8888'),
 	(5,'Smith','David','123 College road','Stony Brook','NY','11790','516-215-2345'),
-	(6,'Warren','David','456 Sunken Street','Stony Brook','NY','11794','631-632-9987');
+	(6,'Warren','David','456 Sunken Street','Stony Brook','NY','11794','631-632-9987'),
+	(23,'alvarez','edwin','ahahaha','bx','NY','10466','wweeerrr');
 
 /*!40000 ALTER TABLE `Person` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -372,7 +391,7 @@ UNLOCK TABLES;
 
 
 --
--- Dumping routines (PROCEDURE) for database 'FuegoVideo'
+-- Dumping routines (PROCEDURE) for database 'netflix_db'
 --
 DELIMITER ;;
 
@@ -442,8 +461,25 @@ END */;;
 )
 BEGIN
 START TRANSACTION;
-INSERT INTO Movie(Name, MovieType, NumCopies, Fee, Rating) VALUES
-(Name,MovieType,NumCopies,Fee,Rating);
+
+/*Adds more copies of the movie if it exist*/
+IF EXISTS(SELECT M.Name FROM MOVIE M WHERE M.Name = Name LIMIT 1) THEN
+  Update Movie M
+  Set M.NumCopies = M.NumCopies + NumCopies
+  WHERE M.Name = Name LIMIT 1;
+
+/*Adds a Movie if it doesn't exist*/
+ELSE
+  SET @tRating = 1;
+  IF RATING IS NULL THEN
+    SET @tRating = 0;
+  END IF;
+
+  INSERT INTO Movie(Name, MovieType, NumCopies, Fee, Rating, TotalRating) VALUES
+  (Name,MovieType,NumCopies,Fee,Rating,@tRating);
+
+END IF;
+
 COMMIT;
 END */;;
 
@@ -479,14 +515,19 @@ IN EmployeeId INT
 BEGIN
 START TRANSACTION;
 
+IF EXISTS(SELECT M.NumCopies FROM MOVIE M
+          WHERE M.id = MovieId and M.NumCopies > 0 LIMIT 1) THEN
 
+  UPDATE MOVIE M
+  SET M.NumCopies = M.NumCopies - 1
+  WHERE M.Id = MovieId LIMIT 1;
 
-INSERT INTO FuegoOrder (MovieId, CustomerId, EmployeeId)
-VALUES (MovieId, CustomerId, EmployeeId);
+  INSERT INTO FuegoOrder (MovieId, CustomerId, EmployeeId)
+  VALUES (MovieId, CustomerId, EmployeeId);
 
+END IF;
 
-
-
+COMMIT;
 END */;;
 
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE */;;
@@ -512,9 +553,9 @@ END */;;
 /*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"*/;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `AllOrders`(IN customer CHAR(64))
 BEGIN
-SELECT    M.Name, F.`TimeDate`, F.`STATE`, F.`ReturnDate`
-FROM    Movie M, FuegoOrder F
-WHERE     F.CustomerId = customer AND F.MovieId = M.id;
+SELECT    *
+FROM    FuegoOrder F
+WHERE     F.CustomerId = customer;
 END */;;
 
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE */;;
@@ -525,7 +566,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"*/;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `BestSellers`(IN num_wanted INT)
 BEGIN
-SELECT 	M.Name
+SELECT 	M.*
 FROM   	Movie M, FuegoOrder F
 WHERE    	M.Id = F.MovieId
 GROUP BY     M.name
@@ -542,9 +583,9 @@ END */;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `CurrentOrders`(IN customer CHAR(64))
 BEGIN
 START TRANSACTION;
-  SELECT    M.Name, F.`TimeDate`, F.`STATE`, F.`ReturnDate`
-  FROM      Movie M, FuegoOrder F
-  WHERE     F.CustomerId = customer AND F.MovieId = M.id and F.State = 'Held';
+  SELECT    *
+  FROM      FuegoOrder F
+  WHERE     F.CustomerId = customer and F.State = 'Held';
 COMMIT;
 END */;;
 
@@ -576,7 +617,7 @@ END */;;
 )
 BEGIN
 START TRANSACTION;
-  
+
   SELECT P.PersonId INTO @pid FROM Person P, Customer C
   WHERE C.Email = cEmail AND C.PersonId = P.PersonId;
 
@@ -729,7 +770,7 @@ END */;;
 /*!50003 DROP PROCEDURE IF EXISTS `EditMovie` */;;
 /*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"*/;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `EditMovie`(
-/*If there is attribute that the manager doesn’t want to change, it will passed it as NULL*/
+/*If there is attribute that the manager doesn?t want to change, it will passed it as NULL*/
   IN Name VARCHAR(64),
   IN MovieType VARCHAR(10),
   IN NumCopies INT,
@@ -946,12 +987,12 @@ END */;;
 
 /*!50003 DROP PROCEDURE IF EXISTS `List_Account_Settings` */;;
 /*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `List_Account_Settings`(IN Person_Id INT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `List_Account_Settings`(IN customer CHAR(64))
 BEGIN
 START TRANSACTION;
-SELECT A.AcctType, C.Email, C.CreditCard, P.Telephone, P.Address, P.City, P.State, P.Zip
-FROM Account A, Customer C, Person P
-WHERE Person_Id = P.PersonId AND Person_Id = C.PersonId AND C.Email = A.CustomerId;
+SELECT A.*
+FROM Account A
+WHERE customer = A.CustomerId;
 COMMIT;
 END */;;
 
@@ -1020,7 +1061,7 @@ END */;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `MovieByType`(IN m_type CHAR(10))
 BEGIN
 START TRANSACTION;
-  SELECT    M.Name
+  SELECT    M.*
   FROM      Movie M
   WHERE     M.MovieType = m_type;
 COMMIT;
@@ -1103,10 +1144,9 @@ END */;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `PastOrders`(IN customer CHAR(64))
 BEGIN
 START TRANSACTION;
-  SELECT    M.Name, F.`TimeDate`, F.`STATE`, F.`ReturnDate`
-  FROM      Movie M, FuegoOrder F
-  WHERE     F.CustomerId = customer AND F.MovieId = M.id
-            and F.State = 'Returned';
+  SELECT   	*
+  FROM      FuegoOrder F
+  WHERE     F.CustomerId = customer and F.State = 'Returned';
 COMMIT;
 END */;;
 
@@ -1145,6 +1185,35 @@ BEGIN
 SELECT P.Address
 FROM CUSTOMER C, Person P
 WHERE P.PersonId = C.PersonId;
+
+COMMIT;
+END */;;
+
+/*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE */;;
+# Dump of PROCEDURE Return_Movie
+# ------------------------------------------------------------
+
+/*!50003 DROP PROCEDURE IF EXISTS `Return_Movie` */;;
+/*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"*/;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `Return_Movie`(
+IN MovieId INT,
+IN CustomerId char(64)
+)
+BEGIN
+START TRANSACTION;
+
+SELECT F.OrderId INTO @FOId
+FROM FuegoOrder F
+WHERE F.MovieId = MovieId AND F.CustomerId = CustomerId LIMIT 1;
+
+UPDATE MOVIE M
+SET M.NumCopies = M.NumCopies + 1
+WHERE M.id = MovieId LIMIT 1;
+
+Update FuegoOrder
+SET STATE = 'Returned', ReturnDate = CURDATE()
+WHERE OrderId = @FOId;
+
 
 COMMIT;
 END */;;
