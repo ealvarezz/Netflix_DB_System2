@@ -11,19 +11,56 @@ IN EmployeeId INT
 BEGIN
 START TRANSACTION;
 
+IF EXISTS(SELECT M.NumCopies FROM MOVIE M
+          WHERE M.id = MovieId and M.NumCopies > 0 LIMIT 1) THEN
 
+  UPDATE MOVIE M
+  SET M.NumCopies = M.NumCopies - 1
+  WHERE M.Id = MovieId LIMIT 1;
 
-INSERT INTO FuegoOrder (MovieId, CustomerId, EmployeeId)
-VALUES (MovieId, CustomerId, EmployeeId);
+  INSERT INTO FuegoOrder (MovieId, CustomerId, EmployeeId)
+  VALUES (MovieId, CustomerId, EmployeeId);
 
+END IF;
 
-
-
+COMMIT;
 END $$
 DELIMITER ;
 
-/*CALL Add_Order(3, 'syang@cs.sunysb.edu', 123456789);*/
+/*CALL Add_Order(3, 'syang@cs.sunysb.edu', 123456789);
+CALL Add_Order(11, 'syang@cs.sunysb.edu',123456789);
+*/
 /* At The new order is listed under the orderId of 7*/
+
+/* Return Movie */
+DELIMITER $$
+CREATE PROCEDURE Return_Movie(
+IN MovieId INT,
+IN CustomerId char(64)
+)
+
+BEGIN
+START TRANSACTION;
+
+SELECT F.OrderId INTO @FOId
+FROM FuegoOrder F
+WHERE F.MovieId = MovieId AND F.CustomerId = CustomerId LIMIT 1;
+
+UPDATE MOVIE M
+SET M.NumCopies = M.NumCopies + 1
+WHERE M.id = MovieId LIMIT 1;
+
+Update FuegoOrder
+SET STATE = 'Returned', ReturnDate = CURDATE()
+WHERE OrderId = @FOId;
+
+
+COMMIT;
+END $$
+DELIMITER ;
+
+/* CALL Return_Movie(11, 'syang@cs.sunysb.edu'); */
+
 
 
 /*Add Customer*/
