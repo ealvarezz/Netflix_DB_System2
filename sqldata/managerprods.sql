@@ -11,13 +11,33 @@ CREATE PROCEDURE AddMovie(
 )
 BEGIN
 START TRANSACTION;
-INSERT INTO Movie(Name, MovieType, NumCopies, Fee, Rating) VALUES
-(Name,MovieType,NumCopies,Fee,Rating);
+
+/*Adds more copies of the movie if it exist*/
+IF EXISTS(SELECT M.Name FROM MOVIE M WHERE M.Name = Name LIMIT 1) THEN
+  Update Movie M
+  Set M.NumCopies = M.NumCopies + NumCopies
+  WHERE M.Name = Name LIMIT 1;
+
+/*Adds a Movie if it doesn't exist*/
+ELSE
+  SET @tRating = 1;
+  IF RATING IS NULL THEN
+    SET @tRating = 0;
+  END IF;
+
+  INSERT INTO Movie(Name, MovieType, NumCopies, Fee, Rating, TotalRating) VALUES
+  (Name,MovieType,NumCopies,Fee,Rating,@tRating);
+
+END IF;
+
 COMMIT;
 END $$
 DELIMITER ;
 
-/* CALL AddMovie('Lion King','Drama',500,1.99,5); */
+/* CALL AddMovie('Lion King','Drama',50,1.99,5);
+CALL AddMovie('There Will Be Blood','Drama',2,1.99,5);
+CALL AddMovie('Evil Dead','Comedy',1,5.99,1);
+CALL AddMovie('Street Fighter','Action',1,2.99,NULL);*/
 
 
 
