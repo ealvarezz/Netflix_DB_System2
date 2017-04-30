@@ -5,38 +5,44 @@ app.controller('ordersCtrl', function ($scope,$http,$window) {
 
 	$scope.email = $window.localStorage.getItem('username');
 
-	$scope.cur_orders = ["hi","bye","reee"];
-	$scope.wish_orders = ["gimme","dat","monay"];
+	$scope.cur_orders = [];
+	$scope.wish_orders = [];
 
 	$scope.list_orders = function() {
 		$http({
 			method  : 'POST',
-			url     : '/orders_submit',
+			url     : '/getcustomerorders',
 			data    : { 
-				email : $scope.email
+				//email : $scope.email
+				email : "pml@cs.sunysb.edu"
 			}
 		})
-		.success(function(data) {
-			$scope.cur_orders = data.data.cur_orders;
-			$scope.wish_orders = data.data.wish_orders;
+		.then(function(data) {
+			var k = 0;
+			var re = null;
+			for(k; k < data.data.length; k++){
+				re = new Date(data.data[k].timeDate);
+				data.data[k].ree = re.toLocaleString();
+			}
+			$scope.cur_orders = data.data;
 		});
-	};
-	
-	$scope.return_movie = function(movieid) {
-		/*$http({
+		$http({
 			method  : 'POST',
-			url     : '/orders_submit',
+			url     : '/getwishlist',
 			data    : { 
-				email : $scope.email
+				//email : $scope.email
+				email : "pml@cs.sunysb.edu"
 			}
 		})
-		.success(function(data) {
-			$scope.cur_orders = data.data.cur_orders;
-			$scope.wish_orders = data.data.wish_orders;
-		});*/
-		alert(movieid);
+		.then(function(data) {
+			$scope.wish_orders = data.data;
+		});
 	};
 
 	$scope.list_orders();
+	
+	$scope.return_movie = function(movieId) {
+		alert(movieId);
+	};
 
 });

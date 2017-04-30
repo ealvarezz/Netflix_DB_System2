@@ -18,16 +18,16 @@
 	<body ng-app="FuegoVideo">
 		<div ng-controller="navCtrl" ng-include="'/resources/jsp/navbar.html'"></div>
 
-
 		<div class = "container" ng-controller ="ordersCtrl">
 			<h3>ORDERS FOR {{email}}</h3>
 			<div class="jumbotron vertical-center">
 				<h3>CURRENTLY HELD</h3>
-				<div ng-repeat="x in cur_orders">
-					<div class="{{x}}" >
-						<h1>{{x}}</h1>
-						<button type="button" class ="btn-primary btn-mid" ng-click="return_movie(x)" >
-							Return
+				<div ng-repeat="x in cur_orders" >
+					<div class="well c{{x.movieId}}">
+						<h2>Movie: {{x.movie.name}}</h2>
+						<h3>On: {{x.ree}}   fee: {{x.movie.fee}}   Genre: {{x.movie.movieType}}</h3>
+						<button type="button" class="btn-primary btn-mid" ng-click="return_movie(x.movieId)" >
+							Return Movie
 						</button>
 					</div>
 				</div>
@@ -37,9 +37,10 @@
 
 			<div class="jumbotron vertical-center">
 				<h3>WISH LIST</h3>
-				<div ng-repeat="x in wish_orders">
-					<div class="container" >
-						<h1>{{x}}</h1>
+				<div ng-repeat="y in wish_orders">
+					<div class="well">
+						<h2>Movie: {{y.name}}</h2>
+						<h3>Number of copies: {{y.numCopes}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
 					</div>
 				</div>
 			</div>

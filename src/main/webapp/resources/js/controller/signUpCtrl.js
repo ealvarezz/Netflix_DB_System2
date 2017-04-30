@@ -2,7 +2,7 @@
 
 
 
-app.controller('signUpCtrl', function ($scope,$http) {
+app.controller('signUpCtrl', function ($scope,$http,$window) {
 
    $scope.firstname = "";
    $scope.lastname = "";
@@ -15,32 +15,39 @@ app.controller('signUpCtrl', function ($scope,$http) {
    $scope.password = "";
    $scope.creditcard = "";
 
-   $scope.createCustomer = function() {
-	   alert("CALLED FUNC");
 
-		var cancer = 	{ 
-			firstname : $scope.firstname,
-			lastname : $scope.lastname,
-			address : $scope.address,
-			city : $scope.city,
-			state : $scope.state,
-			zipcode : $scope.zipcode,
-			telephone : $scope.telephone,
-			email : $scope.email,
-			password : $scope.password,
-			creditcard : $scope.creditcard
-		   };
+   $scope.plan = ""
 
-		alert(cancer);
+	$scope.createCustomer = function() {
+		var cancer = 	
+		{ 
+			acctnum: $scope.plan,
+			customer: { 
+				firstName : $scope.firstname,
+				lastName : $scope.lastname,
+				address : $scope.address,
+				city : $scope.city,
+				state : $scope.state,
+				zip : $scope.zipcode,
+				telephone : $scope.telephone,
+				email : $scope.email,
+				password : $scope.password,
+				creditCard : $scope.creditcard,
+				rating : 0
+			}
+		};
 
 	   $http({
 		   method  : 'POST',
-		   url     : '/signup_submit',
+		   url     : '/addcustomer',
 		   data    : cancer
 	   })
 		   .success(function(data) {
 			   alert(data);
-			   alert(data.status);
+			   alert(data.data);
+		   })
+		   .error(function(data){
+			  	alert("reeeeeeeeeeeeeeee");
 		   });
    };
 
