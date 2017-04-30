@@ -19,10 +19,10 @@ import java.sql.Date;
 
 
 public class Account {
-	private int acctNum;
+	private Integer acctNum;
 	private String acctType;
 	private Date accountDate;
-	private String customerId;
+	private Customer customer;
 	
 	public int getAcctNum() {
 		return acctNum;
@@ -42,10 +42,16 @@ public class Account {
 	public void setAccountDate(Date accountDate) {
 		this.accountDate = accountDate;
 	}
-	public String getCustomerId() {
-		return customerId;
+	public Customer getCustomerId() {
+		return customer;
 	}
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
+	public void setCustomerId(Customer customer) {
+		this.customer = customer;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 }

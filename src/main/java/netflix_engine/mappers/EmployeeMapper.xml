@@ -47,6 +47,13 @@
         <result property="totalRating" column="TotalRating"/>
     </resultMap>
     
+    <resultMap id="accountResult" type="Account">
+        <result property="acctNum" column="AcctNum"/>
+        <result property="acctType" column="AcctType"/>
+        <result property="accountDate" column="AccountDate"/>
+        <association property="customer" column="CustomerId" javaType="Customer" select="getCustomerById"/> 
+    </resultMap>
+    
 <!-- ********************************************************************************************* -->
 
     <select id = "getMail" resultMap = "customerResult" parameterType = "Customer" statementType = "CALLABLE">
@@ -84,15 +91,14 @@
 		WHERE Employee.SSN = #{SSN}
     </select>
 
-    <!-- WE NEED TO FIND OUT HOW TO differentiate attributes for each table/class/result map -->
-    <!--  <select id = addOrder resultMap ="movieResult, customerResult," parameterType = "Customer" statementType = "CALLABLE">
-    	{call Add_Order(#{id,javaType=String,jdbcType=CHAR,mode=IN} ,
-    					#{email,javaType=String,jdbcType=CHAR,mode=IN} ,
-    					#{ssn,javaType=String,jdbcType=CHAR,mode=IN}
-    	)}
-
+  
+    <select id = "getCustomerById" resultMap = "result">
+      SELECT *
+        FROM Customer
+        INNER JOIN Person
+        ON Customer.PersonId=Person.PersonId
+		WHERE Customer.Email = #{email}
     </select>
-    -->
 
 
  </mapper>

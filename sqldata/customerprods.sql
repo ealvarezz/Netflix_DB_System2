@@ -56,9 +56,9 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE AllOrders(IN customer CHAR(64))
 BEGIN
-SELECT    M.Name, F.`TimeDate`, F.`STATE`, F.`ReturnDate`
-FROM    Movie M, FuegoOrder F
-WHERE     F.CustomerId = customer AND F.MovieId = M.id;
+SELECT    *
+FROM    FuegoOrder F
+WHERE     F.CustomerId = customer;
 END $$
 DELIMITER ;
 
@@ -72,9 +72,9 @@ DELIMITER $$
 CREATE PROCEDURE CurrentOrders(IN customer CHAR(64))
 BEGIN
 START TRANSACTION;
-  SELECT    M.Name, F.`TimeDate`, F.`STATE`, F.`ReturnDate`
-  FROM      Movie M, FuegoOrder F
-  WHERE     F.CustomerId = customer AND F.MovieId = M.id and F.State = 'Held';
+  SELECT    *
+  FROM      FuegoOrder F
+  WHERE     F.CustomerId = customer and F.State = 'Held';
 COMMIT;
 END $$
 DELIMITER ;
@@ -88,10 +88,9 @@ DELIMITER $$
 CREATE PROCEDURE PastOrders(IN customer CHAR(64))
 BEGIN
 START TRANSACTION;
-  SELECT    M.Name, F.`TimeDate`, F.`STATE`, F.`ReturnDate`
-  FROM      Movie M, FuegoOrder F
-  WHERE     F.CustomerId = customer AND F.MovieId = M.id
-            and F.State = 'Returned';
+  SELECT   	*
+  FROM      FuegoOrder F
+  WHERE     F.CustomerId = customer and F.State = 'Returned';
 COMMIT;
 END $$
 DELIMITER ;
@@ -109,7 +108,7 @@ DELIMITER $$
 CREATE PROCEDURE MovieByType(IN m_type CHAR(10))
 BEGIN
 START TRANSACTION;
-  SELECT    M.Name
+  SELECT    M.*
   FROM      Movie M
   WHERE     M.MovieType = m_type;
 COMMIT;
@@ -126,12 +125,12 @@ DELIMITER ;
 /* A customer's account settings */
 
 DELIMITER $$
-CREATE PROCEDURE List_Account_Settings(IN Person_Id INT)
+CREATE PROCEDURE List_Account_Settings(IN customer CHAR(64))
 BEGIN
 START TRANSACTION;
-SELECT A.AcctType, C.Email, C.CreditCard, P.Telephone, P.Address, P.City, P.State, P.Zip
-FROM Account A, Customer C, Person P
-WHERE Person_Id = P.PersonId AND Person_Id = C.PersonId AND C.Email = A.CustomerId;
+SELECT A.*
+FROM Account A
+WHERE customer = A.CustomerId;
 COMMIT;
 END $$
 DELIMITER ;

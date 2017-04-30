@@ -61,7 +61,7 @@ public class EmployeeController {
 
 
 	 @RequestMapping(value="addcustomer", method = RequestMethod.POST)
-	 public @ResponseBody String newCustomer(@RequestBody Customer newCustomer) {
+	 public @ResponseBody Object newCustomer(@RequestBody Customer newCustomer) {
 		 
 		
 		 DefaultTransactionDefinition def = new DefaultTransactionDefinition();
@@ -81,12 +81,12 @@ public class EmployeeController {
 			
 			txManager.rollback(status);
 			
-			return "fail!!!!!";
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);;
 		}
 
 		txManager.commit(status);
 		
-		return "OK";
+		return new ResponseEntity<>(HttpStatus.OK);;
 	}
 
 

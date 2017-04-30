@@ -37,7 +37,7 @@
     	<result property="movieType" column="MovieType"/>
     	<result property="name" column="Name"/>
     	<result property="fee" column="Fee"/>
-    	<result property="numCopies" column="NumCopes"/>
+    	<result property="numCopies" column="NumCopies"/>
     	<result property="rating" column="Rating"/>
     	<result property="totalRating" column="TotalRating"/>
     </resultMap>
