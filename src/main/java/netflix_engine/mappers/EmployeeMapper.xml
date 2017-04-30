@@ -92,7 +92,7 @@
     </select>
 
   
-    <select id = "getCustomerById" resultMap = "result">
+    <select id = "getCustomerById" resultMap = "customerResult">
       SELECT *
         FROM Customer
         INNER JOIN Person

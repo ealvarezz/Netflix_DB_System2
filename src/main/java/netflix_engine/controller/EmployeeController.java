@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -81,12 +81,13 @@ public class EmployeeController {
 			
 			txManager.rollback(status);
 			
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);;
+			return new Status("error","Something went wrong");
+			
 		}
 
 		txManager.commit(status);
 		
-		return new ResponseEntity<>(HttpStatus.OK);;
+		return new Status("OK","Inertion was good");
 	}
 
 
