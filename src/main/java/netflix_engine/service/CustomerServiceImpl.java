@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import netflix_engine.mappers.CustomerMapper;
+import netflix_engine.model.Account;
 import netflix_engine.model.Customer;
 import netflix_engine.model.FuegoOrder;
 import netflix_engine.model.Movie;
@@ -27,13 +28,19 @@ public class CustomerServiceImpl implements CustomerService {
 
 	public List<FuegoOrder> getOrdersByEmail(String email) {
 		
-		System.out.println("NOW WERE CALLING THE SERVICE METHOD!");
+		
 		return customerMapper.getCustomerOrders(email);
 	}
 
 	public List<Movie> getCustomerWishList(Integer id) {
 		
 		return customerMapper.getWishList(id);
+	}
+
+	
+	public Account getCustomerAccount(String email) {
+		
+		return customerMapper.getAccount(email);
 	}
 
 

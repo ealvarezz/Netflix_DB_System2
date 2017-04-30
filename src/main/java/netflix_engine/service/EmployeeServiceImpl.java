@@ -38,8 +38,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	//@Autowired
 	//private SqlSession sqlSession;
 
-	@Autowired
-	private SqlSessionFactory sqlSessionFactory;
 
 	@Autowired
 	private PlatformTransactionManager txManager;

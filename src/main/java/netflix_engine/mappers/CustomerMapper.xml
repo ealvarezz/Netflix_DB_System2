@@ -41,11 +41,21 @@
     	<result property="rating" column="Rating"/>
     	<result property="totalRating" column="TotalRating"/>
     </resultMap>
+    
+    <resultMap id="accountResult" type="Account">
+        <result property="acctNum" column="AcctNum"/>
+        <result property="acctType" column="AcctType"/>
+        <result property="accountDate" column="AccountDate"/>
+        <association property="customer" column="CustomerId" javaType="Customer" select="getCustomerById"/> 
+    </resultMap>
 
     <select id = "getMail" resultMap = "result" parameterType = "Customer" statementType = "CALLABLE">
 	     {call Return_Customer_Mailing_List()}
     </select>
 
+	<select id = "getAccount" resultMap = "accountResult" parameterType = "Account" statementType = "CALLABLE">
+	     {call GetCustomerAccount(#{email})}
+    </select>
 
     <select id = "getCustomers" resultMap = "result">
       SELECT * FROM CUSTOMER;

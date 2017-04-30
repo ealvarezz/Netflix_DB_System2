@@ -195,7 +195,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE BestSellers(IN num_wanted INT)
 BEGIN
-SELECT 	M.Name
+SELECT 	M.*
 FROM   	Movie M, FuegoOrder F
 WHERE    	M.Id = F.MovieId
 GROUP BY     M.name

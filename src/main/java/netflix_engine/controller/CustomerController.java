@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import netflix_engine.general.Status;
+import netflix_engine.model.Account;
 import netflix_engine.model.Customer;
 import netflix_engine.model.FuegoOrder;
 import netflix_engine.model.Movie;
@@ -70,7 +71,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value="getwishlist", method = RequestMethod.POST)
-	public @ResponseBody List<Movie> testing(@RequestBody Customer customer) {
+	public @ResponseBody List<Movie> getWishList(@RequestBody Customer customer) {
 		
 		String email = customer.getEmail();
 		Customer vCustomer = customerService.getCustomerById(email);
@@ -79,6 +80,20 @@ public class CustomerController {
 
 
 		return customerService.getCustomerWishList(id);
+
+	}
+	
+	@RequestMapping(value="accountsettings", method = RequestMethod.POST)
+	public @ResponseBody Account getAccountSetting(@RequestBody Customer customer) {
+		
+		String email = customer.getEmail();
+		
+		Customer vCustomer = customerService.getCustomerById(email);
+	
+		if(vCustomer == null)
+			return new Account();
+
+		return customerService.getCustomerAccount(email);
 
 	}
 

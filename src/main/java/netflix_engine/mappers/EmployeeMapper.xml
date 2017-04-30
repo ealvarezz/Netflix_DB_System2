@@ -86,7 +86,10 @@
     </insert>
 
     <select id = "getCustomers" resultMap = "customerResult">
-      SELECT * FROM CUSTOMER;
+      SELECT *
+        FROM Customer
+        INNER JOIN Person
+        ON Customer.PersonId=Person.PersonId
     </select>
     
     <select id = "getBySSN" resultMap = "employeeResult">
