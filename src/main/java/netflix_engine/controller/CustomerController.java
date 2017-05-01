@@ -131,7 +131,13 @@ public class CustomerController {
 		 return new Status("OK", "These are the best seller movies", list);
 	 }
 
-
+	 @RequestMapping(value="searchmovie", method = RequestMethod.POST)
+		public @ResponseBody Object findMovie(@RequestBody Movie movie) {
+		 
+		 String keyword = movie.getName();
+		 List<Movie> list = customerService.findMovie(keyword);
+		 return new Status("OK", "Movies Containing" + keyword, list);
+	 }
 
 }
 

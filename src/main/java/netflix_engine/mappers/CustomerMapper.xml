@@ -100,5 +100,9 @@
     <select id="getMoviesByType" resultMap="movieResult" statementType = "CALLABLE">
     	{call MovieByType(#{movieType})}
     </select>
+    
+    <select id="searchMovie" resultMap="movieResult" statementType = "CALLABLE">
+    	{call KeywordMovie(#{keyword})}
+    </select>
 
 </mapper>

@@ -56,4 +56,8 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return customerMapper.getBestSeller(limit);
 	}
+	
+	public List<Movie> findMovie(String keyword) {
+		return customerMapper.searchMovie(keyword);
+	}
 }

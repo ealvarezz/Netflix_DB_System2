@@ -13,7 +13,7 @@ app.controller('searchCtrl', function ($scope,$http,$window) {
 			method  : 'POST',
 			url     : '/searchmovie',
 			data    : {
-				movieName : $scope.text
+				name : $scope.text
 			}
 		})
 		.then(function(data) {
@@ -33,21 +33,5 @@ app.controller('searchCtrl', function ($scope,$http,$window) {
 		.then(function(data) {
 			alert(data.data.message);
 		});
-
 	};
-
-/*
-	$scope.type_changed = function() {
-		$http({
-			method  : 'POST',
-			url     : '/movie_list_by_type',
-			data    : {
-				movieType : $scope.selected_type
-			}
-		})
-		.then(function(data) {
-			$scope.movies = data.data.content;
-		});
-	};
-*/
 });
