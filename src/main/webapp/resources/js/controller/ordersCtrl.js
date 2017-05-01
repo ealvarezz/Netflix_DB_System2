@@ -40,7 +40,25 @@ app.controller('ordersCtrl', function ($scope,$http,$window) {
 	$scope.list_orders();
 	
 	$scope.return_movie = function(movieId) {
-		alert(movieId);
+		alert("Tryna return v1.");
+		$http({
+			method  : 'POST',
+			url     : '/returnmovie',
+			data    : { 
+				movieId: movieId,
+				customerId : $scope.email
+			}
+		})
+		.then(function(data) {
+			var k = 0;
+			alert("Tryna return.");
+			for(k = 0; k < $scope.cur_orders.length; k++ ){
+				if(movieId === $scope.cur_orders[k].movieId){
+					$scope.cur_orders.splice(k,1);
+				}
+			}
+			alert("Movie returned.");
+		});
 	};
 
 });

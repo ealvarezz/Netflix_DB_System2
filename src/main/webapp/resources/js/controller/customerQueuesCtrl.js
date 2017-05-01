@@ -49,7 +49,6 @@ app.controller('customerQueuesCtrl', function ($scope,$http,$window) {
 					$scope.wish_orders.splice(k,1);
 				}
 			}
-			$scope.selected_user
 		});
 		
 	};

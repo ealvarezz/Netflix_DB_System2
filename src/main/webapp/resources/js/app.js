@@ -6,7 +6,7 @@ var app = angular.module('FuegoVideo', []);
 
 
 var customer_Lock = function(){
-	if(localStorage.getItem("customer") === true){
+	if(localStorage.getItem("customer") === "true"){
 		return true;
 	}
 	alert("Please login as a customer.")
@@ -14,7 +14,7 @@ var customer_Lock = function(){
 };
 
 var manager_Lock = function(){
-	if(localStorage.getItem("manager") === true){
+	if(localStorage.getItem("manager") === "true"){
 		return true;
 	}
 	alert("Must be a manager to view this page.")
@@ -22,7 +22,7 @@ var manager_Lock = function(){
 };
 
 var employee_Lock = function(){
-	if(localStorage.getItem("employee") === true || localStorage.getItem("manager") === true){
+	if(localStorage.getItem("employee") === "true" || localStorage.getItem("manager") === "true"){
 		return true;
 	}
 	alert("Must be an employee to view this page.")
