@@ -18,6 +18,7 @@
 	<mvc:view-controller path="/account" view-name="editacc"/>
 	<mvc:view-controller path="/categories" view-name="categories"/>
   <mvc:view-controller path="/bestseller" view-name="bestseller"/>
+  <mvc:view-controller path="/search" view-name="search"/>
 
 
 

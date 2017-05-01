@@ -25,17 +25,15 @@
 		<div ng-controller="navCtrl" ng-include="'/resources/jsp/navbar.html'"></div>
 		<div class = "container" ng-controller ="bestsellerCtrl">
 
-			<div>
-				<div class="jumbotron vertical-center">
-					<h3>Best Selling movies</h3>
-					<div ng-repeat="y in movies">
-						<div class="well">
-							<h2>Movie: {{y.name}}</h2>
-							<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
-							<button type="button" class="btn-primary btn-mid" ng-click="add_movie(y.id)" >
-								Add to wish list
-							</button>
-						</div>
+			<div class="jumbotron vertical-center">
+				<h3>Best Selling movies</h3>
+				<div ng-repeat="y in movies">
+					<div class="well">
+						<h2>Movie: {{y.name}}</h2>
+						<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+						<button type="button" class="btn-primary btn-mid" ng-click="add_movie(y.id)" >
+							Add to wish list
+						</button>
 					</div>
 				</div>
 			</div>
