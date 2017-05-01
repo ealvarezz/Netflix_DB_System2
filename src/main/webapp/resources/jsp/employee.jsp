@@ -16,6 +16,7 @@
   </head>
 
   <body ng-app="FuegoVideo">
+	  <div ng-controller="navCtrl" ng-include="'/resources/jsp/empnavbar.html'"></div>
 	  <div class = "container" ng-controller ="employeeCtrl">
 		  <h1>{{username}}</h1>
 		  <h1>{{position}}</h1>

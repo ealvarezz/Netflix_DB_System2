@@ -13,8 +13,7 @@ app.controller('ordersCtrl', function ($scope,$http,$window) {
 			method  : 'POST',
 			url     : '/getcustomerorders',
 			data    : { 
-				//email : $scope.email
-				email : "pml@cs.sunysb.edu"
+				email : $scope.email
 			}
 		})
 		.then(function(data) {
@@ -30,8 +29,7 @@ app.controller('ordersCtrl', function ($scope,$http,$window) {
 			method  : 'POST',
 			url     : '/getwishlist',
 			data    : { 
-				//email : $scope.email
-				email : "pml@cs.sunysb.edu"
+				email : $scope.email
 			}
 		})
 		.then(function(data) {

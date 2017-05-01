@@ -98,7 +98,7 @@
 
 
 
-						<button class ="btn-primary btn-mid" id="submit" ng-clicki="update_acc()" >
+						<button class ="btn-primary btn-mid" id="submit" ng-click="update_acc()" >
 							Update Information
 						</button>
 					</form>

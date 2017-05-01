@@ -45,6 +45,7 @@ app.controller('editAcctCtrl', function ($scope,$http,$window) {
 
 
 	$scope.update_acc = function() {
+		alert("sending");
 
 		var cancer = 	
 		{ 

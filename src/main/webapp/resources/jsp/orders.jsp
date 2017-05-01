@@ -40,7 +40,7 @@
 				<div ng-repeat="y in wish_orders">
 					<div class="well">
 						<h2>Movie: {{y.name}}</h2>
-						<h3>Number of copies: {{y.numCopes}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+						<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
 					</div>
 				</div>
 			</div>
