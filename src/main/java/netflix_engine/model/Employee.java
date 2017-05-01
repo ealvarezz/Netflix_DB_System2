@@ -28,17 +28,17 @@ import netflix_engine.model.Person;
 	public class Employee extends Person {
 
 
-		private int ssn;
+		private Integer ssn;
 		private Date startDate;
 		private BigDecimal HourlyRate;
 		private String position;
 		private String password;
 
 
-		public int getSsn() {
+		public Integer getSsn() {
 			return ssn;
 		}
-		public void setSsn(int ssn) {
+		public void setSsn(Integer ssn) {
 			this.ssn = ssn;
 		}
 		public Date getStartDate() {

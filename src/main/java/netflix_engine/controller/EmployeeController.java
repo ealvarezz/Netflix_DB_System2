@@ -92,7 +92,7 @@ public class EmployeeController {
 	 @RequestMapping(value="employee_login_submit", method = RequestMethod.POST)
 		public @ResponseBody Object confirmEmployeeLogin(@RequestBody Employee employee) {
 
-			int SSN = employee.getSsn();
+			Integer SSN = employee.getSsn();
 			String attemptPassword = employee.getPassword();
 
 			Employee vEmployee = employeeService.getEmployeeBySSN(SSN);

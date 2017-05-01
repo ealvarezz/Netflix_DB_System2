@@ -42,8 +42,8 @@
         <result property="id" column="Id"/>
         <result property="movieType" column="MovieType"/>
         <result property="name" column="Name"/>
-        <result property="Fee" column="Fee"/>
-        <result property="NumCopes" column="NumCopies"/>
+        <result property="fee" column="Fee"/>
+        <result property="numCopies" column="NumCopies"/>
         <result property="rating" column="Rating"/>
         <result property="totalRating" column="TotalRating"/>
     </resultMap>
@@ -80,6 +80,44 @@
 					       #{password,javaType=String,jdbcType=CHAR,mode=IN}
 					       )}
     </insert>
+    
+    <insert id = "addEmployee" parameterType = "Employee" statementType = "CALLABLE">
+	     {call AddEmployee( 
+	     				   #{employee.lastName,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.firstName,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.address,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.city,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.state,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.zip,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.telephone,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.ssn,javaType=Integer,jdbcType=INTEGER,mode=IN} ,
+					       #{employee.startDate,javaType=Date,jdbcType=DATE,mode=IN} ,
+					       #{employee.HourlyRate,javaType=BigDecimal,jdbcType=DECIMAL,mode=IN} ,
+					       #{employee.position,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.password,javaType=String,jdbcType=CHAR,mode=IN}
+					       )}
+    </insert>
+    
+    <update id = "editEmployee" parameterType = "Employee" statementType = "CALLABLE">
+	     {call EditEmployee( 
+	     				   #{employee.lastName,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.firstName,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.address,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.city,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.state,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.zip,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.telephone,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.ssn,javaType=Integer,jdbcType=INTEGER,mode=IN} ,
+					       #{employee.startDate,javaType=Date,jdbcType=DATE,mode=IN} ,
+					       #{employee.HourlyRate,javaType=BigDecimal,jdbcType=DECIMAL,mode=IN} ,
+					       #{employee.position,javaType=String,jdbcType=CHAR,mode=IN} ,
+					       #{employee.password,javaType=String,jdbcType=CHAR,mode=IN}
+					       )}
+    </update>
+    
+    <delete id = "deleteEmployee" parameterType = "Employee">
+      {call DelEmployee(#{SSN})}
+   </delete>
 	
 	<insert id = "newAccount" parameterType = "Account" statementType = "CALLABLE">
 	     {call Add_Account( 
@@ -96,6 +134,31 @@
 					       #{order.employeeId,javaType=Integer,jdbcType=INTEGER,mode=IN}  
 					       )}
     </insert>
+    
+    <insert id = "addMovie" parameterType = "Movie" statementType = "CALLABLE">
+	     {call AddMovie( 
+	     				   #{movie.name,javaType=String,jdbcType=CHAR,mode=IN} ,
+	     				   #{movie.movieType,javaType=String,jdbcType=CHAR,mode=IN},
+	     				   #{movie.numCopies,javaType=Integer,jdbcType=INTEGER,mode=IN},
+	     				   #{movie.fee,javaType=BigDecimal,jdbcType=DECIMAL,mode=IN},
+	     				   #{movie.totalRating,javaType=Integer,jdbcType=INTEGER,mode=IN}  
+		 )}
+    </insert>
+    
+    <update id = "editMovie" parameterType = "Movie" statementType = "CALLABLE">
+	     {call EditMovie( 
+	     				   #{movie.name,javaType=String,jdbcType=CHAR,mode=IN} ,
+	     				   #{movie.movieType,javaType=String,jdbcType=CHAR,mode=IN},
+	     				   #{movie.numCopies,javaType=Integer,jdbcType=INTEGER,mode=IN},
+	     				   #{movie.fee,javaType=BigDecimal,jdbcType=DECIMAL,mode=IN},
+	     				   #{movie.totalRating,javaType=Integer,jdbcType=INTEGER,mode=IN}  
+		 )}
+    </update>
+    
+    <delete id = "deleteMovie" parameterType = "Movie">
+      {call DeleteMovie(#{name})}
+   </delete>
+    
     
     <delete id = "deleteFromQueue" parameterType = "Queued">
       DELETE from Queued 
@@ -159,6 +222,11 @@
     	WHERE PersonId = #{customer.personID};
     
 	</update>
+	
+	<select id="getMovieByName" resultMap="movieResult">
+    	SELECT    * FROM Movie M
+  		WHERE     M.Name = #{name};
+    </select>
 
 
  </mapper>

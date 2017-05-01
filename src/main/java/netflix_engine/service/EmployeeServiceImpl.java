@@ -28,6 +28,7 @@ import netflix_engine.model.Account;
 import netflix_engine.model.Customer;
 import netflix_engine.model.Employee;
 import netflix_engine.model.FuegoOrder;
+import netflix_engine.model.Movie;
 
 
 @Service("employeeService")
@@ -157,6 +158,114 @@ public class EmployeeServiceImpl implements EmployeeService {
 			  e.printStackTrace();
 		  }
 		  txManager.commit(status);
+	}
+
+
+	public void addMovieToDb(Movie movie) throws Exception {
+		TransactionStatus status = getStatus();
+
+		  try{
+			  
+			  employeeMapper.addMovie(movie);
+			  
+			  
+		  } catch( Exception e ){
+			  txManager.rollback(status);
+			  e.printStackTrace();
+		  }
+		  txManager.commit(status);
+		
+	}
+
+
+	public void editMovieInDb(Movie movie) throws Exception {
+		TransactionStatus status = getStatus();
+
+		  try{
+			  
+			  employeeMapper.editMovie(movie);
+			  
+			  
+		  } catch( Exception e ){
+			  txManager.rollback(status);
+			  e.printStackTrace();
+		  }
+		  txManager.commit(status);
+		
+	}
+
+
+	public void deleteMovieFromDb(String movieName) throws Exception {
+		TransactionStatus status = getStatus();
+
+		  try{
+			  
+			  employeeMapper.deleteMovie(movieName);
+			  
+			  
+		  } catch( Exception e ){
+			  txManager.rollback(status);
+			  e.printStackTrace();
+		  }
+		  txManager.commit(status);
+		
+	}
+
+
+	public void addEmployeeToDb(Employee employee) throws Exception {
+		TransactionStatus status = getStatus();
+
+		  try{
+			  
+			  
+			  employeeMapper.addEmployee(employee);
+			  
+		  } catch( Exception e ){
+			  txManager.rollback(status);
+			  e.printStackTrace();
+		  }
+		  txManager.commit(status);
+		
+	}
+
+
+	public void editEmployeeInDb(Employee employee) throws Exception {
+		TransactionStatus status = getStatus();
+
+		  try{
+			  
+			  employeeMapper.editEmployee(employee);
+			  
+			  
+		  } catch( Exception e ){
+			  txManager.rollback(status);
+			  e.printStackTrace();
+		  }
+		  txManager.commit(status);
+		
+	}
+
+
+	public void deteleEmployeeFromDb(Integer ssn) throws Exception {
+		TransactionStatus status = getStatus();
+
+		  try{
+			  
+			  employeeMapper.deleteEmployee(ssn);
+			  
+			  
+		  } catch( Exception e ){
+			  txManager.rollback(status);
+			  e.printStackTrace();
+		  }
+		  txManager.commit(status);
+		
+	}
+
+
+	public Movie getMovieByMoviename(String name) {
+		
+		return employeeMapper.getMovieByName(name);
 	}
 
 }
