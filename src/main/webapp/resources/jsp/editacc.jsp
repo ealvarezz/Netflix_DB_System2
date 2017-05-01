@@ -12,7 +12,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="/resources/js/app.js"></script>
-		<script src="/resources/js/controller/signUpCtrl.js"></script>
+		<script src="/resources/js/controller/editAcctCtrl.js"></script>
 	</head>
 	<style>
 
@@ -26,11 +26,10 @@
 	</style>
 
 	<body ng-app="FuegoVideo">
-		<div class = "signup" ng-controller = "signUpCtrl" >
-			<a href="/login">Already have an account? Log in here!</a>
+		<div class = "info" ng-controller = "editAcctCtrl" >
 			<div class = "container">
 				<div class="jumbotron vertical-center">
-					<h2>Sign Up</h2>
+					<h2>ACCOUNT INFORMATION</h2>
 					<form class="form-horizontal" method="POST">
 						<div class="form-group">
 							<label for="FirstName">First Name</label>
@@ -68,11 +67,6 @@
 						</div>
 
 						<div class="form-group">
-							<label for="Email">Email</label>
-							<input type="email" class="form-control" ng-model="email" name="Email" required />
-						</div>
-
-						<div class="form-group">
 							<label for="Password">Password</label>
 							<input type="password" class="form-control" ng-model="password" name="Password" required />
 						</div>
@@ -104,8 +98,8 @@
 
 
 
-						<button class ="btn-primary btn-mid" id="submit" ng-click="createCustomer()" >
-							Submit
+						<button class ="btn-primary btn-mid" id="submit" ng-clicki="update_acc()" >
+							Update Information
 						</button>
 					</form>
 				</div>

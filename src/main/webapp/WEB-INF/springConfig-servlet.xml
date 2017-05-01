@@ -15,6 +15,7 @@
 	<mvc:view-controller path="/signup" view-name="signup"/>
 	<mvc:view-controller path="/login" view-name="login"/>
 	<mvc:view-controller path="/orders" view-name="orders"/>
+	<mvc:view-controller path="/account" view-name="editacc"/>
 
 
 
