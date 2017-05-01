@@ -135,6 +135,7 @@ DELIMITER ;
 
 /*
 CALL AddEmployee("Grasing","Christopher","3889 New York Avenue","Seaford","NY","11783","516 785 2923",133112211,CURDATE(),100.50,"Janitor","test"); */
+/* CALL AddEmployee("Guy","Main","123 Boss Avenue","Seaford","NY","11783","516 785 2923",1,CURDATE(),100.50,"Manager","manager"); */ 
 /* Add me as a rich Janitor*/
 
 

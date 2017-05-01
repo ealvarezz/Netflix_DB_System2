@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.15)
 # Database: netflix_db
-# Generation Time: 2017-04-30 23:15:45 +0000
+# Generation Time: 2017-05-01 05:41:47 +0000
 # ************************************************************
 
 
@@ -43,7 +43,8 @@ VALUES
 	(1,'unlimited-2','2006-10-01','pml@cs.sunysb.edu'),
 	(2,'limited','2006-10-15','vicdu@cs.sunysb.edu'),
 	(3,'unlimited-3','2010-11-05','jsmith@ic.sunysb.edu'),
-	(4,'unlimited-2','2017-04-29','SirWilliams@yahoo.com');
+	(4,'unlimited-2','2017-04-29','SirWilliams@yahoo.com'),
+	(5,'unlimited-3','2017-04-30','lala@gmail.com');
 
 /*!40000 ALTER TABLE `Account` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -143,6 +144,7 @@ INSERT INTO `Customer` (`Email`, `PersonId`, `CreditCard`, `Rating`, `Password`)
 VALUES
 	('fueg0@gmail.com',23,'39484',NULL,'pass'),
 	('jsmith@ic.sunysb.edu',3,'2345-6789-2345-6789',1,'Dad'),
+	('lala@gmail.com',26,'1111-2222-3333',NULL,'lala'),
 	('pml@cs.sunysb.edu',4,'6789-2345-6789-2345',1,'Dad'),
 	('SirWilliams@yahoo.com',25,NULL,NULL,'MyPassword'),
 	('syang@cs.sunysb.edu',1,'1234-5678-1234-5678',1,'Dad'),
@@ -230,7 +232,10 @@ VALUES
 	(4,2,'vicdu@cs.sunysb.edu','2009-10-21 22:22:00',NULL,789123456,'Held'),
 	(6,1,'syang@cs.sunysb.edu','2017-04-28 00:35:46',NULL,789123456,'Held'),
 	(8,3,'syang@cs.sunysb.edu','2017-04-30 15:54:33',NULL,123456789,'Held'),
-	(10,11,'syang@cs.sunysb.edu','2017-04-30 17:51:50','2017-04-30',123456789,'Returned');
+	(10,11,'syang@cs.sunysb.edu','2017-04-30 17:51:50','2017-04-30',123456789,'Returned'),
+	(11,1,'pml@cs.sunysb.edu','2017-04-30 22:19:17',NULL,NULL,'Held'),
+	(12,2,'vicdu@cs.sunysb.edu','2017-05-01 00:32:01',NULL,NULL,'Held'),
+	(13,1,'lala@gmail.com','2017-05-01 00:32:15',NULL,NULL,'Held');
 
 /*!40000 ALTER TABLE `FuegoOrder` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -273,8 +278,8 @@ LOCK TABLES `Movie` WRITE;
 
 INSERT INTO `Movie` (`Id`, `MovieType`, `Name`, `Fee`, `NumCopies`, `Rating`, `TotalRating`)
 VALUES
-	(1,'Drama','The GodFather',1.99,35,5.00,1),
-	(2,'Drama','Shawshank Redemption',2.99,30,4.00,1),
+	(1,'Drama','The GodFather',1.99,33,5.00,1),
+	(2,'Drama','Shawshank Redemption',2.99,29,4.00,1),
 	(3,'Comedy','Borat',1.99,35,4.00,1),
 	(4,'Action','Robocop',2.99,50,3.00,1),
 	(8,'Drama','Lion King',1.99,50,5.00,1),
@@ -340,7 +345,8 @@ VALUES
 	(5,'Smith','David','123 College road','Stony Brook','NY','11790','516-215-2345'),
 	(6,'Warren','David','456 Sunken Street','Stony Brook','NY','11794','631-632-9987'),
 	(23,'alvarez','edwin','ahahaha','bx','NY','10466','wweeerrr'),
-	(25,'Williams','Justin','123 Add street','Baldwin','NY','12345','123-456-7890');
+	(25,'Williams','Justin','123 Add street','Baldwin','NY','12345','123-456-7890'),
+	(26,'Lele','Lala','123 Lala land','Lala town','LA','12345','123-456-7891');
 
 /*!40000 ALTER TABLE `Person` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -365,10 +371,11 @@ LOCK TABLES `Queued` WRITE;
 
 INSERT INTO `Queued` (`AccountId`, `MovieId`)
 VALUES
-	(1,1),
-	(2,2),
 	(1,3),
-	(2,3);
+	(2,3),
+	(3,3),
+	(5,4),
+	(4,9);
 
 /*!40000 ALTER TABLE `Queued` ENABLE KEYS */;
 UNLOCK TABLES;
