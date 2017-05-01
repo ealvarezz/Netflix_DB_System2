@@ -24,7 +24,7 @@ public class Movie {
 	private String movieType;
 	private String name;
 	private BigDecimal fee;
-	private Integer numCopes;
+	private Integer numCopies;
 	private BigDecimal rating;
 	private Integer totalRating;
 	public Integer getId() {
@@ -51,11 +51,11 @@ public class Movie {
 	public void setFee(BigDecimal fee) {
 		this.fee = fee;
 	}
-	public Integer getNumCopes() {
-		return numCopes;
+	public Integer getNumCopies() {
+		return numCopies;
 	}
-	public void setNumCopes(Integer numCopes) {
-		this.numCopes = numCopes;
+	public void setNumCopies(Integer numCopies) {
+		this.numCopies = numCopies;
 	}
 	public BigDecimal getRating() {
 		return rating;
