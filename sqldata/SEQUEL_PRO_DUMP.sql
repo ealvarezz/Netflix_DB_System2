@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.15)
 # Database: netflix_db
-# Generation Time: 2017-05-01 05:59:44 +0000
+# Generation Time: 2017-05-01 23:34:43 +0000
 # ************************************************************
 
 
@@ -194,6 +194,7 @@ INSERT INTO `Employee` (`SSN`, `PersonId`, `StartDate`, `HourlyRate`, `Position`
 VALUES
 	(1,27,'2017-05-01',100.50,'Manager','manager'),
 	(123456789,5,'2005-11-01',60.00,'Manager',NULL),
+	(133112211,30,'2017-05-01',100.50,'Employee','test'),
 	(789123456,6,'2006-02-02',50.00,'Employee',NULL);
 
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
@@ -261,9 +262,9 @@ LOCK TABLES `Movie` WRITE;
 
 INSERT INTO `Movie` (`Id`, `MovieType`, `Name`, `Fee`, `NumCopies`, `Rating`, `TotalRating`)
 VALUES
-	(1,'Drama','The GodFather',1.99,30,5.00,1),
-	(2,'Drama','Shawshank Redemption',2.99,28,4.00,1),
-	(3,'Comedy','Borat',1.99,32,4.00,1),
+	(1,'Drama','The GodFather',1.99,29,5.00,1),
+	(2,'Drama','Shawshank Redemption',2.99,26,4.00,1),
+	(3,'Comedy','Borat',1.99,30,4.00,1),
 	(4,'Action','Robocop',2.99,49,3.00,1),
 	(8,'Drama','Lion King',1.99,50,5.00,1),
 	(9,'Drama','There Will Be Blood',1.99,0,5.00,1),
@@ -330,7 +331,8 @@ VALUES
 	(23,'alvarez','edwin','ahahaha','bx','NY','10466','wweeerrr'),
 	(25,'Williams','Justin','123 Add street','Baldwin','NY','12345','123-456-7890'),
 	(26,'Lele','Lala','123 Lala land','Lala town','LA','12345','123-456-7891'),
-	(27,'Guy','Main','123 Boss Avenue','Seaford','NY','11783','516 785 2923');
+	(27,'Guy','Main','123 Boss Avenue','Seaford','NY','11783','516 785 2923'),
+	(30,'Grasing','Christopher','3889 New York Avenue','Seaford','NY','11783','516 785 2923');
 
 /*!40000 ALTER TABLE `Person` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -350,19 +352,6 @@ CREATE TABLE `Queued` (
   CONSTRAINT `queued_ibfk_2` FOREIGN KEY (`MovieId`) REFERENCES `MOVIE` (`Id`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `Queued` WRITE;
-/*!40000 ALTER TABLE `Queued` DISABLE KEYS */;
-
-INSERT INTO `Queued` (`AccountId`, `MovieId`)
-VALUES
-	(1,3),
-	(2,3),
-	(3,3),
-	(5,4),
-	(4,9);
-
-/*!40000 ALTER TABLE `Queued` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 
@@ -629,8 +618,17 @@ BEGIN
 START TRANSACTION;
 SELECT P.PersonId INTO @pid FROM Person P, Employee E
 WHERE E.SSN = _ssn AND E.PersonId = P.PersonId;
+
+
+UPDATE FuegoOrder
+SET EmployeeId = NULL
+WHERE EmployeeId = _ssn;
+
 DELETE FROM Employee WHERE SSN = _ssn;
 DELETE FROM Person WHERE PersonId = @pid;
+
+
+COMMIT;
 END */;;
 
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE */;;
@@ -642,8 +640,15 @@ END */;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `DeleteMovie`(IN M_Name CHAR(64))
 BEGIN
 START TRANSACTION;
-DELETE FROM MOVIE
-WHERE Name = M_Name;
+
+SELECT M.Id INTO @mid FROM Movie m WHERE M.Name = M_Name Limit 1;
+
+  DELETE FROM FuegoOrder WHERE MovieId = @mid;
+  DELETE FROM AppearedIn WHERE MovieId = @mid;
+  DELETE FROM QUEUED WHERE MovieId = @mid;
+  DELETE FROM MOVIE WHERE id = @mid;
+
+COMMIT;
 END */;;
 
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE */;;
@@ -1040,6 +1045,26 @@ START TRANSACTION;
   SELECT    M.*
   FROM      Movie M
   WHERE     M.MovieType = m_type;
+COMMIT;
+END */;;
+
+/*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE */;;
+# Dump of PROCEDURE MoviesHeldBy
+# ------------------------------------------------------------
+
+/*!50003 DROP PROCEDURE IF EXISTS `MoviesHeldBy` */;;
+/*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"*/;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `MoviesHeldBy`(IN M_Name CHAR(64))
+BEGIN
+START TRANSACTION;
+
+SELECT M.Id INTO @mid FROM Movie m WHERE M.Name = M_Name Limit 1;
+
+SELECT C.*
+From Customer C, FuegoOrder F
+Where C.email = F.CustomerId and F.MovieId=@mid and F.State ='Held';
+
+
 COMMIT;
 END */;;
 
