@@ -50,4 +50,10 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<Movie> getMovieListByType(String mType) {
 		return customerMapper.getMoviesByType(mType);
 	}
+
+	public List<Movie> getBestSellerMovies(Integer limit) {
+		
+		
+		return customerMapper.getBestSeller(limit);
+	}
 }

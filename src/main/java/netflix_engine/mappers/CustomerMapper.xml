@@ -79,6 +79,15 @@
   		WHERE     M.Id = #{MovieId};
     </select>
     
+    <select id="getBestSeller" resultMap="movieResult">
+    	SELECT M.* 
+    	FROM   		Movie M, FuegoOrder F 
+    	WHERE    	M.Id = F.MovieId 
+    	GROUP BY    F.MovieId 
+    	ORDER BY    COUNT(*) DESC 
+    	LIMIT #{limit};
+    </select>
+    
     <select id="getWishList" resultMap="movieResult">
     	{call Customer_Wish_List(#{id})}
     </select>

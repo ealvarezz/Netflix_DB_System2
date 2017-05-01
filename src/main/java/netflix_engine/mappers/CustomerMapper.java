@@ -23,4 +23,6 @@ public interface CustomerMapper {
 	public void addToWishList(@Param("actId") int actId, @Param("movieId") int movieId);
 	
 	public List<Movie> getMoviesByType(@Param("movieType") String movieType);
+	
+	public List<Movie> getBestSeller(@Param("limit") Integer limit);
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -120,6 +121,14 @@ public class CustomerController {
 		 
 		 List<Movie> movieList = customerService.getMovieListByType(movie.getMovieType());
 		 return new Status("OK", "Here is the Movie List By Type", movieList);
+	 }
+	 
+	 
+	 @RequestMapping(value="getbestseller", method = RequestMethod.POST)
+		public @ResponseBody Object getBestSeller(@RequestBody Movie movie) {
+		 
+		 List<Movie> list = customerService.getBestSellerMovies(movie.getNumCopies());
+		 return new Status("OK", "These are the best seller movies", list);
 	 }
 
 

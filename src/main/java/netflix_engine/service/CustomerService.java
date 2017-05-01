@@ -20,4 +20,6 @@ public interface CustomerService {
 	void addToQueue(int accNum, int movieId);
 	
 	List<Movie> getMovieListByType(String mType);
+	
+	List<Movie> getBestSellerMovies(Integer limit);
 }
