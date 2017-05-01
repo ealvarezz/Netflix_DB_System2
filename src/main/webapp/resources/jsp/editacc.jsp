@@ -26,6 +26,7 @@
 	</style>
 
 	<body ng-app="FuegoVideo">
+		<div ng-controller="navCtrl" ng-include="'/resources/jsp/navbar.html'"></div>
 		<div class = "info" ng-controller = "editAcctCtrl" >
 			<div class = "container">
 				<div class="jumbotron vertical-center">
