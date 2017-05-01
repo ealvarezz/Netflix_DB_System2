@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import netflix_engine.model.Employee;
+import netflix_engine.model.FuegoOrder;
 import netflix_engine.model.Movie;
 import netflix_engine.general.Status;
 import netflix_engine.model.Account;
@@ -76,12 +78,9 @@ public class EmployeeController {
 			
 
 		}
-		catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		catch (Exception e) {			
 			
-			
-			return new Status("error","Something went wrong");
+			return new Status("error",e.getMessage());
 			
 		}
 
@@ -115,15 +114,30 @@ public class EmployeeController {
 	 
 	 @RequestMapping(value="update_account", method = RequestMethod.POST)
 		public @ResponseBody Object updateCustomer(@RequestBody Account account) {
+		 
 		 try{
 			 employeeService.updateCustomerSettings(account);
 		 }
 		 catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				
+				return new Status("error",e.getMessage());
+				
+			}
+
+			return new Status("OK","Update was good");
+	 }
+	 
+	 @RequestMapping(value="process_order", method = RequestMethod.POST)
+		public @ResponseBody Object processCustomerOrder(@RequestBody FuegoOrder order) {
+		 
+		 try{
+			 employeeService.processCustomerOrder(order);
+		 }
+		 catch (Exception e) {
 				
 				
-				return new Status("error","Something went wrong");
+				return new Status("error",e.getMessage());
 				
 			}
 

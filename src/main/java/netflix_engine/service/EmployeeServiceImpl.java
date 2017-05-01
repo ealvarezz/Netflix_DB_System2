@@ -27,6 +27,7 @@ import netflix_engine.mappers.EmployeeMapper;
 import netflix_engine.model.Account;
 import netflix_engine.model.Customer;
 import netflix_engine.model.Employee;
+import netflix_engine.model.FuegoOrder;
 
 
 @Service("employeeService")
@@ -80,10 +81,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
 
-
-
-
-
     public Employee getEmployeeBySSN(int ssn){
 
 
@@ -134,6 +131,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 			  employeeMapper.updatePerson(account.getCustomer());
 			  employeeMapper.updateCustomer(account.getCustomer());
 			  employeeMapper.updateAccount(account);
+			  
+		  } catch( Exception e ){
+			  txManager.rollback(status);
+			  e.printStackTrace();
+		  }
+		  txManager.commit(status);
+	}
+
+	
+	public void processCustomerOrder(FuegoOrder order) throws Exception {
+		
+		Integer accountNumber = employeeMapper.getAccount(order.getCustomerId()).getAcctNum();
+		
+		TransactionStatus status = getStatus();
+
+		  try{
+			  
+			  employeeMapper.deleteFromQueue(order.getMovieId(), accountNumber);
+			  employeeMapper.processOrder(order);
+			  
 			  
 		  } catch( Exception e ){
 			  txManager.rollback(status);

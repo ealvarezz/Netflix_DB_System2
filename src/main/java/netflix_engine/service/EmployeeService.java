@@ -7,6 +7,7 @@ import java.util.List;
 import netflix_engine.model.Account;
 import netflix_engine.model.Customer;
 import netflix_engine.model.Employee;
+import netflix_engine.model.FuegoOrder;
 
 public interface EmployeeService {
 
@@ -24,6 +25,8 @@ public interface EmployeeService {
 	void addCustomerAccount(Account newAccount) throws Exception;
 
 	void updateCustomerSettings(Account account) throws Exception;
+	
+	void processCustomerOrder(FuegoOrder order) throws Exception;
 
 
 }

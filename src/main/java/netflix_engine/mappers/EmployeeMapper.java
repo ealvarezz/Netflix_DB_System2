@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import netflix_engine.model.Account;
 import netflix_engine.model.Customer;
 import netflix_engine.model.Employee;
+import netflix_engine.model.FuegoOrder;
 
 
 public interface EmployeeMapper {
@@ -42,5 +43,14 @@ public interface EmployeeMapper {
 	public void updatePerson(@Param(value = "customer") Customer customer);
 	
 	public void updateAccount(@Param(value = "account") Account account);
+	
+	public void processOrder(@Param(value = "order") FuegoOrder order);
+	
+	public void deleteFromQueue(
+				@Param(value = "movieId") Integer movieId,
+				@Param(value = "accountId") Integer accountId
+			);
+	
+	public Account getAccount(@Param("email") String email);
 
 }

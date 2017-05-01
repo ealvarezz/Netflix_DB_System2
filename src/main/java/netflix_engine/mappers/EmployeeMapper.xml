@@ -60,6 +60,10 @@
     <select id = "getMail" resultMap = "customerResult" parameterType = "Customer" statementType = "CALLABLE">
 	     {call Return_Customer_Mailing_List()}
     </select>
+    
+    <select id = "getAccount" resultMap = "accountResult" parameterType = "Account" statementType = "CALLABLE">
+	     {call GetCustomerAccount(#{email})}
+    </select>
 
 
 	<insert id = "newCustomer" parameterType = "Customer" statementType = "CALLABLE">
@@ -84,6 +88,19 @@
 					       #{customerId,javaType=String,jdbcType=CHAR,mode=IN}  
 					       )}
     </insert>
+    
+    <insert id = "processOrder" parameterType = "FuegoOrder" statementType = "CALLABLE">
+	     {call Add_Order( 
+	     				   #{order.movieId,javaType=Integer,jdbcType=INTEGER,mode=IN} ,
+	     				   #{order.customerId,javaType=String,jdbcType=CHAR,mode=IN},
+					       #{order.employeeId,javaType=Integer,jdbcType=INTEGER,mode=IN}  
+					       )}
+    </insert>
+    
+    <delete id = "deleteFromQueue" parameterType = "Queued">
+      DELETE from Queued 
+      WHERE MovieId = #{movieId} AND AccountId = #{accountId};
+   </delete>
 
     <select id = "getCustomers" resultMap = "customerResult">
       SELECT *
