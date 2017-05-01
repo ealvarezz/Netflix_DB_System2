@@ -21,4 +21,6 @@ public interface CustomerMapper {
 	public Account getAccount(@Param("email") String email);
 	
 	public void addToWishList(@Param("actId") int actId, @Param("movieId") int movieId);
+	
+	public List<Movie> getMoviesByType(@Param("movieType") String movieType);
 }

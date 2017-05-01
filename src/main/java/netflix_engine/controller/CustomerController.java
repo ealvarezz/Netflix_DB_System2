@@ -104,20 +104,22 @@ public class CustomerController {
 	 @RequestMapping(value="add_to_queue", method = RequestMethod.POST)
 		public @ResponseBody Object addToQueue(@RequestBody FuegoOrder data) {
 		 
-		 System.out.println("Customer ID: " + data.getCustomerId());
-		 System.out.println("Movie ID: " + data.getMovieId());
-		 
 		 Account acct = customerService.getCustomerAccount(data.getCustomerId());
-		 
-		 System.out.println("Account: " + acct);
 		 
 		 int accNum = acct.getAcctNum();
 		 int movieId = data.getMovieId();
 		 
 		 customerService.addToQueue(accNum, movieId);
 		 
-		 
 		 return new Status("OK", "Added to Wish List", null);
+	 }
+	 
+	 
+	 @RequestMapping(value="movie_list_by_type", method = RequestMethod.POST)
+		public @ResponseBody Object getMovieListByType(@RequestBody Movie movie) {
+		 
+		 List<Movie> movieList = customerService.getMovieListByType(movie.getMovieType());
+		 return new Status("OK", "Here is the Movie List By Type", movieList);
 	 }
 
 

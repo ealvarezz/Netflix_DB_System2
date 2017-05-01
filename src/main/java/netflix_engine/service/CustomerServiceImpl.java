@@ -47,5 +47,7 @@ public class CustomerServiceImpl implements CustomerService {
 		customerMapper.addToWishList(accNum, movieId);
 	}
 
-
+	public List<Movie> getMovieListByType(String mType) {
+		return customerMapper.getMoviesByType(mType);
+	}
 }

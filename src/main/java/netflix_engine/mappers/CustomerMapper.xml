@@ -87,5 +87,9 @@
     	INSERT INTO QUEUED(AccountId,MovieId)
     	VALUES(#{actId},#{movieId});
     </insert>
+    
+    <select id="getMoviesByType" resultMap="movieResult" statementType = "CALLABLE">
+    	{call MovieByType(#{movieType})}
+    </select>
 
 </mapper>

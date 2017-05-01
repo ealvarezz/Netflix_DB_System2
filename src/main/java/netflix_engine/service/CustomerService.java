@@ -18,4 +18,6 @@ public interface CustomerService {
 	Account getCustomerAccount(String email);
 	
 	void addToQueue(int accNum, int movieId);
+	
+	List<Movie> getMovieListByType(String mType);
 }
