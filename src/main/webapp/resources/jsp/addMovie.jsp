@@ -13,6 +13,10 @@
 		<script src="https://code.angularjs.org/1.5.5/angular-cookies.min.js"></script>
 		<script src="/resources/js/app.js"></script>
 		<script src="/resources/js/controller/addMovieCtrl.js"></script>
+
+
+		<script type="text/javascript">manager_Lock();</script>
+
 	</head>
 	<style>
   .jumbotron
