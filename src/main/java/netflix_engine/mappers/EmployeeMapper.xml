@@ -135,9 +135,9 @@
     	<if test= "customer.lastName !=null"> LastName = #{customer.lastName},</if>
     	<if test= "customer.address !=null"> Address = #{customer.address},</if>
     	<if test= "customer.zip !=null"> Zip = #{customer.zip},</if>
-    	<if test= "customer.city !=null"> City = #{customer.telephone},</if>
-    	<if test= "customer.state !=null"> State = #{customer.rating},</if>
-    	<if test= "customer.telephone != null"> Telephone = #{customer.email}</if>
+    	<if test= "customer.city !=null"> City = #{customer.city},</if>
+    	<if test= "customer.state !=null"> State = #{customer.state},</if>
+    	<if test= "customer.telephone != null"> Telephone = #{customer.telephone}</if>
     	</set>
     	WHERE PersonId = #{customer.personID};
     

@@ -123,6 +123,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	
 	public void updateCustomerSettings(Account account) throws Exception {
+		
+		Integer personId = employeeMapper.getCustomerById(account.getCustomer().getEmail()).getPersonID();
+		account.getCustomer().setPersonID(personId);
+		
 		TransactionStatus status = getStatus();
 
 		  try{

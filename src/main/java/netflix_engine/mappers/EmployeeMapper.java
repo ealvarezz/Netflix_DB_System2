@@ -15,7 +15,8 @@ public interface EmployeeMapper {
 	public List<Customer> getMail();
 	public List<Customer> getCustomers();
 
-
+	public Customer getCustomerById(@Param("email") String email);
+	
 	public void newCustomer(@Param(value = "lastName") String lastName,
 							@Param(value = "firstName") String firstName,
 							@Param(value = "address") String address,
