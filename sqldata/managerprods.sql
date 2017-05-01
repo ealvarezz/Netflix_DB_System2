@@ -86,19 +86,20 @@ DELIMITER ;
 CALL EditMovie('Lion King','Action',NULL,0.99,NULL);*/
 
 
-
-
-
-
-
-
-/*Delete the movie. Suppose the manager wants to delete the Lion King movie*/
+/*Delete the movie*/
 DELIMITER $$
 CREATE PROCEDURE DeleteMovie(IN M_Name CHAR(64))
 BEGIN
 START TRANSACTION;
-DELETE FROM MOVIE
-WHERE Name = M_Name;
+
+SELECT M.Id INTO @mid FROM Movie m WHERE M.Name = M_Name Limit 1;
+
+  DELETE FROM FuegoOrder WHERE MovieId = @mid;
+  DELETE FROM AppearedIn WHERE MovieId = @mid;
+  DELETE FROM QUEUED WHERE MovieId = @mid;
+  DELETE FROM MOVIE WHERE id = @mid;
+
+COMMIT;
 END $$
 DELIMITER ;
 
@@ -106,6 +107,23 @@ DELIMITER ;
 
 
 
+DELIMITER $$
+CREATE PROCEDURE MoviesHeldBy(IN M_Name CHAR(64))
+BEGIN
+START TRANSACTION;
+
+SELECT M.Id INTO @mid FROM Movie m WHERE M.Name = M_Name Limit 1;
+
+SELECT C.*
+From Customer C, FuegoOrder F
+Where C.email = F.CustomerId and F.MovieId=@mid and F.State ='Held';
+
+
+COMMIT;
+END $$
+DELIMITER ;
+
+/*call MoviesHeldBy("Borat"); */
 
 
 
@@ -134,8 +152,8 @@ END $$
 DELIMITER ;
 
 /*
-CALL AddEmployee("Grasing","Christopher","3889 New York Avenue","Seaford","NY","11783","516 785 2923",133112211,CURDATE(),100.50,"Janitor","test"); */
-/* CALL AddEmployee("Guy","Main","123 Boss Avenue","Seaford","NY","11783","516 785 2923",1,CURDATE(),100.50,"Manager","manager"); */ 
+CALL AddEmployee("Grasing","Christopher","3889 New York Avenue","Seaford","NY","11783","516 785 2923",133112211,CURDATE(),100.50,"Employee","test"); */
+/* CALL AddEmployee("Guy","Main","123 Boss Avenue","Seaford","NY","11783","516 785 2923",1,CURDATE(),100.50,"Manager","manager"); */
 /* Add me as a rich Janitor*/
 
 
@@ -247,8 +265,17 @@ BEGIN
 START TRANSACTION;
 SELECT P.PersonId INTO @pid FROM Person P, Employee E
 WHERE E.SSN = _ssn AND E.PersonId = P.PersonId;
+
+
+UPDATE FuegoOrder
+SET EmployeeId = NULL
+WHERE EmployeeId = _ssn;
+
 DELETE FROM Employee WHERE SSN = _ssn;
 DELETE FROM Person WHERE PersonId = @pid;
+
+
+COMMIT;
 END $$
 DELIMITER ;
 

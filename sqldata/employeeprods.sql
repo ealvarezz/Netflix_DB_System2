@@ -280,14 +280,96 @@ CALL DelCustomer('pml@cs.sunysb.edu'); */
 DELIMITER $$
 CREATE PROCEDURE Return_Customer_Mailing_List()
 BEGIN
-  START TRANSACTION;
-SELECT P.Address
-FROM CUSTOMER C, Person P
-WHERE P.PersonId = C.PersonId;
-
+START TRANSACTION;
+  SELECT P.Address
+  FROM CUSTOMER C, Person P
+  WHERE P.PersonId = C.PersonId;
 COMMIT;
 END $$
 DELIMITER ;
 
 /* CALL Return_Customer_Mailing_List();
 This will give us the addresses of all customers*/
+
+
+
+
+/*Produce customer available for adding order */
+DELIMITER $$
+CREATE PROCEDURE Return_Availble_For_Order()
+BEGIN
+START TRANSACTION
+ 	 SELECT   DISTINCT C.*
+   FROM  		Customer C, FuegoOrder F , Account A
+ 	 WHERE   	C.Email = F.CustomerId AND A.CustomerId = C.Email
+
+   AND
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DELIMITER $$
+CREATE PROCEDURE Return_Availble_For_Order()
+BEGIN
+START TRANSACTION
+ 	 SELECT   	 C.*
+   FROM  		 Customer C, FuegoOrder F , Account A
+ 	 WHERE   	 C.Email != F.CustomerId AND A.CustomerId = C.Email AND (
+
+ 		 (
+ 			 A.AcctType = "limited"
+ 			 AND (
+ 				 SELECT COUNT(*)
+ 				 WHERE C.Email = F.CustomerId AND F.STATE = "Held"
+ 			 ) < 1
+ 		 )
+ 		 OR
+ 		 (
+ 			 A.AcctType = "unlimited-1"
+ 			 AND (
+ 				 SELECT COUNT(*)
+ 				 WHERE C.Email = F.CustomerId AND F.STATE = "Held"
+ 			 ) < 1
+ 		 )
+ 		 OR
+ 		 (
+ 			 A.AcctType = "unlimited-2"
+ 			 AND (
+ 				 SELECT COUNT(*)
+ 				 WHERE C.Email = F.CustomerId AND F.STATE = "Held"
+ 			 ) < 2
+ 		 )
+ 		 OR
+ 		 (
+ 			 A.AcctType = "unlimited-3"
+ 			 AND (
+ 				 SELECT COUNT(*)
+ 				 WHERE C.Email = F.CustomerId AND F.STATE = "Held"
+ 			 ) < 3
+ 		 )
+
+ 	 )
+
+   OR NOT EXIST(
+     SELECT C.* FROM
+   )
+
+/*
+ COMMIT;
+ END $$
+ DELIMITER ;*/
+
+
+ Select *
