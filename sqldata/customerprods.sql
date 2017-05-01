@@ -198,13 +198,13 @@ BEGIN
 SELECT 	M.*
 FROM   	Movie M, FuegoOrder F
 WHERE    	M.Id = F.MovieId
-GROUP BY     M.name
+GROUP BY     M.name, M.Id
 ORDER BY     COUNT(*) DESC
 LIMIT num_wanted;
 END $$
 DELIMITER ;
 
-/* Gets the 3 top best selling movies. Movie id for TestMovie2 is 10 */
+/* Gets the 3 top best selling movies. */
 /*CALL BestSellers(3);*/
 
 

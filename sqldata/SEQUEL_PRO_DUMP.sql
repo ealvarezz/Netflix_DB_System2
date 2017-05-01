@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.15)
 # Database: netflix_db
-# Generation Time: 2017-05-01 05:41:47 +0000
+# Generation Time: 2017-05-01 05:59:44 +0000
 # ************************************************************
 
 
@@ -192,6 +192,7 @@ LOCK TABLES `Employee` WRITE;
 
 INSERT INTO `Employee` (`SSN`, `PersonId`, `StartDate`, `HourlyRate`, `Position`, `Password`)
 VALUES
+	(1,27,'2017-05-01',100.50,'Manager','manager'),
 	(123456789,5,'2005-11-01',60.00,'Manager',NULL),
 	(789123456,6,'2006-02-02',50.00,'Employee',NULL);
 
@@ -221,24 +222,6 @@ CREATE TABLE `FuegoOrder` (
   CONSTRAINT `fuegoorder_ibfk_3` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`SSN`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `FuegoOrder` WRITE;
-/*!40000 ALTER TABLE `FuegoOrder` DISABLE KEYS */;
-
-INSERT INTO `FuegoOrder` (`OrderId`, `MovieId`, `CustomerId`, `TimeDate`, `ReturnDate`, `EmployeeId`, `STATE`)
-VALUES
-	(1,1,'pml@cs.sunysb.edu','2009-11-11 10:00:00','2009-11-14',789123456,'Returned'),
-	(2,3,'vicdu@cs.sunysb.edu','2009-11-11 18:15:00',NULL,789123456,'Held'),
-	(3,3,'pml@cs.sunysb.edu','2009-11-12 09:30:00',NULL,789123456,'Held'),
-	(4,2,'vicdu@cs.sunysb.edu','2009-10-21 22:22:00',NULL,789123456,'Held'),
-	(6,1,'syang@cs.sunysb.edu','2017-04-28 00:35:46',NULL,789123456,'Held'),
-	(8,3,'syang@cs.sunysb.edu','2017-04-30 15:54:33',NULL,123456789,'Held'),
-	(10,11,'syang@cs.sunysb.edu','2017-04-30 17:51:50','2017-04-30',123456789,'Returned'),
-	(11,1,'pml@cs.sunysb.edu','2017-04-30 22:19:17',NULL,NULL,'Held'),
-	(12,2,'vicdu@cs.sunysb.edu','2017-05-01 00:32:01',NULL,NULL,'Held'),
-	(13,1,'lala@gmail.com','2017-05-01 00:32:15',NULL,NULL,'Held');
-
-/*!40000 ALTER TABLE `FuegoOrder` ENABLE KEYS */;
-UNLOCK TABLES;
 
 DELIMITER ;;
 /*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION" */;;
@@ -278,14 +261,14 @@ LOCK TABLES `Movie` WRITE;
 
 INSERT INTO `Movie` (`Id`, `MovieType`, `Name`, `Fee`, `NumCopies`, `Rating`, `TotalRating`)
 VALUES
-	(1,'Drama','The GodFather',1.99,33,5.00,1),
-	(2,'Drama','Shawshank Redemption',2.99,29,4.00,1),
-	(3,'Comedy','Borat',1.99,35,4.00,1),
-	(4,'Action','Robocop',2.99,50,3.00,1),
+	(1,'Drama','The GodFather',1.99,30,5.00,1),
+	(2,'Drama','Shawshank Redemption',2.99,28,4.00,1),
+	(3,'Comedy','Borat',1.99,32,4.00,1),
+	(4,'Action','Robocop',2.99,49,3.00,1),
 	(8,'Drama','Lion King',1.99,50,5.00,1),
-	(9,'Drama','There Will Be Blood',1.99,1,5.00,1),
+	(9,'Drama','There Will Be Blood',1.99,0,5.00,1),
 	(10,'Comedy','Evil Dead',5.99,1,1.00,1),
-	(11,'Action','Street Fighter',2.99,1,NULL,0);
+	(11,'Action','Street Fighter',2.99,0,NULL,0);
 
 /*!40000 ALTER TABLE `Movie` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -346,7 +329,8 @@ VALUES
 	(6,'Warren','David','456 Sunken Street','Stony Brook','NY','11794','631-632-9987'),
 	(23,'alvarez','edwin','ahahaha','bx','NY','10466','wweeerrr'),
 	(25,'Williams','Justin','123 Add street','Baldwin','NY','12345','123-456-7890'),
-	(26,'Lele','Lala','123 Lala land','Lala town','LA','12345','123-456-7891');
+	(26,'Lele','Lala','123 Lala land','Lala town','LA','12345','123-456-7891'),
+	(27,'Guy','Main','123 Boss Avenue','Seaford','NY','11783','516 785 2923');
 
 /*!40000 ALTER TABLE `Person` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -561,7 +545,7 @@ BEGIN
 SELECT 	M.*
 FROM   	Movie M, FuegoOrder F
 WHERE    	M.Id = F.MovieId
-GROUP BY     M.name
+GROUP BY     M.name, M.Id
 ORDER BY     COUNT(*) DESC
 LIMIT num_wanted;
 END */;;
