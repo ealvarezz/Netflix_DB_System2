@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import netflix_engine.general.Status;
 import netflix_engine.model.Account;
 import netflix_engine.model.Customer;
+import netflix_engine.model.Employee;
 import netflix_engine.model.FuegoOrder;
 import netflix_engine.model.Movie;
 import netflix_engine.service.CustomerService;
@@ -98,6 +99,27 @@ public class CustomerController {
 		return new Status("OK", "Account found", raccount);
 
 	}
+	
+	
+	 @RequestMapping(value="add_to_queue", method = RequestMethod.POST)
+		public @ResponseBody Object addToQueue(@RequestBody FuegoOrder data) {
+		 
+		 System.out.println("Customer ID: " + data.getCustomerId());
+		 System.out.println("Movie ID: " + data.getMovieId());
+		 
+		 Account acct = customerService.getCustomerAccount(data.getCustomerId());
+		 
+		 System.out.println("Account: " + acct);
+		 
+		 int accNum = acct.getAcctNum();
+		 int movieId = data.getMovieId();
+		 
+		 customerService.addToQueue(accNum, movieId);
+		 
+		 
+		 return new Status("OK", "Added to Wish List", null);
+	 }
+
 
 
 }

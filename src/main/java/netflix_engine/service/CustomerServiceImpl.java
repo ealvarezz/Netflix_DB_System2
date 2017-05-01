@@ -42,6 +42,10 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return customerMapper.getAccount(email);
 	}
+	
+	public void addToQueue(int accNum, int movieId) {
+		customerMapper.addToWishList(accNum, movieId);
+	}
 
 
 }

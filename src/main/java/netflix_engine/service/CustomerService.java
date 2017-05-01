@@ -16,4 +16,6 @@ public interface CustomerService {
 	List<Movie> getCustomerWishList(Integer id);
 	
 	Account getCustomerAccount(String email);
+	
+	void addToQueue(int accNum, int movieId);
 }

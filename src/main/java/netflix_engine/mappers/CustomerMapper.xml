@@ -82,5 +82,10 @@
     <select id="getWishList" resultMap="movieResult">
     	{call Customer_Wish_List(#{id})}
     </select>
+    
+    <insert id="addToWishList" parameterType = "map" statementType = "CALLABLE">
+    	INSERT INTO QUEUED(AccountId,MovieId)
+    	VALUES(#{actId},#{movieId});
+    </insert>
 
 </mapper>
