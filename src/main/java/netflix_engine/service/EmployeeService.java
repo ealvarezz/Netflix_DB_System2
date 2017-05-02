@@ -42,5 +42,7 @@ public interface EmployeeService {
 	void editEmployeeInDb(Employee employee) throws Exception;
 	
 	void deteleEmployeeFromDb(Integer ssn) throws Exception;
+	
+	List<Account> getAllCustomerAccounts();
 
 }

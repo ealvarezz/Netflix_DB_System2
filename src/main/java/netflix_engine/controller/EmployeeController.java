@@ -1,6 +1,7 @@
 package netflix_engine.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import netflix_engine.model.Movie;
 import netflix_engine.general.Status;
 import netflix_engine.model.Account;
 import netflix_engine.model.Customer;
+import netflix_engine.service.CustomerService;
 import netflix_engine.service.EmployeeService;
 
 @Controller
@@ -32,6 +34,17 @@ public class EmployeeController {
 
 	@Autowired
     private EmployeeService employeeService;
+	
+	@Autowired
+	private CustomerService customerService;
+	
+	/**
+	 * TYPES OF PLANS FOR CUTOMERS
+	 */
+	private final String LIMITED = "limited";
+	private final String UNLIMITED1 = "unlimited";
+	private final String UNLIMITED2 = "unlimited-2";
+	private final String UNLIMITED3 = "unlimited-3";
 	
 
 	/**
@@ -143,5 +156,40 @@ public class EmployeeController {
 
 			return new Status("OK","Update was good");
 	 }
+	 
+	 @RequestMapping(value="geteligiblecustomers", method = RequestMethod.GET)
+		public @ResponseBody List<Account> getAllCustomersForProcess() {
+		 
+		 
+		 List<Account> accounts = employeeService.getAllCustomerAccounts();
+		 List<Account> goodAccounts = new ArrayList<Account>();
+		 
+		 for(int i = 0; i < accounts.size(); i++){
+			 
+			 if(isEligible(accounts.get(i).getCustomer(), accounts.get(i).getAcctType()))
+				 goodAccounts.add(accounts.get(i));
+		 }
+		 
+		 return goodAccounts;
+		 
+	 }
+	 
+	 private boolean isEligible(Customer customer, String accType){
+		 
+		 List<FuegoOrder> orders = customerService.getOrdersByEmail(customer.getEmail());
+		 int numOfOrders = orders.size();
+
+		 
+		 if(accType.equals(LIMITED) && numOfOrders >= 1) return false;
+		 else if(accType.equals(UNLIMITED1) && numOfOrders >= 1) return false;
+		 else if(accType.equals(UNLIMITED2) && numOfOrders >= 2) return false;
+		 else if(accType.equals(UNLIMITED3) && numOfOrders >= 3) return false;
+		
+		return true;
+		 
+		 
+	 }
+	 
+	 
 
 }

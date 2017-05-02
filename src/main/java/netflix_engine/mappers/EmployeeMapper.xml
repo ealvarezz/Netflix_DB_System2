@@ -227,6 +227,9 @@
     	SELECT    * FROM Movie M
   		WHERE     M.Name = #{name};
     </select>
-
-
+    
+    <select id="getAllAccounts" resultMap="accountResult">
+    	SELECT    * FROM ACCOUNT
+    </select>
+    
  </mapper>

@@ -268,4 +268,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeMapper.getMovieByName(name);
 	}
 
+	
+	public List<Account> getAllCustomerAccounts() {
+		
+		
+		return employeeMapper.getAllAccounts();
+	}
+
 }

@@ -68,5 +68,7 @@ public interface EmployeeMapper {
 	public void deleteMovie(@Param("name") String name);
 	
 	public Movie getMovieByName(@Param("name") String name);
+	
+	public List<Account> getAllAccounts();
 
 }

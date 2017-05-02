@@ -138,6 +138,26 @@ public class CustomerController {
 		 List<Movie> list = customerService.findMovie(keyword);
 		 return new Status("OK", "Movies Containing" + keyword, list);
 	 }
+	 
+	 @RequestMapping(value="returnmovie", method = RequestMethod.POST)
+		public @ResponseBody Object returnMovie(@RequestBody FuegoOrder order) {
+		 
+		 
+		 if(order == null || customerService.getCustomerById(order.getCustomerId()) == null)
+			 return new Status("error","Something went wrong");
+
+		try {
+				
+
+		}
+		catch (Exception e) {			
+			
+			return new Status("error",e.getMessage());
+			
+		}
+
+		return new Status("OK","Inertion was good");
+	 }
 
 }
 
