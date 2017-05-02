@@ -104,5 +104,9 @@
     <select id="searchMovie" resultMap="movieResult" statementType = "CALLABLE">
     	{call KeywordMovie(#{keyword})}
     </select>
+    
+    <select id="returnMovie" parameterType = "FuegoOrder" statementType = "CALLABLE">
+    	{call Return_Movie(#{order.movieId}, #{order.customerId})}
+    </select>
 
 </mapper>

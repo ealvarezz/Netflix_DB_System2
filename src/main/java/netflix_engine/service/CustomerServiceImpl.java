@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import netflix_engine.mappers.CustomerMapper;
 import netflix_engine.model.Account;
@@ -20,6 +24,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerMapper customerMapper;
+    
+    @Autowired
+	private PlatformTransactionManager txManager;
     
     public Customer getCustomerById(String email) {
 		
@@ -59,5 +66,30 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	public List<Movie> findMovie(String keyword) {
 		return customerMapper.searchMovie(keyword);
+	}
+
+	@Override
+	public void returnHeldMovie(FuegoOrder order) throws Exception {
+		TransactionStatus status = getStatus();
+
+		  try{
+			  
+			  customerMapper.returnMovie(order);
+			  
+			  
+		  } catch( Exception e ){
+			  txManager.rollback(status);
+			  e.printStackTrace();
+		  }
+		  txManager.commit(status);
+		
+	}
+	
+	private TransactionStatus getStatus(){
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		
+		return txManager.getTransaction(def);
 	}
 }

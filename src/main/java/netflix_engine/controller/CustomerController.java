@@ -147,7 +147,7 @@ public class CustomerController {
 			 return new Status("error","Something went wrong");
 
 		try {
-				
+			customerService.returnHeldMovie(order);
 
 		}
 		catch (Exception e) {			
@@ -156,7 +156,7 @@ public class CustomerController {
 			
 		}
 
-		return new Status("OK","Inertion was good");
+		return new Status("OK","Movie was returned just fine");
 	 }
 
 }

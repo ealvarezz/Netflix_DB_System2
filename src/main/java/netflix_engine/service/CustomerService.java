@@ -24,4 +24,6 @@ public interface CustomerService {
 	List<Movie> getBestSellerMovies(Integer limit);
 	
 	List<Movie> findMovie(String keyword);
+	
+	void returnHeldMovie(FuegoOrder order) throws Exception;
 }

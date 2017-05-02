@@ -27,4 +27,6 @@ public interface CustomerMapper {
 	public List<Movie> getBestSeller(@Param("limit") Integer limit);
 	
 	public List<Movie> searchMovie(@Param("keyword") String keyword);
+	
+	public void returnMovie(@Param("order") FuegoOrder order);
 }
