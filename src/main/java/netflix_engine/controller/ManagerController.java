@@ -183,6 +183,13 @@ public class ManagerController {
 	 	 
 	}
 	
+	@RequestMapping(value="manager/searchemployee", method = RequestMethod.POST)
+	   public @ResponseBody Employee getEmployeeBySSN(@RequestBody Employee employee) {
+		
+		return employeeService.getEmployeeBySSN(employee.getSsn());
+	 	 
+	}
+	
 	
 	
 	private static class Stuff{
