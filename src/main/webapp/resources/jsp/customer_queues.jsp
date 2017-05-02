@@ -23,13 +23,13 @@
 
 		<div class = "container" ng-controller ="customerQueuesCtrl">
 			<div class="container">
-				<select ng-model="selected_user" ng-options="x.email for x in customers" ng-change="list_orders()">
+				<select ng-model="selected_user" ng-options="x.customer.email for x in customers" ng-change="list_orders()">
 				</select>
 			</div>
 
 			<div>
 				<div class="jumbotron vertical-center" ng-hide="selected_user == null">
-					<h3>{{selected_user.email}}'s WISH LIST</h3>
+					<h3>{{selected_user.customer.email}}'s WISH LIST QUEUE (Account type: {{selected_user.acctType}})</h3>
 					<div ng-repeat="y in wish_orders">
 						<div class="well">
 							<h2>Movie: {{y.name}}</h2>
