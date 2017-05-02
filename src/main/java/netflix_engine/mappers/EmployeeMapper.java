@@ -70,5 +70,17 @@ public interface EmployeeMapper {
 	public Movie getMovieByName(@Param("name") String name);
 	
 	public List<Account> getAllAccounts();
+	
+	public List<Movie> getAllMovies();
+	
+	public List<Movie> getActiveMovies(@Param("limit") int limit);
+	
+	public List<Customer> getActiveUsers(@Param("limit") int limit);
+	
+	public List<Employee> getAllEmployees();
+	
+	public Employee getActiveEmployee();
+	
+	public List<Customer> getMailingList();
 
 }

@@ -68,11 +68,6 @@ public class EmployeeController {
  	  return customerList;
    }
 
-//   @RequestMapping(value="login", method = RequestMethod.GET)
-//   public @ResponseBody String login() {
-
- 	 // return "redirect:resources/jsp/login.jsp";
-   //}
 
 
 	 @RequestMapping(value="addcustomer", method = RequestMethod.POST)
@@ -190,6 +185,13 @@ public class EmployeeController {
 		 
 	 }
 	 
+	 
+	 @RequestMapping(value="produce_mailing_list", method = RequestMethod.GET)
+	   public @ResponseBody List<Customer> returnMailingListOnly() {
+	 	  
+
+	 	  return employeeService.produceMailingList();
+	  }
 	 
 
 }

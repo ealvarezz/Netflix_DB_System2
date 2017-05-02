@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import netflix_engine.model.Employee;
 import netflix_engine.model.FuegoOrder;
 import netflix_engine.model.Movie;
@@ -144,6 +146,59 @@ public class ManagerController {
 
 			return new Status("OK","Employee was deleted successfully");
 	 	 
+	}
+	
+	@RequestMapping(value="allmovies", method = RequestMethod.GET)
+	   public @ResponseBody List<Movie> listAllMovies() {
+		
+		return employeeService.getAllCurrentMovies();
+	 	 
+	}
+	
+	@RequestMapping(value="manager/activemovies", method = RequestMethod.POST)
+	   public @ResponseBody List<Movie> listAllActiveMovies(@RequestBody Stuff limit) {
+		
+		return employeeService.getMostActiveMovies(limit.getLimit());
+	 	 
+	}
+	
+	@RequestMapping(value="manager/activeusers", method = RequestMethod.POST)
+	   public @ResponseBody List<Customer> listAllActiveUsers(@RequestBody Stuff limit) {
+		
+		return employeeService.getMostActiveUsers(limit.getLimit());
+	 	 
+	}
+	
+	@RequestMapping(value="manager/getallemployees", method = RequestMethod.GET)
+	   public @ResponseBody List<Employee> getAllEmployees() {
+		
+		return employeeService.getEmployeeList();
+	 	 
+	}
+	
+	@RequestMapping(value="manager/getactiveemployee", method = RequestMethod.GET)
+	   public @ResponseBody Employee getActiveEmployees() {
+		
+		return employeeService.getMostActiveEmployee();
+	 	 
+	}
+	
+	
+	
+	private static class Stuff{
+		
+		private int limit;
+		
+		public Stuff(){}
+
+		public int getLimit() {
+			return limit;
+		}
+
+		public void setLimit(int limit) {
+			this.limit = limit;
+		}
+		
 	}
 
 }

@@ -232,4 +232,30 @@
     	SELECT    * FROM ACCOUNT
     </select>
     
+    <select id="getAllMovies" resultMap="movieResult">
+    	{call ALLMovies()}
+    </select>
+    
+    <select id="getActiveEmployee" resultMap="employeeResult">
+    	{call MostEmployeeTrans()}
+    </select>
+    
+    <select id="getActiveUsers" resultMap="customerResult">
+    	{call MostActiveUsers(#{limit})}
+    </select>
+    
+    <select id="getActiveMovies" resultMap="movieResult">
+    	{call MostActivelyRented(#{limit})}
+    </select>
+    
+    <select id="getAllEmployees" resultMap="employeeResult">
+    	SELECT * FROM Employee
+        INNER JOIN Person
+        ON Employee.PersonId=Person.PersonId;
+    </select>
+    
+    <select id="getMailingList" resultMap="customerResult">
+    	{call Return_Customer_Mailing_List()}
+    </select>
+    
  </mapper>

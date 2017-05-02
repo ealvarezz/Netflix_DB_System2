@@ -44,5 +44,17 @@ public interface EmployeeService {
 	void deteleEmployeeFromDb(Integer ssn) throws Exception;
 	
 	List<Account> getAllCustomerAccounts();
+	
+	List<Movie> getAllCurrentMovies();
+	
+	List<Movie> getMostActiveMovies(int limit);
+	
+	List<Customer> getMostActiveUsers(int limit);
+	
+	List<Employee> getEmployeeList();
+	
+	Employee getMostActiveEmployee();
+	
+	List<Customer> produceMailingList();
 
 }

@@ -275,4 +275,45 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeMapper.getAllAccounts();
 	}
 
+	
+	public List<Movie> getAllCurrentMovies() {
+		
+		return employeeMapper.getAllMovies();
+	}
+
+
+	public List<Movie> getMostActiveMovies(int limit) {
+		
+		
+		return employeeMapper.getActiveMovies(limit);
+	}
+
+
+	public List<Customer> getMostActiveUsers(int limit) {
+		
+		
+		return employeeMapper.getActiveUsers(limit);
+	}
+
+
+	public List<Employee> getEmployeeList() {
+		
+		
+		return employeeMapper.getAllEmployees();
+	}
+
+
+	public Employee getMostActiveEmployee() {
+		
+		return employeeMapper.getActiveEmployee();
+	}
+
+
+	public List<Customer> produceMailingList() {
+		
+		
+		return employeeMapper.getMailingList();
+	}
+	
+	
 }
