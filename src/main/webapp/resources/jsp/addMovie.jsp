@@ -51,10 +51,14 @@
                 id="changeMoreCopies" ng-click="moreCopies()">
                 Add Copies
               </label>
+							<label class="radio-inline"> <input type="radio" name="optradio"
+								id="addCopies" class ='viewSelection' ng-click="changeCopiesMovieView()">
+								Add More Copies To Movie
+							</label>
             </form>
           </div>
         </div>
-        
+
 				<form class="form-horizontal" method="POST">
 					<div class="form-group">
 						<label for="movieName">Name of Movie</label>

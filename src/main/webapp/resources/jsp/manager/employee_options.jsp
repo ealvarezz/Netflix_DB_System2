@@ -58,7 +58,7 @@
               <form id="selector viewSelection">
                 <label class="radio-inline"><input type="radio" checked="checked"
                   name="optradio" id="newEmployee" class ='viewSelection' ng-click="changeNewEmployeeView()">
-                  New an Employee
+                  New Employee
                 </label>
                 <label class="radio-inline"> <input type="radio" name="optradio"
                   id="editEmployee" class ='viewSelection' ng-click="changeEditEmployeeView()">
@@ -134,8 +134,6 @@
 
         <div class = "viewSelection" ng-show="editEmployeeView">
         <div class = "searchView" ng-show="searchView">
-
-
           <form class="form-horizontal" method="POST">
            <div class="form-group">
              <label for="searchEdit">Search Employee</label>
