@@ -139,6 +139,10 @@ public class EmployeeController {
 	 @RequestMapping(value="process_order", method = RequestMethod.POST)
 		public @ResponseBody Object processCustomerOrder(@RequestBody FuegoOrder order) {
 		 
+		 if(!isCustomerEligible(customerService.getCustomerAccount(order.getCustomerId()))){
+			 return new Status("error", "You reached the max number of movies you can order");
+		 }
+		 
 		 try{
 			 employeeService.processCustomerOrder(order);
 		 }
@@ -167,6 +171,12 @@ public class EmployeeController {
 		 
 		 return goodAccounts;
 		 
+	 }
+	 
+	 private boolean isCustomerEligible(Account account){
+		 
+		 
+		 return isEligible(account.getCustomer(), account.getAcctType());
 	 }
 	 
 	 private boolean isEligible(Customer customer, String accType){

@@ -44,7 +44,7 @@ START TRANSACTION;
 
 SELECT F.OrderId INTO @FOId
 FROM FuegoOrder F
-WHERE F.MovieId = MovieId AND F.CustomerId = CustomerId LIMIT 1;
+WHERE F.MovieId = MovieId AND F.CustomerId = CustomerId AND F.STATE = "Held" LIMIT 1;
 
 UPDATE MOVIE M
 SET M.NumCopies = M.NumCopies + 1
