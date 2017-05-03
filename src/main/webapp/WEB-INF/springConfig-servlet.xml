@@ -26,6 +26,7 @@
 	<mvc:view-controller path="/employee_login" view-name="employee_login"/>
 	<mvc:view-controller path="/customer_queues" view-name="customer_queues"/>
 	<mvc:view-controller path="/employee" view-name="employee"/>
+  <mvc:view-controller path="/manager/employee_options" view-name="manager/employee_options"/>
 
 
 

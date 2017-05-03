@@ -31,7 +31,7 @@
 			<div class="jumbotron vertical-center">
 				<h3>CURRENTLY HELD</h3>
 				<div ng-repeat="x in cur_orders" >
-					<div class="well c{{x.movieId}}">
+					<div class="well">
 						<h2>Movie: {{x.movie.name}}</h2>
 						<h3>On: {{x.ree}}   fee: {{x.movie.fee}}   Genre: {{x.movie.movieType}}</h3>
 						<button type="button" class="btn-primary btn-mid" ng-click="return_movie(x.movieId)" >

@@ -6,6 +6,8 @@
     <ul class="nav navbar-nav">
 	<li><a href="/employee">Home</a></li>
 	<li><a href="/customer_queues">Queues</a></li>
+  <li ng-show="managerViewNav"><a href="/manager/movie_options">Movie Options</a></li>
+  <li ng-show="managerViewNav"><a href="/manager/employee_options">Employee Options</a></li>
 	<li><a ng-click="logout()">Logout</a></li>
     </ul>
   </div>

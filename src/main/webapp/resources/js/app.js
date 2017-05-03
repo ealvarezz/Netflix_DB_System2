@@ -2,8 +2,7 @@
 
 var app = angular.module('FuegoVideo', []);
 
-
-
+$scope.managerViewNav = false;
 
 var customer_Lock = function(){
 	if(localStorage.getItem("customer") === "true"){
@@ -29,6 +28,16 @@ var employee_Lock = function(){
 	window.location.href = '/employee_login';
 };
 
+var managerNavCtrl = function() {
+	alert(localStorage.getItem("manager"));
+	if (localStorage.getItem("manager") === "true") {
+		$scope.managerViewNav = true;
+	}
+	else {
+	  $scope.managerViewNav = false;
+	}
+};
+
 
 
 app.controller('navCtrl', function ($scope,$http,$window) {
@@ -38,8 +47,3 @@ app.controller('navCtrl', function ($scope,$http,$window) {
 	};
 
 });
-
-
-
-
-
