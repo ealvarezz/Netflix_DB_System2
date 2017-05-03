@@ -53,8 +53,7 @@ app.controller('employee_optionsCtrl', function ($scope,$http,$window) {
         }
       })
       .error(function(data){
-        alert('WENT DOWN');
-        alert(data);
+        alert('ERROR');
       });
   };
 

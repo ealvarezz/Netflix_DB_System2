@@ -27,7 +27,6 @@
 	<body ng-app = "FuegoVideo">
 
 		<div class = "login">
-			<a href="CustomerList.jsp">Attempt to go to CustomerList/jsp</a>
 
 			<div class = "container" ng-controller = "employeeLoginCtrl">
 				<div class="jumbotron vertical-center">

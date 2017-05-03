@@ -13,9 +13,9 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="/resources/js/app.js"></script>
 		<script src="/resources/js/controller/manager/employee_optionsCtrl.js"></script>
+		<script type="text/javascript">manager_Lock();</script>
 	</head>
 	<style>
-
 .jumbotron
 {
 	margin: 25%;

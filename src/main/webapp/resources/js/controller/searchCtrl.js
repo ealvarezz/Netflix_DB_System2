@@ -30,7 +30,10 @@ app.controller('searchCtrl', function ($scope,$http,$window) {
 				movieId: movieId
 			}
 		})
-		.then(function(data) {
+		.success(function(data) {
+			alert(data.data.message);
+		})
+		.error(function(data){
 			alert(data.data.message);
 		});
 	};
