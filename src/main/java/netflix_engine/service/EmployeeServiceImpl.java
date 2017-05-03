@@ -37,8 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private EmployeeMapper employeeMapper;
 
-	//@Autowired
-	//private SqlSession sqlSession;
+
 
 
 	@Autowired
@@ -313,6 +312,27 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		
 		return employeeMapper.getMailingList();
+	}
+
+
+	public List<FuegoOrder> getAllOrdersByName(String name) {
+		
+		
+		return employeeMapper.getOrdersByName(name);
+	}
+
+
+	public List<FuegoOrder> getAllOrdersBytype(String type) {
+		
+		
+		return employeeMapper.getOrdersByType(type);
+	}
+
+
+	public List<FuegoOrder> getAllOrdersByCustomerName(String firstName, String lastName) {
+		
+		
+		return employeeMapper.getOrdersByCustomerName(firstName, lastName);
 	}
 	
 	

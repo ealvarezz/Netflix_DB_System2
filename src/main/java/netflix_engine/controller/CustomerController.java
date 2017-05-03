@@ -127,12 +127,17 @@ public class CustomerController {
 	 @RequestMapping(value="add_to_queue", method = RequestMethod.POST)
 		public @ResponseBody Object addToQueue(@RequestBody FuegoOrder data) {
 		 
-		 Account acct = customerService.getCustomerAccount(data.getCustomerId());
+		 try{
+			 Account acct = customerService.getCustomerAccount(data.getCustomerId());
+			 int accNum = acct.getAcctNum();
+			 int movieId = data.getMovieId();
+			 
+			 customerService.addToQueue(accNum, movieId);
+			 
+		 }catch(Exception e){
+			 return new Status("error", "You already have this movie on queue", null);
+		 }
 		 
-		 int accNum = acct.getAcctNum();
-		 int movieId = data.getMovieId();
-		 
-		 customerService.addToQueue(accNum, movieId);
 		 
 		 return new Status("OK", "Added to Wish List", null);
 	 }
