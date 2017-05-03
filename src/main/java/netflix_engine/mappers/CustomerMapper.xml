@@ -69,6 +69,14 @@
 		WHERE Customer.Email = #{email}
     </select>
     
+    <select id="getPastOrders" resultMap="orderResult">
+    	{call PastOrders(#{email})}
+    </select>
+    
+    <select id="getAllOrders" resultMap="orderResult">
+    	{call AllOrders(#{email})}
+    </select>
+    
     <select id="getCustomerOrders" resultMap="orderResult">
     	SELECT    * FROM FuegoOrder F
   		WHERE     F.CustomerId = #{email} AND F.State = 'Held';
@@ -108,5 +116,25 @@
     <select id="returnMovie" parameterType = "FuegoOrder" statementType = "CALLABLE">
     	{call Return_Movie(#{order.movieId}, #{order.customerId})}
     </select>
+    
+    <delete id = "deleteAccount" parameterType = "Customer">
+      {call DelCustomer(#{email})}
+   </delete>
+   
+   <select id="getMovieSuggestions" resultMap="movieResult">
+    	SELECT M.* 
+    	FROM Movie M
+    	WHERE M.Id NOT IN ( 
+    		SELECT MM.Id 
+    		FROM Movie MM,Queued Q, FuegoOrder F, Customer C, Account A
+    		WHERE (MM.Id = Q.MovieId OR (MM.Id = F.MovieId AND F.STATE = "Held")) AND C.Email = #{email} AND 
+    		C.Email = F.CustomerId AND C.Email = A.CustomerId AND A.AcctNum = Q.AccountId
+    		GROUP BY Id
+    	);
+    </select>
+    
+    <update id="rateMovie">
+    	{call Rate_Movie_Rented(#{email}, #{movieId}, #{rate})}
+    </update>
 
 </mapper>

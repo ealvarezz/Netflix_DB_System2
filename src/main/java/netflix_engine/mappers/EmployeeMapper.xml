@@ -258,4 +258,6 @@
     	{call Return_Customer_Mailing_List()}
     </select>
     
+    
+    
  </mapper>

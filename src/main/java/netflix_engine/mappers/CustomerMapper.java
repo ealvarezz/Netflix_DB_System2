@@ -16,6 +16,10 @@ public interface CustomerMapper {
 	
 	public List<FuegoOrder> getCustomerOrders(@Param("email") String email);
 	
+	public List<FuegoOrder> getPastOrders(@Param("email") String email);
+	
+	public List<FuegoOrder> getAllOrders(@Param("email") String email);
+	
 	public List<Movie> getWishList(@Param("id") Integer id);
 	
 	public Account getAccount(@Param("email") String email);
@@ -29,4 +33,17 @@ public interface CustomerMapper {
 	public List<Movie> searchMovie(@Param("keyword") String keyword);
 	
 	public void returnMovie(@Param("order") FuegoOrder order);
+	
+	public void deleteAccount(@Param("email") String email);
+	
+	public List<Movie> getMovieSuggestions(@Param("email") String email);
+	
+	public void rateMovie(
+			@Param("email") String email,
+			@Param("movieId") Integer movieId,
+			@Param("rate") Integer rate
+			
+			);
+	
+	
 }

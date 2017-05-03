@@ -72,6 +72,28 @@ public class CustomerController {
 
 	}
 	
+	@RequestMapping(value="getallcustomerorders", method = RequestMethod.POST)
+	public @ResponseBody List<FuegoOrder> getAllCurrentOrders(@RequestBody Customer customer) {
+
+		String email = customer.getEmail();
+		List<FuegoOrder> orders = customerService.getAllOrdersByEmail(email);
+
+
+		return orders;
+
+	}
+	
+	@RequestMapping(value="getpastcustomerorders", method = RequestMethod.POST)
+	public @ResponseBody List<FuegoOrder> getPastCurrentOrders(@RequestBody Customer customer) {
+
+		String email = customer.getEmail();
+		List<FuegoOrder> orders = customerService.getPastOrdersByEmail(email);
+
+
+		return orders;
+
+	}
+	
 	@RequestMapping(value="getwishlist", method = RequestMethod.POST)
 	public @ResponseBody List<Movie> getWishList(@RequestBody Customer customer) {
 		
@@ -157,6 +179,82 @@ public class CustomerController {
 		}
 
 		return new Status("OK","Movie was returned just fine");
+	 }
+	 
+	 @RequestMapping(value="deleteaccount", method = RequestMethod.POST)
+		public @ResponseBody Object returnMovie(@RequestBody Customer customer) {
+		 
+
+		try {
+			customerService.deleteCustomerAccount(customer.getEmail());
+
+		}
+		catch (Exception e) {			
+			
+			return new Status("error",e.getMessage());
+			
+		}
+
+		return new Status("OK","Account was deleted successfully!");
+	 }
+	 
+	 @RequestMapping(value="ratemovie", method = RequestMethod.POST)
+		public @ResponseBody Object returnMovie(@RequestBody Rate rate) {
+		 
+
+		try {
+			customerService.rateCurrentMovie(rate.getEmail(), rate.getMovieId(), rate.getRate());
+
+		}
+		catch (Exception e) {			
+			
+			return new Status("error",e.getMessage());
+			
+		}
+
+		return new Status("OK","Thank you for rating!");
+	 }
+	 
+	 @RequestMapping(value="recomendedlist", method = RequestMethod.POST)
+		public @ResponseBody List<Movie> getMovieListByType(@RequestBody Customer customer) {
+		 
+		 return customerService.returnRecommendedMovies(customer.getEmail());
+	 }
+	 
+	 private static class Rate{
+		 
+		 Integer rate;
+		 String email;
+		 Integer movieId;
+		 
+		 public Rate(){}
+		 
+		 public Integer getRate() {
+			return rate;
+		}
+
+		public void setRate(Integer rate) {
+			this.rate = rate;
+		}
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+		public Integer getMovieId() {
+			return movieId;
+		}
+
+		public void setMovieId(Integer movieId) {
+			this.movieId = movieId;
+		}
+		 
+		 
+		 
 	 }
 
 }

@@ -68,7 +68,7 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerMapper.searchMovie(keyword);
 	}
 
-	@Override
+
 	public void returnHeldMovie(FuegoOrder order) throws Exception {
 		TransactionStatus status = getStatus();
 
@@ -91,5 +91,60 @@ public class CustomerServiceImpl implements CustomerService {
 		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 		
 		return txManager.getTransaction(def);
+	}
+
+
+	public List<FuegoOrder> getPastOrdersByEmail(String email) {
+		
+		return customerMapper.getPastOrders(email);
+	}
+
+
+	public List<FuegoOrder> getAllOrdersByEmail(String email) {
+		
+		return customerMapper.getAllOrders(email);
+	}
+
+
+	public void deleteCustomerAccount(String email) throws Exception {
+		
+		TransactionStatus status = getStatus();
+
+		  try{
+			  
+			  customerMapper.deleteAccount(email);
+			  
+			  
+		  } catch( Exception e ){
+			  txManager.rollback(status);
+			  e.printStackTrace();
+		  }
+		  txManager.commit(status);
+		
+	}
+
+	
+
+
+	public void rateCurrentMovie(String email, Integer movieId, Integer rate) throws Exception {
+		TransactionStatus status = getStatus();
+		
+		  try{
+			  
+			  customerMapper.rateMovie(email, movieId, rate);
+			  
+			  
+		  } catch( Exception e ){
+			  txManager.rollback(status);
+			  e.printStackTrace();
+		  }
+		  txManager.commit(status);
+		
+	}
+
+
+	public List<Movie> returnRecommendedMovies(String email) {
+		
+		return customerMapper.getMovieSuggestions(email);
 	}
 }
