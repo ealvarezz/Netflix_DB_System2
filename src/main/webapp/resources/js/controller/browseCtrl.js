@@ -1,6 +1,6 @@
 
 
-app.controller('categoriesCtrl', function ($scope,$http,$window) {
+app.controller('browseCtrl', function ($scope,$http,$window) {
 
 	$scope.movies = [];
 	$scope.selected_type = "";

@@ -12,14 +12,15 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="https://code.angularjs.org/1.5.5/angular-cookies.min.js"></script>
 		<script src="/resources/js/app.js"></script>
-		<script src="/resources/js/controller/categoriesCtrl.js"></script>
+		<script src="/resources/js/controller/browseCtrl.js"></script>
 
 		<script type="text/javascript">customer_Lock();</script>
 	</head>
 
 	<body ng-app="FuegoVideo">
 		<div ng-controller="navCtrl" ng-include="'/resources/jsp/navbar.html'"></div>
-		<div class = "container" ng-controller ="categoriesCtrl">
+		
+		<div class = "container" ng-controller ="browseCtrl">
 			<div class="container">
 				<select ng-model="selected_type" ng-change="type_changed()">
 					<option value="Comedy">Comedy</option>
@@ -43,5 +44,7 @@
 				</div>
 			</div>
 		</div>
+		
+		
 	</body>
 </html>
