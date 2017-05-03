@@ -28,8 +28,25 @@ var employee_Lock = function(){
 
 app.controller('navCtrl', function ($scope,$http,$window) {
 	$scope.logout = function(){
+
+		if(localStorage.getItem("employee") === "true" || localStorage.getItem("manager") === "true"){
+			$window.location.href = '/employee_login';
+		}
+		else {
+			$window.location.href = '/login';
+		}
+
 		$window.localStorage.clear();
-		$window.location.href = '/login';
+
 	};
 
+	$scope.managerNavCtrl = function() {
+ 	if (localStorage.getItem("manager") === "true") {
+ 		$scope.managerViewNav = true;
+ 	}
+ 	else {
+ 	  $scope.managerViewNav = false;
+ 	}
+ };
+$scope.managerNavCtrl();
 });
