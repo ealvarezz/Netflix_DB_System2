@@ -21,27 +21,78 @@
 		<div ng-controller="navCtrl" ng-include="'/resources/jsp/navbar.html'"></div>
 		
 		<div class = "container" ng-controller ="browseCtrl">
-			<div class="container">
-				<select ng-model="selected_type" ng-change="type_changed()">
-					<option value="Comedy">Comedy</option>
-					<option value="Drama">Drama</option>
-					<option value="Foreign">Foreign</option>
-					<option value="Action">Action</option>
-				</select>
-			</div>
-			<div>
-				<div class="jumbotron vertical-center" ng-hide="selected_type == null">
-					<h3>{{selected_type}} movies</h3>
-					<div ng-repeat="y in movies">
-						<div class="well">
-							<h2>Movie: {{y.name}}</h2>
-							<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
-							<button type="button" class="btn-primary btn-mid" ng-click="add_movie(y.id)" >
-								Add to wish list
-							</button>
+			
+			<div class = "container">
+				<div class="jumbotron vertical-center">
+					<h2>{{header}}</h2>
+
+              <form id="selector viewSelection">
+                <label class="radio-inline"><input type="radio" checked="checked"
+                  name="optradio" id="categories" class ='viewSelection' ng-click="changeCategoriesView()">
+                  Categories
+                </label>
+                <label class="radio-inline"> <input type="radio" name="optradio"
+                  id="search" class ='viewSelection' ng-click="changeSearchView()">
+                  Search
+                </label>
+                <label class="radio-inline"> <input type="radio" name="optradio"
+                  id="recommended" class ='viewSelection' ng-click="changeRecommendedView()">
+                  Recommended
+                </label>
+                <label class="radio-inline"> <input type="radio" name="optradio"
+                  id="all" class ='viewSelection' ng-click="changeAllView()">
+                  All Movies
+                </label>
+              </form>
+			
+			<!-- ############################### THIS IS THE CATEGORIES VIEW  ############################### -->
+				<div class = "viewSelection" ng-show="categoriesView">
+					<div class="container">
+						<select ng-model="selected_type" ng-change="type_changed()">
+							<option value="Comedy">Comedy</option>
+							<option value="Drama">Drama</option>
+							<option value="Foreign">Foreign</option>
+							<option value="Action">Action</option>
+						</select>
+					</div>
+					<div>
+						<div class="jumbotron vertical-center" ng-hide="selected_type == null">
+							<h3>{{selected_type}} movies</h3>
+							<div ng-repeat="y in movies">
+								<div class="well">
+									<h2>Movie: {{y.name}}</h2>
+									<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+									<button type="button" class="btn-primary btn-mid" ng-click="add_movie(y.id)" >
+										Add to wish list
+									</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
+				
+				
+			<!-- ############################### THIS IS THE CATEGORIES VIEW  ############################### -->
+				<div class = "viewSelection" ng-show="searchView">
+					<h2>SEARCH</h2>
+				</div>
+				
+				
+				
+			<!-- ############################### THIS IS THE CATEGORIES VIEW  ############################### -->
+				<div class = "viewSelection" ng-show="recommendedView">
+					<h2>RECOMMENDED</h2>
+				</div>
+				
+				
+				
+			<!-- ############################### THIS IS THE CATEGORIES VIEW  ############################### -->
+				<div class = "viewSelection" ng-show="allView">
+					<h2>ALL</h2>
+				</div>
+				
+				
+				
 			</div>
 		</div>
 		
