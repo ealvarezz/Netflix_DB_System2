@@ -17,6 +17,13 @@
 
 
     <script type="text/javascript">customer_Lock();</script>
+		<style>
+		.changeBtn
+		{
+			border: 1px solid black;
+		}
+
+		</style>
 
 
 
@@ -25,21 +32,56 @@
 
 	<body ng-app="FuegoVideo">
 		<div ng-controller="navCtrl" ng-include="'/resources/jsp/navbar.html'"></div>
-
 		<div class = "container" ng-controller ="ordersCtrl">
-			<h3>ORDERS FOR {{email}}</h3>
-			<div class="jumbotron vertical-center">
-				<h3>CURRENTLY HELD</h3>
-				<div ng-repeat="x in cur_orders" >
-					<div class="well">
-						<h2>Movie: {{x.movie.name}}</h2>
-						<h3>On: {{x.ree}}   fee: {{x.movie.fee}}   Genre: {{x.movie.movieType}}</h3>
-						<button type="button" class="btn-primary btn-mid" ng-click="return_movie(x.movieId)" >
-							Return Movie
-						</button>
+		<div class="row">
+		  <div class="col-lg-6 col-lg-offset-3 text-center">
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<button type="button" class="btn btn-secondary changeBtn"
+					 ng-disabled="pastBtn" ng-click="past_orders()">
+						<h3>Past Orders</h3>
+				 	</button>
+					 <button type="button" class="btn btn-secondary changeBtn"
+					 ng-disabled="currentBtn"  ng-click="current_orders()">
+						 <h3>Current Orders</h3>
+					</button>
+				 <button type="button" class="btn btn-secondary changeBtn"
+				 ng-disabled="allBtn" ng-click="all_orders()">
+					 <h3>All Orders</h3>
+				</button>
+			</div>
+			</div>
+		</div>
+
+
+
+
+			<div class = "currentOrderView">
+				<h3>ORDERS FOR {{email}}</h3>
+				<div class="jumbotron vertical-center">
+					<h3>{{optionHeader}}</h3>
+					<div ng-repeat="x in orders" >
+						<div class="well">
+							<h2>Movie: {{x.movie.name}}</h2>
+							<h3>Genre: {{x.movie.movieType}}</h3>
+							<h3>Order On: {{x.ree}} </h3>
+
+							<div ng-if="x.state == 'Held'">
+							<button type="button" class="btn-primary btn-mid"
+							  ng-click="return_movie(x.movieId)" >
+								Return Movie
+							</button>
+						</div>
+
+							<div ng-if="x.state == 'Returned'">
+								<h3>Return Date: {{x.returnDate}}</h3>
+							</div>
+
+						</div>
+						</div>
 					</div>
 				</div>
-			</div>
+
+
 
 			<div class="col-xs-12" style="height:50px;"></div>
 		</div>

@@ -21,7 +21,6 @@
   <mvc:view-controller path="/search" view-name="search"/>
   <mvc:view-controller path="/wishlist" view-name="wishlist"/>
 
-  
 
 	<mvc:view-controller path="/employee_login" view-name="employee_login"/>
 	<mvc:view-controller path="/customer_queues" view-name="customer_queues"/>
