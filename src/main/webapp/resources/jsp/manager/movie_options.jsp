@@ -18,7 +18,7 @@
 	<style>
 .jumbotron
 {
-	margin: 25%;
+	margin: 15%;
 	margin-top: 5%;
 	/*color:white;
 	  background-color:#E50914;*/
@@ -114,7 +114,7 @@
                    <form class="form-horizontal" method="POST">
          						<div class="form-group">
          							<label for="text">Search For Movie Keyword</label>
-         							<input type="text" ng-model="text" class="form-control searchbar" name="text" />
+         							<input type="text" ng-model="searchEdit" class="form-control searchbar" name="searchEdit" />
          						</div>
                     <div class="form-group">
                       <div class="text-right">
@@ -130,8 +130,8 @@
             <h3 ng-model="searchfor">{{editsearchfor}}</h3>
             <div ng-repeat="y in editMovies">
               <div class="well">
-                <h2>Movie: {{y.name}}</h2>
-                <h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+                <h1>{{y.name}}</h1>
+                <h3>Number of copies: {{y.numCopies}}    Fee: \${{y.fee}}   Genre: {{y.movieType}}</h2>
                 <button type="button" class="btn-primary btn-mid" ng-click="selectMovieEdit(y)" >
                   Edit Movie
                 </button>
@@ -172,11 +172,6 @@
 							<input type="text" class="form-control" ng-model="movieToEdit.numCopies" name="numCopies" required />
 						</div>
 
-            <div class="form-group">
-							<label for="numCopies">Number of Copies</label>
-							<input type="text" class="form-control" ng-model="movieToEdit.numCopies" name="numCopies" required />
-						</div>
-
 						<button class ="btn-primary btn-mid" id="submit" ng-click="editMovieInDb()" >
 							Submit
 						</button>
@@ -193,7 +188,7 @@
                  <form class="form-horizontal" method="POST">
                   <div class="form-group">
                     <label for="text">Search For Movie Keyword</label>
-                    <input type="text" ng-model="text" class="form-control searchbar" name="text" />
+                    <input type="text" ng-model="searchRemove" class="form-control searchbar" name="text" />
                   </div>
                   <div class="form-group">
                     <div class="text-right">
@@ -208,8 +203,8 @@
           </div>
           <div ng-repeat="y in moviesToRemove">
             <div class="well">
-              <h2>Movie: {{y.name}}</h2>
-              <h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+              <h1>{{y.name}}</h1>
+              <h3>Number of copies: {{y.numCopies}}   Fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
               <button type="button" class="btn-primary btn-mid" ng-click="setRmMovie(y)" >
                 Edit Movie
               </button>

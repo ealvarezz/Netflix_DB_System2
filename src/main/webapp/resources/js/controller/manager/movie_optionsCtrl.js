@@ -30,6 +30,11 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
       .success(function(data) {
         if(data.status === "OK"){
           alert("Your new movie is added.");
+          $scope.Name = "";
+          $scope.MovieType = "";
+          $scope.Fee = "";
+          $scope.numCopies = "";
+          $scope.Rating = "";
         }else{
           alert("Your form has errors.");
         }
@@ -89,9 +94,7 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
   $scope.removeStatView = false;
 
   $scope.setRmMovie = function(movie) {
-    alert('a');
     $scope.rmMovie = movie;
-    alert($scope.rmMovie.fee);
     $scope.searchViewRemove = false;
     $scope.removeStatView = true;
   };
