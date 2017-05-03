@@ -157,7 +157,7 @@
 					</div>
           <div class ="row">
              <div class="col-md-6 col-md-offset-3">
-               <h2></h2>
+               <h2>{{movieToEdit.name}}</h2>
              </div>
            </div>
 					<form class="form-horizontal editMovie" method="POST">
@@ -181,25 +181,40 @@
 						</button>
 					</form>
 				</div> <!--End of editMovieView div -->
-        </div>
 
 
 				<div class = "viewSelection" ng-show="removeMovieView">
         <div class = "searchView" ng-show="searchViewRemove">
 
-          <form class="form-horizontal" method="POST">
-           <div class="form-group">
-             <label for="search">Search Movie</label>
-             <input type="text" ng-model="searchRemove" class="form-control" name="searchRemove" />
-           </div>
-           <div class="form-group">
-             <div class="text-right">
-               <button type="button" class ="btn-primary btn-mid" ng-click="searchBtn()" >
-                 Search
-               </button>
-             </div>
-           </div>
-           </form>
+          <div class="container">
+            <div class ="row">
+               <div class="col-md-6 col-md-offset-3">
+                 <form class="form-horizontal" method="POST">
+                  <div class="form-group">
+                    <label for="text">Search For Movie Keyword</label>
+                    <input type="text" ng-model="text" class="form-control searchbar" name="text" />
+                  </div>
+                  <div class="form-group">
+                    <div class="text-right">
+                      <button type="button" class ="btn-primary btn-mid" ng-click="search()" >
+                        Search
+                      </button>
+                    </div>
+                  </div>
+                </form>
+               </div>
+            </div>
+          </div>
+          <div ng-repeat="y in moviesToRemove">
+            <div class="well">
+              <h2>Movie: {{y.name}}</h2>
+              <h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+              <button type="button" class="btn-primary btn-mid" ng-click="setRmMovie(y)" >
+                Edit Movie
+              </button>
+            </div>
+          </div>
+
           </div>
 
 					<div class = "removeStatView" ng-show="removeStatView">
@@ -212,16 +227,59 @@
 							</div>
 						</div>
 						<div id="delMovieStats">
-							<h2>Name: {{rmMovie.firstName}} {{rmMovie.lastName}}</h2>
-							<h3>Movie ID: {{rmMovie.ssn}}
-							<h3>HourlyRate: ${{rmMovie.hourlyRate}}</h3>
-							<h3>StartDate: {{rmMovie.startDate}}</h3>
+							<h2>Movie: {{rmMovie.name}}</h2>
+							<h3>Genre: {{rmMovie.movieType}}
+							<h3>Distribution Fee: \${{rmMovie.fee}}</h3>
+							<h3>Number Of Copies: {{rmMovie.numCopies}}</h3>
 						</div>
 						<button type="button" class="btn-danger btn-mid" ng-click="finalDeleteMovie()" >
 							Delete Movie
 						</button>
 					</div>
 			</div> <!-- End for removeMovieView -->
+
+
+
+      <div class = "viewSelection" ng-show="CopiesMovieView">
+        <div class = "searchView" ng-show="searchView">
+          <div class="container">
+            <div class ="row">
+               <div class="col-md-6 col-md-offset-3">
+                 <form class="form-horizontal" method="POST">
+                  <div class="form-group">
+                    <label for="text">Search For Movie Keyword</label>
+                    <input type="text" ng-model="text" class="form-control searchbar" name="text" />
+                  </div>
+                  <div class="form-group">
+                    <div class="text-right">
+                      <button type="button" class ="btn-primary btn-mid" ng-click="search()" >
+                        Search
+                      </button>
+                    </div>
+                  </div>
+                </form>
+               </div>
+            </div>
+          </div>
+          <h3 ng-model="searchfor">{{editsearchfor}}</h3>
+          <div ng-repeat="y in editMovies">
+            <div class="well">
+              <h2>Movie: {{y.name}}</h2>
+              <h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+              <button type="button" class="btn-primary btn-mid" ng-click="selectMovieEdit(y)" >
+                Edit Movie
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+        <div class = "viewSelection" ng-show="editMovieViewForm">
+
+
+
+    </div>
 		</div>
   </div>
 	</body>

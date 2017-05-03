@@ -51,8 +51,6 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
   $scope.editMovieViewForm = false;
   $scope.searchEdit = "";
 
-
-
   $scope.selectMovieEdit = function(movie) {
     $scope.searchView = false;
     $scope.editMovieViewForm = true;
@@ -83,8 +81,7 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
 
   // For remove movie view
   $scope.rmMovie = null;
-
-  $scope.rmLastName = null;
+  $scope.moviesToRemove = [];
 
   $scope.removeMovieView = false;
   $scope.searchRemove = "";
@@ -92,7 +89,9 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
   $scope.removeStatView = false;
 
   $scope.setRmMovie = function(movie) {
+    alert('a');
     $scope.rmMovie = movie;
+    alert($scope.rmMovie.fee);
     $scope.searchViewRemove = false;
     $scope.removeStatView = true;
   };
@@ -103,7 +102,7 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
 			method  : 'POST',
 			url     : '/manager/deletemovie',
 			data    : {
-				ssn : $scope.rmMovie.ssn
+				name : $scope.rmMovie.name
 			}
 		})
     .success(function(data) {
@@ -114,9 +113,9 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
     })
     .error(function(data){
       alert('WENT DOWN');
-      alert(data);
     });
-  };
+  };      
+
       /***************************************************************/
 
   //Buttons for searching and changing views
@@ -145,7 +144,7 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
           $scope.editMovies = data.data.content;
         }
         else if ($scope.removeMovieView) {
-          $scope.setRmMovie(data.data);
+          $scope.moviesToRemove = data.data.content;
         }
       }
       else {
@@ -158,12 +157,14 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
     if($scope.editMovieView) {
       $scope.searchView = true;
       $scope.editMovieViewForm = false;
-      $scope.editMovie = null;
+      $scope.movieToEdit = null;
+      $scope.search();
     }
     else if ($scope.removeMovieView) {
       $scope.searchViewRemove = true;
       $scope.removeStatView = false;
-      rmMovie = null;
+      $scope.rmMovie = null;
+      $scope.search();
     }
   };
 
@@ -174,7 +175,6 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
     $scope.removeMovieView = false;
     $scope.header = "Add New Movie";
   };
-
 
 
    $scope.changeEditMovieView = function() {
