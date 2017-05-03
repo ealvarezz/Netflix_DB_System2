@@ -82,5 +82,12 @@ public interface EmployeeMapper {
 	public Employee getActiveEmployee();
 	
 	public List<Customer> getMailingList();
+	
+	public List<FuegoOrder> getOrdersByType(@Param("type") String type);
+	
+	public List<FuegoOrder> getOrdersByName(@Param("name") String name);
+	
+	public List<FuegoOrder> getOrdersByCustomerName(@Param("firstname") String firstName, @Param("lastname") String lastName);
+	
 
 }

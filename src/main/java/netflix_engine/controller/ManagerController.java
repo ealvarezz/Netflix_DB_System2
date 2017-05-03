@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import netflix_engine.model.Employee;
 import netflix_engine.model.FuegoOrder;
 import netflix_engine.model.Movie;
+import netflix_engine.model.Person;
 import netflix_engine.general.Status;
 import netflix_engine.model.Account;
 import netflix_engine.model.Customer;
@@ -37,6 +38,13 @@ public class ManagerController {
 	
 	@RequestMapping(value="manager/addmovie", method = RequestMethod.POST)
 	   public @ResponseBody Object addMovie(@RequestBody Movie movie) {
+		
+		if(movie.getMovieType() == null|| movie.getFee() == null){
+			
+			if(employeeService.getMovieByMoviename(movie.getName()) == null)
+				return new Status("error", "Please provide all info to add a new movie");
+			
+		}
 		
 		try{
 			 employeeService.addMovieToDb(movie);
@@ -187,6 +195,34 @@ public class ManagerController {
 	   public @ResponseBody Employee getEmployeeBySSN(@RequestBody Employee employee) {
 		
 		return employeeService.getEmployeeBySSN(employee.getSsn());
+	 	 
+	}
+	
+	@RequestMapping(value="manager/ordersbyname", method = RequestMethod.POST)
+	   public @ResponseBody List<FuegoOrder> getOrdersByName(@RequestBody Movie movie) {
+		
+		return employeeService.getAllOrdersByName(movie.getName());
+	 	 
+	}
+	
+	@RequestMapping(value="manager/ordersbytype", method = RequestMethod.POST)
+	   public @ResponseBody List<FuegoOrder> getOrdersByType(@RequestBody Movie movie) {
+		
+		return employeeService.getAllOrdersBytype(movie.getMovieType());
+	 	 
+	}
+	
+	@RequestMapping(value="manager/ordersbycustomer", method = RequestMethod.POST)
+	   public @ResponseBody List<FuegoOrder> getEmployeeBySSN(@RequestBody Person person) {
+		
+		return employeeService.getAllOrdersByCustomerName(person.getFirstName(), person.getLastName());
+	 	 
+	}
+	
+	@RequestMapping(value="manager/moviebyname", method = RequestMethod.POST)
+	   public @ResponseBody Movie getEmployeeBySSN(@RequestBody Movie movie) {
+		
+		return employeeService.getMovieByMoviename(movie.getName());
 	 	 
 	}
 	

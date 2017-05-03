@@ -56,5 +56,11 @@ public interface EmployeeService {
 	Employee getMostActiveEmployee();
 	
 	List<Customer> produceMailingList();
+	
+	List<FuegoOrder> getAllOrdersByName(String name);
+	
+	List<FuegoOrder> getAllOrdersBytype(String type);
+	
+	List<FuegoOrder> getAllOrdersByCustomerName(String firstName, String lastName);
 
 }
