@@ -26,6 +26,5 @@
 
 		  THIS IS EMPLOYEE HOMEPAGE
 	  </div>
-    <script src="/resources/js/controller/manager/managerNavCtrl.js"></script>
   </body>
 </html>

@@ -2,8 +2,6 @@
 
 var app = angular.module('FuegoVideo', []);
 
-$scope.managerViewNav = false;
-
 var customer_Lock = function(){
 	if(localStorage.getItem("customer") === "true"){
 		return true;
@@ -27,18 +25,6 @@ var employee_Lock = function(){
 	alert("Must be an employee to view this page.")
 	window.location.href = '/employee_login';
 };
-
-var managerNavCtrl = function() {
-	alert(localStorage.getItem("manager"));
-	if (localStorage.getItem("manager") === "true") {
-		$scope.managerViewNav = true;
-	}
-	else {
-	  $scope.managerViewNav = false;
-	}
-};
-
-
 
 app.controller('navCtrl', function ($scope,$http,$window) {
 	$scope.logout = function(){
