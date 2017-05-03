@@ -42,16 +42,6 @@
 			</div>
 
 			<div class="col-xs-12" style="height:50px;"></div>
-
-			<div class="jumbotron vertical-center">
-				<h3>WISH LIST</h3>
-				<div ng-repeat="y in wish_orders">
-					<div class="well">
-						<h2>Movie: {{y.name}}</h2>
-						<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
-					</div>
-				</div>
-			</div>
 		</div>
 	</body>
 </html>

@@ -33,8 +33,13 @@
 				<h3>WISH LIST</h3>
 				<div ng-repeat="y in wish_orders">
 					<div class="well">
-						<h2>Movie: {{y.name}}</h2>
-						<h3>Number of copies: {{y.numCopies}} Genre: {{y.movieType}}</h2>
+            <div class="row">
+              <div class="col-lg-6 col-lg-offset-3 text-center">
+                <h2>{{y.name}}</h2>
+              </div>
+            </div>
+            <h3>Genre: {{y.movieType}}</h3>
+            <h3>Number Of Copies: {{y.numCopies}}</h3>
 					</div>
 				</div>
 			</div>

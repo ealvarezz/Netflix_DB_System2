@@ -12,7 +12,7 @@ app.controller('ordersCtrl', function ($scope,$http,$window) {
 		$http({
 			method  : 'POST',
 			url     : '/getcustomerorders',
-			data    : { 
+			data    : {
 				email : $scope.email
 			}
 		})
@@ -28,7 +28,7 @@ app.controller('ordersCtrl', function ($scope,$http,$window) {
 		$http({
 			method  : 'POST',
 			url     : '/getwishlist',
-			data    : { 
+			data    : {
 				email : $scope.email
 			}
 		})
@@ -38,20 +38,20 @@ app.controller('ordersCtrl', function ($scope,$http,$window) {
 	};
 
 	$scope.list_orders();
-	
+
 	$scope.return_movie = function(movieId) {
-		alert("Tryna return v1.");
+
 		$http({
 			method  : 'POST',
 			url     : '/returnmovie',
-			data    : { 
+			data    : {
 				movieId: movieId,
 				customerId : $scope.email
 			}
 		})
 		.then(function(data) {
 			var k = 0;
-			alert("Tryna return.");
+
 			for(k = 0; k < $scope.cur_orders.length; k++ ){
 				if(movieId === $scope.cur_orders[k].movieId){
 					$scope.cur_orders.splice(k,1);
