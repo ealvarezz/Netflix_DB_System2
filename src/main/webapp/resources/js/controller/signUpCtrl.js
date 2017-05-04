@@ -16,7 +16,7 @@ app.controller('signUpCtrl', function ($scope,$http,$window) {
    $scope.creditcard = "";
 
 
-   $scope.plan = ""
+  $scope.plan = "";
 
 	$scope.createCustomer = function() {
 
@@ -26,12 +26,12 @@ app.controller('signUpCtrl', function ($scope,$http,$window) {
 			('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
 			('00' + date.getUTCDate()).slice(-2);
 
-		var cancer = 	
-		{ 
+		var cancer =
+		{
 			acctType: $scope.plan,
 			accountDate: date,
 
-			customer: { 
+			customer: {
 				firstName : $scope.firstname,
 				lastName : $scope.lastname,
 				address : $scope.address,
@@ -65,11 +65,3 @@ app.controller('signUpCtrl', function ($scope,$http,$window) {
 
 
 });
-
-
-
-
-
-
-
-

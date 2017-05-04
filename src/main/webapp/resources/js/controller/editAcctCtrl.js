@@ -17,7 +17,7 @@ app.controller('editAcctCtrl', function ($scope,$http,$window) {
    $scope.plan = "";
 
 
-	
+
 
 	$scope.getInfo = function() {
 	   $http({
@@ -45,12 +45,10 @@ app.controller('editAcctCtrl', function ($scope,$http,$window) {
 
 
 	$scope.update_acc = function() {
-		alert("sending");
-
-		var cancer = 	
-		{ 
+		var cancer =
+		{
 			acctType: $scope.plan,
-			customer: { 
+			customer: {
 				firstName : $scope.firstname,
 				lastName : $scope.lastname,
 				address : $scope.address,
@@ -61,7 +59,6 @@ app.controller('editAcctCtrl', function ($scope,$http,$window) {
 				email : $scope.email,
 				password : $scope.password,
 				creditCard : $scope.creditcard,
-				rating : 0
 			}
 		};
 
@@ -80,11 +77,3 @@ app.controller('editAcctCtrl', function ($scope,$http,$window) {
    };
 
 });
-
-
-
-
-
-
-
-

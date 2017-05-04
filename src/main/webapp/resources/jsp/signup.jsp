@@ -88,7 +88,7 @@
 								Limited - 10$ for 2 movies month. One at a time.
 							</label><br/>
 							<label>
-								<input type="radio" ng-model="plan" ng-value="unlimited-1">
+								<input type="radio" ng-model="plan" value="unlimited-1">
 								Unlimited-1 - $15/month for 1 movie out at-a-time. Unlimited per month.
 							</label><br/>
 							<label>

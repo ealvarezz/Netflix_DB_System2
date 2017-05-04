@@ -25,7 +25,6 @@ app.controller('employee_optionsCtrl', function ($scope,$http,$window) {
 		$scope.startDate = date.getUTCFullYear() + '-' +
 			('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
 			('00' + date.getUTCDate()).slice(-2);
-      alert($scope.lastname);
 		var cancer =
 		{
 				firstName : $scope.firstname,
@@ -39,6 +38,7 @@ app.controller('employee_optionsCtrl', function ($scope,$http,$window) {
         password : $scope.password,
 				startDate : $scope.startDate,
 				hourlyRate : $scope.hourlyRate,
+        position : "Employee"
 		};
     $http({
       method  : 'POST',
