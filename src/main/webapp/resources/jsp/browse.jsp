@@ -72,7 +72,7 @@
 				</div>
 				
 				
-			<!-- ############################### THIS IS THE CATEGORIES VIEW  ############################### -->
+			<!-- ############################### THIS IS THE SEARCH VIEW  ############################### -->
 				<div class = "viewSelection" ng-show="searchView">
 					
 					<!-- This is the search bar to loop for movies -->
@@ -113,7 +113,7 @@
 				</div>
 				
 				
-			<!-- ############################### THIS IS THE CATEGORIES VIEW  ############################### -->
+			<!-- ############################### THIS IS THE RECOMMENDED VIEW  ############################### -->
 				<div class = "viewSelection" ng-show="recommendedView">
 					<div>
 						<div class="jumbotron vertical-center">
@@ -132,7 +132,7 @@
 				
 				
 				
-			<!-- ############################### THIS IS THE CATEGORIES VIEW  ############################### -->
+			<!-- ############################### THIS IS THE ALL VIEW  ############################### -->
 				<div class = "viewSelection" ng-show="allView">
 					<div>
 						<div class="jumbotron vertical-center">
