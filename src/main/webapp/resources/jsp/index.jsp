@@ -43,7 +43,7 @@
 	  <div ng-controller="navCtrl" ng-include="'/resources/jsp/navbar.html'"></div>
 
 	  <div class = "container" ng-controller ="indexCtrl">
-		  <h1 id="greeting">{{username}}</h1>
+		  <h3 id="greeting">{{username}}</h3>
 		  
 		  <img id="logo" src="Logo.png" class="center-block">
 		  
