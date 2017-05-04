@@ -29,6 +29,9 @@
   <mvc:view-controller path="/manager/employee_options" view-name="manager/employee_options"/>
   <mvc:view-controller path="/manager/movie_options" view-name="manager/movie_options"/>
   <mvc:view-controller path="/manager/activity_options" view-name="manager/activity_options"/>
+  <mvc:view-controller path="/manager/viewOrders" view-name="manager/viewOrders"/>
+
+
 
 
 
