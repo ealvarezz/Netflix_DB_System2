@@ -35,7 +35,7 @@
              <form class="form-horizontal" method="POST">
    						<div class="form-group">
    							<label for="text">Search For Movie</label>
-   							<input type="text" ng-model="text" class="form-control searchbar" name="text" />
+   							<input type="text" ng-model="text" class="form-control searchbar" value='7' name="text" />
    						</div>
               <div class="form-group">
                 <div class="text-right">

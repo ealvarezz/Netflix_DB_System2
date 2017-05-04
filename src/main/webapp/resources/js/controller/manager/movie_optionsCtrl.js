@@ -13,15 +13,15 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
   $scope.newMovieView = true;
 
   $scope.createMovie = function() {
-
 		var cancer =
 		{
 				name : $scope.Name,
         movieType : $scope.MovieType,
 				fee : $scope.Fee,
 				numCopies : $scope.numCopies,
-				rating : $scope.Rating
+				totalRating : $scope.Rating
 		};
+
     $http({
       method  : 'POST',
       url     : '/manager/addmovie',

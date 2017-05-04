@@ -146,4 +146,31 @@ app.controller('ordersCtrl', function ($scope,$http,$window) {
 	 	 $scope.allBtn = v3;
 	 };
 
+	 	/********************************************************/
+	//Give Movie a Rating
+	$scope.rateMovie = function(movie,rating) {
+		if(rating !== null && (0 < rating  && rating < 6))  {
+			$http({
+				method  : 'POST',
+				url     : '/ratemovie',
+				data    : {
+						email : $scope.email,
+		   			movieId : movie,
+		   			rate: rating
+				}
+			})
+			.success(function(data) {
+				if(data.status === "OK"){
+					alert(data.message);
+				}else{
+					alert('Message');
+					alert(data.message);
+				}
+			});
+		}
+		else {
+			alert('Rating has to be in the 1-5 range');
+		}
+	};
+
 });
