@@ -109,9 +109,14 @@
 						<button class ="btn-primary btn-mid" id="submit" ng-click="update_acc()" >
 							Update Information
 						</button>
+						<button class ="btn-danger btn-mid" id="delete" ng-click="delete_acc()" >
+							Delete Account
+						</button>
 					</form>
 				</div>
 			</div>
+			
+			
 		</div>
 	</body>
 </html>
