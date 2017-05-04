@@ -18,7 +18,6 @@ app.controller('editAcctCtrl', function ($scope,$http,$window) {
 
 
 
-
 	$scope.getInfo = function() {
 	   $http({
 		   method  : 'POST',
@@ -75,5 +74,23 @@ app.controller('editAcctCtrl', function ($scope,$http,$window) {
 			   }
 		   });
    };
+   
+   $scope.delete_acc = function() {
+	
+	   $http({
+		   method  : 'POST',
+		   url     : '/deleteaccount',
+		   data    : {email : $window.localStorage.getItem('username')}
+	   })
+	   .then(function(data) {
+		
+		   alert(data.data.message);
+		   $window.location.href = '/login';
+			
+
+		   $window.localStorage.clear();
+	   });
+   };
+	
 
 });
