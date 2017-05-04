@@ -63,6 +63,7 @@
 						<div class="well">
 							<h2>Movie: {{x.movie.name}}</h2>
 							<h3>Genre: {{x.movie.movieType}}</h3>
+							<h3>Rating: {{x.movie.movieType}}</h3>
 							<h3>Ordered On: {{x.ree}} </h3>
 
 							<div ng-if="x.state == 'Held'">
@@ -74,6 +75,14 @@
 
 							<div ng-if="x.state == 'Returned'">
 								<h3>Returned On: {{x.returnDate}}</h3>
+								<form class="form-inline">
+									<label for="email">Email address:</label>
+									<input type="email" class="form-control" id="email">
+									<button type="button" class="btn-primary btn-mid"
+									  ng-click="rateMovie(x)" >
+										Rate Movie
+									</button>
+								</form>
 							</div>
 
 						</div>
