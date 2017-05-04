@@ -41,7 +41,7 @@
 					<form class="form-horizontal" method="POST">
 						<div class="form-group">
 							<label for="FirstName">First Name</label>
-							<input type="text" class="form-control" ng-model="firstname" name="FirstName" required />{{firstname}}
+							<input type="text" class="form-control" ng-model="firstname" name="FirstName" required />
 						</div>
 
 						<div class="form-group">
@@ -90,7 +90,7 @@
 								Limited - 10$ for 2 movies month. One at a time.
 							</label><br/>
 							<label>
-								<input type="radio" ng-model="plan" ng-value="unlimited-1">
+								<input type="radio" ng-model="plan" value="unlimited-1">
 								Unlimited-1 - $15/month for 1 movie out at-a-time. Unlimited per month.
 							</label><br/>
 							<label>

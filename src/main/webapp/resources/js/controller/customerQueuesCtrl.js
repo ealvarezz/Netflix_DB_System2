@@ -22,7 +22,7 @@ app.controller('customerQueuesCtrl', function ($scope,$http,$window) {
 		$http({
 			method  : 'POST',
 			url     : '/getwishlist',
-			data    : { 
+			data    : {
 				email : $scope.selected_user.customer.email
 			}
 		})
@@ -31,17 +31,17 @@ app.controller('customerQueuesCtrl', function ($scope,$http,$window) {
 		});
 	};
 
-	
+
 	$scope.process_movie = function(movieId) {
 
 	    console.log(movieId);
 	    console.log($scope.selected_user.customer.email);
-	    
+
 	    console.log($window.localStorage.getItem('username'));
 		$http({
 			method  : 'POST',
 			url     : '/process_order',
-			data    : { 
+			data    : {
 				customerId: $scope.selected_user.customer.email,
 				employeeId: $window.localStorage.getItem('username'),
 				movieId: movieId
@@ -56,10 +56,10 @@ app.controller('customerQueuesCtrl', function ($scope,$http,$window) {
 					}
 				}
 			}else{
-				alert("User can not have any more movies.")
+				alert("User can not have any more movies.");
 			}
 		});
-		
+
 	};
 
 });

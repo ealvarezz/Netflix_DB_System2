@@ -18,7 +18,7 @@
 	<style>
 .jumbotron
 {
-	margin: 25%;
+	margin: 15%;
 	margin-top: 5%;
 	/*color:white;
 	  background-color:#E50914;*/
@@ -250,7 +250,7 @@
 						<div id="delEmployeeStats">
 							<h2>Name: {{rmEmployee.firstName}} {{rmEmployee.lastName}}</h2>
 							<h3>Employee ID: {{rmEmployee.ssn}}
-							<h3>HourlyRate: ${{rmEmployee.hourlyRate}}</h3>
+							<h3>HourlyRate: \${{rmEmployee.hourlyRate}}</h3>
 							<h3>StartDate: {{rmEmployee.startDate}}</h3>
 						</div>
 						<button type="button" class="btn-danger btn-mid" ng-click="finalDeleteEmployee()" >
