@@ -20,6 +20,7 @@
   <mvc:view-controller path="/bestseller" view-name="bestseller"/>
   <mvc:view-controller path="/search" view-name="search"/>
   <mvc:view-controller path="/wishlist" view-name="wishlist"/>
+  <mvc:view-controller path="/help/customerHelp" view-name="help/customerHelp"/>
 
 
 	<mvc:view-controller path="/employee_login" view-name="employee_login"/>
@@ -27,6 +28,7 @@
 	<mvc:view-controller path="/employee" view-name="employee"/>
   <mvc:view-controller path="/employee/customer_options" view-name="employee/customer_options"/>
   <mvc:view-controller path="/employee/mailingList" view-name="employee/mailingList"/>
+  <mvc:view-controller path="/help/employeeHelp" view-name="help/employeeHelp"/>
 
   <mvc:view-controller path="/manager/employee_options" view-name="manager/employee_options"/>
   <mvc:view-controller path="/manager/movie_options" view-name="manager/movie_options"/>

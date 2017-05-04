@@ -17,14 +17,41 @@
     <script type="text/javascript">employee_Lock();</script>
 
   </head>
+  <style>
+
+  body {
+    background-color: #a6a6a6;
+  }
+
+  #logo{
+    width: 400px;
+    length: 400px;
+
+  }
+  .green_button{
+      background-color: #1f7a1f;
+  }
+
+  #greeting{
+    color: #e6e6e6;
+  }
+
+  </style>
 
   <body ng-app="FuegoVideo">
 	  <div ng-controller="navCtrl" ng-include="'/resources/jsp/empnavbar.html'"></div>
 	  <div class = "container" ng-controller ="employeeCtrl">
-		  <h1>{{username}}</h1>
-		  <h1>{{position}}</h1>
+      <div id = "greeting">
+        <h1>{{username}}</h1>
+  		  <h1>{{position}}</h1>
 
-		  THIS IS EMPLOYEE HOMEPAGE
+  		  THE EMPLOYEE HOMEPAGE
+      </div>
+
+
+
+      <br /><br /><br />
+      <img id="logo" src="/Logo.png" class="center-block">
 	  </div>
   </body>
 </html>

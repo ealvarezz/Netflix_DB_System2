@@ -20,9 +20,6 @@
 
     <style>
 
-    	body {
-    		background-color: #a6a6a6;
-    	}
     	#logo{
     		width: 400px;
     		length: 400px;
@@ -43,12 +40,65 @@
 	  <div ng-controller="navCtrl" ng-include="'/resources/jsp/navbar.html'"></div>
 
 	  <div class = "container" ng-controller ="indexCtrl">
-		  <h3 id="greeting">{{username}}</h3>
 
-		  <img id="logo" src="Logo.png" class="center-block">
+<ul>
+  <li>
+    <h3>Browse</h3>
+    <p>
+      Browse through our collection movies either by:
+    </p>
+<ul>
+<li>The categories by genre</li>
+<li>Search for a keyword</li>
+<li>Movies Recommended for you</li>
+<li>Or just look at a big list of all movies</li>
+</ul>
+<p>You can also add the movies you want to see in a wishlist</p>
+</li>
+<br/>
 
-			<br><br><br><br><br>
-		  <button type="button" class="btn btn-primary btn-lg btn-block green_button" ng-click="goToBrowse()">Fuego Browse</button>
+<li>
+  <h3>Wishlist</h3>
+  <p>
+  You can check the movies you want to see on this wishlist. Customer-Representatives
+  will use your wishlist to create orders that will deliver these DVD movies to be rented.
+  </p>
+</li>
+<br/>
+
+<li>
+  <h3>Orders</h3>
+  <p>
+  You can your past, current and all orders that Customer-Representatives have made for you.
+  </p>
+  <ul>
+  <li>Under Current Orders, you can return a movie</li>
+  <li>Under Past Orders, you can rate a movie</li>
+  </ul>
+</li>
+<br/>
+
+
+<li>
+  <h3>Account</h3>
+  <p>
+  You can change the setting of your account including your name, credit card, or account type.
+  </p>
+</li>
+<br/>
+
+<li>
+  <h3>Bestsellers</h3>
+  <p>
+  You can check the top ten best selling movies
+  </p>
+</li>
+<br/>
+</ul>
+
+
+<img id="logo" src="/Logo.png" class="center-block">
+
 	  </div>
   </body>
 </html>
