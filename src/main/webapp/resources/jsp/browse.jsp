@@ -74,28 +74,86 @@
 				
 			<!-- ############################### THIS IS THE CATEGORIES VIEW  ############################### -->
 				<div class = "viewSelection" ng-show="searchView">
-					<h2>SEARCH</h2>
+					
+					<!-- This is the search bar to loop for movies -->
+					 <div class = "viewSelection">
+					 
+				        <div class = "searchView" ng-show="searchView">
+				          <form class="form-horizontal" method="POST">
+				           <div class="form-group">
+				             <label for="search">Search Movies</label>
+				             <input type="text" ng-model="search" class="form-control" name="search" />
+				           </div>
+				           <div class="form-group">
+				             <div class="text-right">
+				               <button type="button" class ="btn-primary btn-mid" ng-click="searchMovies()" >
+				                 Search
+				               </button>
+				             </div>
+				           </div>
+				           </form>
+				         </div>					
+
 				</div>
-				
+				</div>
+				<!-- This displays the movies the user has searched for -->
+				<div ng-show="searchView">
+					<div class="jumbotron vertical-center">
+						<h3>{{searchResults}}</h3>
+						<div ng-repeat="y in searchMovieList">
+							<div class="well">
+								<h2>Movie: {{y.name}}</h2>
+								<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+								<button type="button" class="btn-primary btn-mid" ng-click="add_movie(y.id)" >
+									Add to wish list
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
 				
 				
 			<!-- ############################### THIS IS THE CATEGORIES VIEW  ############################### -->
 				<div class = "viewSelection" ng-show="recommendedView">
-					<h2>RECOMMENDED</h2>
+					<div>
+						<div class="jumbotron vertical-center">
+							<div ng-repeat="y in recommendedSearchMovieList">
+								<div class="well">
+									<h2>Movie: {{y.name}}</h2>
+									<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+									<button type="button" class="btn-primary btn-mid" ng-click="add_movie(y.id)" >
+										Add to wish list
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				
 				
 				
 			<!-- ############################### THIS IS THE CATEGORIES VIEW  ############################### -->
 				<div class = "viewSelection" ng-show="allView">
-					<h2>ALL</h2>
+					<div>
+						<div class="jumbotron vertical-center">
+							<div ng-repeat="y in allSearchMovieList">
+								<div class="well">
+									<h2>Movie: {{y.name}}</h2>
+									<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+									<button type="button" class="btn-primary btn-mid" ng-click="add_movie(y.id)" >
+										Add to wish list
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				
 				
 				
+			
 			</div>
 		</div>
-		
-		
+	</div>
 	</body>
 </html>

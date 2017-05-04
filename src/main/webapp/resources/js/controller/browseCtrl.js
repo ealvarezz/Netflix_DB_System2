@@ -5,9 +5,17 @@ app.controller('browseCtrl', function ($scope,$http,$window) {
 	$scope.header = "Browse by Category";
 	$scope.categoriesView = true;
 	$scope.movies = [];
+	$scope.searchMovies = [];
+	$scope.allSearchMovieList = [];
+	$scope.recommendedSearchMovieList = [];
 	$scope.selected_type = "";
-
-
+	$scope.searchResults = null;
+	
+	/*######################################################################################################*/
+	/*###########################################  BY TYPE  ################################################*/
+	/*######################################################################################################*/
+	/* This is for searching for movies by type */
+	
 	$scope.type_changed = function() {
 		$http({
 			method  : 'POST',
@@ -20,7 +28,64 @@ app.controller('browseCtrl', function ($scope,$http,$window) {
 			$scope.movies = data.data.content;
 		});
 	};
+	
+	/*######################################################################################################*/
+	/*########################################## SEARCHING ##################################################*/
+	/*######################################################################################################*/
 
+	/* This is for searching for movies by searching */
+	$scope.searchMovies = function() {
+		$scope.searchResults = "Search results for " + $scope.search;
+		
+		$http({
+			method  : 'POST',
+			url     : '/searchmovie',
+			data    : { 
+				name : $scope.search
+			}
+		})
+		.then(function(data) {
+			$scope.searchMovieList = data.data.content;
+		});
+	};
+	
+	/*######################################################################################################*/
+	/*######################################### ALL MOVIES #################################################*/
+	/*######################################################################################################*/
+	
+	/* This is for searching for movies by browing ALL movies */
+	$scope.searchAllMovies = function() {
+		$http({
+			method  : 'GET',
+			url     : '/allmovies'
+		})
+		.then(function(data) {
+			$scope.allSearchMovieList = data.data;
+		});
+	};
+	
+	/*######################################################################################################*/
+	/*########################################## RECOMMENDED ###############################################*/
+	/*######################################################################################################*/
+	
+	$scope.searchRecommendedMovies = function() {
+		
+		$http({
+			method  : 'POST',
+			url     : '/recomendedlist',
+			data    : { 
+				email : $window.localStorage.getItem('username')
+			}
+		})
+		.then(function(data) {
+			$scope.recommendedSearchMovieList = data.data;
+		});
+	};
+	
+	
+	/*######################################################################################################*/
+	/*######################################################################################################*/
+	/*######################################################################################################*/
 	
 	$scope.add_movie = function(movieId) {
 		$http({
@@ -59,6 +124,7 @@ app.controller('browseCtrl', function ($scope,$http,$window) {
 		$scope.recommendedView = true;
 		$scope.allView = false;
 		$scope.header = "Recommended Movies";
+		$scope.searchRecommendedMovies();
 	}
 	
 	$scope.changeAllView = function() {
@@ -67,6 +133,7 @@ app.controller('browseCtrl', function ($scope,$http,$window) {
 		$scope.recommendedView = false;
 		$scope.allView = true;
 		$scope.header = "Browse All Movies";
+		$scope.searchAllMovies();
 	}
 
 });
