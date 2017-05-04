@@ -36,11 +36,11 @@
 					<form class="form-horizontal" method="POST">
 						<div class="form-group">
 							<label for="email">Email</label>
-							<input type="email" ng-model="email" class="form-control" name="email" />{{email}}
+							<input type="email" ng-model="email" class="form-control" name="email" />
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
-							<input type="password" ng-model="password" class="form-control" name="password" />{{password}}
+							<input type="password" ng-model="password" class="form-control" name="password" />
 						</div>
 						<div class="text-right">
 							<button type="button" class ="btn-primary btn-mid" ng-click="login()" >

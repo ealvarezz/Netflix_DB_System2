@@ -63,7 +63,7 @@
 						<div class="well">
 							<h2>Movie: {{x.movie.name}}</h2>
 							<h3>Genre: {{x.movie.movieType}}</h3>
-							<h3>Order On: {{x.ree}} </h3>
+							<h3>Ordered On: {{x.ree}} </h3>
 
 							<div ng-if="x.state == 'Held'">
 							<button type="button" class="btn-primary btn-mid"
@@ -73,7 +73,7 @@
 						</div>
 
 							<div ng-if="x.state == 'Returned'">
-								<h3>Return Date: {{x.returnDate}}</h3>
+								<h3>Returned On: {{x.returnDate}}</h3>
 							</div>
 
 						</div>

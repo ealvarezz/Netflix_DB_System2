@@ -34,7 +34,7 @@
 					<form class="form-horizontal" method="POST">
 						<div class="form-group">
 							<label for="FirstName">First Name</label>
-							<input type="text" class="form-control" ng-model="firstname" name="FirstName" required />{{firstname}}
+							<input type="text" class="form-control" ng-model="firstname" name="FirstName" required />
 						</div>
 
 						<div class="form-group">
