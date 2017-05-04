@@ -26,11 +26,17 @@
 		<div class = "container" ng-controller ="bestsellerCtrl">
 
 			<div class="jumbotron vertical-center">
-				<h3>Best Selling movies</h3>
+				<h3>Top Ten Best Selling Movies</h3>
 				<div ng-repeat="y in movies">
 					<div class="well">
-						<h2>Movie: {{y.name}}</h2>
-						<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+						<div class="row">
+							<div class="col-lg-6 col-lg-offset-3 text-center">
+								<h2>{{y.name}}</h2>
+							</div>
+						</div>
+						<h3>Genre: {{y.movieType}}</h3>
+						<h3>Rating: {{y.rating}}</h3>
+						<h3>Number of Copies: {{y.numCopies}}</h3>
 						<button type="button" class="btn-primary btn-mid" ng-click="add_movie(y.id)" >
 							Add to wish list
 						</button>

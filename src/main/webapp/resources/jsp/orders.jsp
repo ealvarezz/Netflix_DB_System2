@@ -66,7 +66,11 @@
 					<h3>{{optionHeader}}</h3>
 					<div ng-repeat="x in orders" >
 						<div class="well">
-							<h2>Movie: {{x.movie.name}}</h2>
+							<div class="row">
+								<div class="col-lg-6 col-lg-offset-3 text-center">
+	                <h2>{{x.movie.name}}</h2>
+	              </div>
+							</div>
 							<h3>Genre: {{x.movie.movieType}}</h3>
 							<h3>Rating: {{x.movie.rating}}</h3>
 							<h3>Ordered On: {{x.ree}} </h3>

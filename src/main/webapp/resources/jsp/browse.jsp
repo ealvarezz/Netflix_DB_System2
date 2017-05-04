@@ -19,9 +19,9 @@
 
 	<body ng-app="FuegoVideo">
 		<div ng-controller="navCtrl" ng-include="'/resources/jsp/navbar.html'"></div>
-		
+
 		<div class = "container" ng-controller ="browseCtrl">
-			
+
 			<div class = "container">
 				<div class="jumbotron vertical-center">
 					<h2>{{header}}</h2>
@@ -44,7 +44,7 @@
                   All Movies
                 </label>
               </form>
-			
+
 			<!-- ############################### THIS IS THE CATEGORIES VIEW  ############################### -->
 				<div class = "viewSelection" ng-show="categoriesView">
 					<div class="container">
@@ -60,8 +60,14 @@
 							<h3>{{selected_type}} movies</h3>
 							<div ng-repeat="y in movies">
 								<div class="well">
-									<h2>Movie: {{y.name}}</h2>
-									<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+									<div class="row">
+									  <div class="col-lg-6 col-lg-offset-3 text-center">
+									    <h2>{{y.name}}</h2>
+									  </div>
+									</div>
+									<h3>Genre: {{y.movieType}}</h3>
+									<h3>Rating: {{y.rating}}</h3>
+									<h3>Number of Copies: {{y.numCopies}}</h3>
 									<button type="button" class="btn-primary btn-mid" ng-click="add_movie(y.id)" >
 										Add to wish list
 									</button>
@@ -70,14 +76,14 @@
 						</div>
 					</div>
 				</div>
-				
-				
+
+
 			<!-- ############################### THIS IS THE SEARCH VIEW  ############################### -->
 				<div class = "viewSelection" ng-show="searchView">
-					
+
 					<!-- This is the search bar to loop for movies -->
 					 <div class = "viewSelection">
-					 
+
 				        <div class = "searchView" ng-show="searchView">
 				          <form class="form-horizontal" method="POST">
 				           <div class="form-group">
@@ -92,7 +98,7 @@
 				             </div>
 				           </div>
 				           </form>
-				         </div>					
+				         </div>
 
 				</div>
 				</div>
@@ -102,8 +108,14 @@
 						<h3>{{searchResults}}</h3>
 						<div ng-repeat="y in searchMovieList">
 							<div class="well">
-								<h2>Movie: {{y.name}}</h2>
-								<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+								<div class="row">
+							  <div class="col-lg-6 col-lg-offset-3 text-center">
+							    <h2>{{y.name}}</h2>
+							  </div>
+							</div>
+								<h3>Genre: {{y.movieType}}</h3>
+								<h3>Rating: {{y.rating}}</h3>
+								<h3>Number of Copies: {{y.numCopies}}</h3>
 								<button type="button" class="btn-primary btn-mid" ng-click="add_movie(y.id)" >
 									Add to wish list
 								</button>
@@ -111,16 +123,22 @@
 						</div>
 					</div>
 				</div>
-				
-				
+
+
 			<!-- ############################### THIS IS THE RECOMMENDED VIEW  ############################### -->
 				<div class = "viewSelection" ng-show="recommendedView">
 					<div>
 						<div class="jumbotron vertical-center">
 							<div ng-repeat="y in recommendedSearchMovieList">
 								<div class="well">
-									<h2>Movie: {{y.name}}</h2>
-									<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+									<div class="row">
+									  <div class="col-lg-6 col-lg-offset-3 text-center">
+									    <h2>{{y.name}}</h2>
+									  </div>
+									</div>
+									<h3>Genre: {{y.movieType}}</h3>
+									<h3>Rating: {{y.rating}}</h3>
+									<h3>Number of Copies: {{y.numCopies}}</h3>
 									<button type="button" class="btn-primary btn-mid" ng-click="add_movie(y.id)" >
 										Add to wish list
 									</button>
@@ -129,17 +147,23 @@
 						</div>
 					</div>
 				</div>
-				
-				
-				
+
+
+
 			<!-- ############################### THIS IS THE ALL VIEW  ############################### -->
 				<div class = "viewSelection" ng-show="allView">
 					<div>
 						<div class="jumbotron vertical-center">
 							<div ng-repeat="y in allSearchMovieList">
 								<div class="well">
-									<h2>Movie: {{y.name}}</h2>
-									<h3>Number of copies: {{y.numCopies}}   fee: {{y.fee}}   Genre: {{y.movieType}}</h2>
+									<div class="row">
+								  <div class="col-lg-6 col-lg-offset-3 text-center">
+								    <h2>{{y.name}}</h2>
+								  </div>
+								</div>
+									<h3>Genre: {{y.movieType}}</h3>
+									<h3>Rating: {{y.rating}}</h3>
+									<h3>Number of Copies: {{y.numCopies}}</h3>
 									<button type="button" class="btn-primary btn-mid" ng-click="add_movie(y.id)" >
 										Add to wish list
 									</button>
@@ -148,10 +172,10 @@
 						</div>
 					</div>
 				</div>
-				
-				
-				
-			
+
+
+
+
 			</div>
 		</div>
 	</div>
