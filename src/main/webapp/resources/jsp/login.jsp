@@ -15,6 +15,8 @@
 		<script src="/resources/js/controller/loginCtrl.js"></script>
 	</head>
 	<style>
+	
+
 .jumbotron
 {
 	margin: 25%;
@@ -27,7 +29,8 @@
 	<body ng-app = "FuegoVideo">
 
 		<div class = "login">
-			<a href="/signup">Dont have an account? Sign up here!</a>
+			<a href="/signup">Dont have an account? Sign up here!</a> <br>
+			<a href="employee_login">Are you part of our staff? Sign in here!</a>
 
 			<div class = "container" ng-controller = "loginCtrl">
 				<div class="jumbotron vertical-center">

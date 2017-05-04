@@ -17,6 +17,25 @@
 
 
     <script type="text/javascript">customer_Lock();</script>
+    
+    <style>
+    	
+    	body {
+    		background-color: #a6a6a6;
+    	}
+    	#logo{
+    		width: 400px;
+    		length: 400px;
+    
+    	}
+    	.green_button{
+    			background-color: #1f7a1f;
+    	}
+    	
+    	#greeting{
+    		color: #e6e6e6;
+    	}
+    </style>
 
   </head>
 
@@ -24,9 +43,12 @@
 	  <div ng-controller="navCtrl" ng-include="'/resources/jsp/navbar.html'"></div>
 
 	  <div class = "container" ng-controller ="indexCtrl">
-		  <h1>{{username}}</h1>
-
-		  THIS IS INDEX.HTML
+		  <h1 id="greeting">{{username}}</h1>
+		  
+		  <img id="logo" src="Logo.png" class="center-block">
+		  
+			<br><br><br><br><br>
+		  <button type="button" class="btn btn-primary btn-lg btn-block green_button" ng-click="goToBrowse()">Fuego Browse</button>
 	  </div>
   </body>
 </html>
