@@ -69,17 +69,18 @@ app.controller('customer_optionsCtrl', function ($scope,$http,$window) {
 
   // For edit customer view
   $scope.editCustomer = null;
-  $scope.editPlan = null;
+  $scope.editPlan = "";
 
   $scope.editCustomerView = false;
   $scope.searchView = true;
   $scope.editCustomerViewForm = false;
   $scope.searchEdit = "";
 
-  $scope.setEditCustomer = function(customer) {
+  $scope.setEditCustomer = function(customer,account) {
     $scope.searchView = false;
     $scope.editCustomerViewForm = true;
     $scope.editCustomer = customer;
+    $scope.editPlan = account.acctType;
   };
 
   $scope.editCustomerInDb = function() {
@@ -120,16 +121,16 @@ app.controller('customer_optionsCtrl', function ($scope,$http,$window) {
 
   // For remove customer view
   $scope.rmCustomer = null;
-
-  $scope.rmLastName = null;
+  $scope.rmPlan = "";
 
   $scope.removeCustomerView = false;
   $scope.searchRemove = "";
   $scope.searchViewRemove = true;
   $scope.removeStatView = false;
 
-  $scope.setRmCustomer = function(customer) {
+  $scope.setRmCustomer = function(customer,account) {
     $scope.rmCustomer = customer;
+    $scope.rmPlan = account.acctType;
     $scope.searchViewRemove = false;
     $scope.removeStatView = true;
   };
@@ -138,9 +139,9 @@ app.controller('customer_optionsCtrl', function ($scope,$http,$window) {
 
     $http({
 			method  : 'POST',
-			url     : '/manager/deletecustomer',
+			url     : '/deleteaccount',
 			data    : {
-				ssn : $scope.rmCustomer.ssn
+				email : $scope.rmCustomer.email
 			}
 		})
     .success(function(data) {
@@ -161,7 +162,6 @@ app.controller('customer_optionsCtrl', function ($scope,$http,$window) {
   $scope.backSearchBtn = true;
 
   $scope.searchBtn = function() {
-
     var searchEmail = "";
     if($scope.editCustomerView) {
       searchEmail = $scope.searchEdit;
@@ -177,13 +177,15 @@ app.controller('customer_optionsCtrl', function ($scope,$http,$window) {
 			}
 		})
 		.then(function(data) {
+      if(data.data.content) {
+        var customer = data.data.content.customer;
+        var account = data.data.content;
 
-      if(data.data) {
         if($scope.editCustomerView) {
-          $scope.setEditCustomer(data.data);
+          $scope.setEditCustomer(customer,account);
         }
         else if ($scope.removeCustomerView) {
-          $scope.setRmCustomer(data.data);
+          $scope.setRmCustomer(customer,account);
         }
       }
       else {
@@ -212,8 +214,6 @@ app.controller('customer_optionsCtrl', function ($scope,$http,$window) {
     $scope.removeCustomerView = false;
     $scope.header = "Add New Customer";
   };
-
-
 
    $scope.changeEditCustomerView = function() {
      $scope.newCustomerView = false;

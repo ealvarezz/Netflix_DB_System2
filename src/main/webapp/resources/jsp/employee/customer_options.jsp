@@ -228,19 +228,19 @@
 
             <div class="form-group">
               <label>
-                <input type="radio" ng-model="plan" value="limited">
+                <input type="radio" ng-model="editPlan" value="limited">
                 Limited - 10$ for 2 movies month. One at a time.
               </label><br/>
               <label>
-                <input type="radio" ng-model="plan" ng-value="unlimited-1">
+                <input type="radio" ng-model="editPlan" ng-value="unlimited-1">
                 Unlimited-1 - $15/month for 1 movie out at-a-time. Unlimited per month.
               </label><br/>
               <label>
-                <input type="radio" ng-model="plan" value="unlimited-2">
+                <input type="radio" ng-model="editPlan" value="unlimited-2">
                 Unlimited-2 - $20/month for 2 movies out at-a-time. Unlimited per month.
               </label><br/>
               <label>
-                <input type="radio" ng-model="plan" value="unlimited-3">
+                <input type="radio" ng-model="editPlan" value="unlimited-3">
                 Unlimited-3 - $25/month for 3 movies out at-a-time. Unlimited per month.
               </label><br/>
             </div>
@@ -282,9 +282,8 @@
 						</div>
 						<div id="delCustomerStats">
 							<h2>Name: {{rmCustomer.firstName}} {{rmCustomer.lastName}}</h2>
-							<h3>Customer ID: {{rmCustomer.ssn}}
-							<h3>HourlyRate: \${{rmCustomer.hourlyRate}}</h3>
-							<h3>StartDate: {{rmCustomer.startDate}}</h3>
+							<h3>Email: {{rmCustomer.email}}
+							<h3>Account: {{rmPlan}}</h3>
 						</div>
 						<button type="button" class="btn-danger btn-mid" ng-click="finalDeleteCustomer()" >
 							Delete Customer
