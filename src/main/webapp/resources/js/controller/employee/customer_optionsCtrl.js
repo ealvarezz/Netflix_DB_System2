@@ -229,4 +229,18 @@ app.controller('customer_optionsCtrl', function ($scope,$http,$window) {
      $scope.header = "Remove An Customer";
    };
 
+
+   /******************************************************/
+   //Get the mailing list
+   $scope.mailingList = [];
+   getMailingList = function() {
+    $http({
+      method  : 'GET',
+      url     : '/produce_mailing_list',
+    })
+    .then(function(data) {
+      $scope.mailingList = data.data;
+    });
+  };
+  getMailingList();
  });

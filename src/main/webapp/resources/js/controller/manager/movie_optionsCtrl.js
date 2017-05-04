@@ -121,6 +121,23 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
 
       /***************************************************************/
 
+    //View all orders
+  $scope.allMovieView = false;
+  $scope.movieList = [];
+
+  getAllMovies = function() {
+
+    $http({
+			method  : 'GET',
+			url     : '/allmovies'
+		})
+		.then(function(data) {
+			$scope.movieList = data.data;
+		});
+  };
+
+      /***************************************************************/
+
   //Buttons for searching and changing views
   $scope.backSearchBtn = true;
 
@@ -176,6 +193,7 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
     $scope.newMovieView = true;
     $scope.editMovieView = false;
     $scope.removeMovieView = false;
+    $scope.allMovieView = false;
     $scope.header = "Add New Movie";
   };
 
@@ -184,6 +202,7 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
      $scope.newMovieView = false;
      $scope.editMovieView = true;
      $scope.removeMovieView = false;
+     $scope.allMovieView = false;
      $scope.header = "Edit An Movie";
    };
 
@@ -191,7 +210,17 @@ app.controller('movie_optionsCtrl', function ($scope,$http,$window) {
      $scope.newMovieView = false;
      $scope.editMovieView = false;
      $scope.removeMovieView = true;
+     $scope.allMovieView = false;
      $scope.header = "Remove An Movie";
+   };
+
+   $scope.changeAllMovieView = function() {
+     $scope.newMovieView = false;
+     $scope.editMovieView = false;
+     $scope.removeMovieView = false;
+     $scope.allMovieView = true;
+     $scope.header = "All Movies";
+     getAllMovies();
    };
 
  });

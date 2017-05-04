@@ -58,15 +58,19 @@
               <form id="selector viewSelection">
                 <label class="radio-inline"><input type="radio" checked="checked"
                   name="optradio" id="newMovie" class ='viewSelection' ng-click="changeNewMovieView()">
-                  New Movie
+                  Add New Movie
                 </label>
                 <label class="radio-inline"> <input type="radio" name="optradio"
                   id="editMovie" class ='viewSelection' ng-click="changeEditMovieView()">
-                  Edit an Movie
+                  Edit a Movie
                 </label>
                 <label class="radio-inline"> <input type="radio" name="optradio"
                   id="removeMovie" class ='viewSelection' ng-click="changeRemoveMovieView()">
-                  Remove an Movie
+                  Remove a Movie
+                </label>
+								<label class="radio-inline"> <input type="radio" name="optradio"
+                  id="allMovies" class ='viewSelection' ng-click="changeAllMovieView()">
+                  View All Movies
                 </label>
               </form>
 
@@ -233,7 +237,20 @@
 						</button>
 					</div>
 			</div> <!-- End for removeMovieView -->
-		</div>
+
+					<!------------------------------------------------------->
+
+			<div class = "viewSelection" ng-show="allMovieView">
+				<div ng-repeat="y in movieList">
+					<div class="well">
+						<h2>Movie: {{y.name}}</h2>
+						<h3>Genre: {{y.movieType}}</h3>
+						<h3>Number of copies: {{y.numCopies}}
+						<h3>Distribution Fee: {{y.fee}}
+						<h3>Rating: {{y.rating}}
+					</div>
+				</div>
+		</div> <!-- End for allMovieView -->
   </div>
 </div>
 </body>
